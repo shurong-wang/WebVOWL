@@ -136,6 +136,9 @@ module.exports = function (graph) {
 
 	}
 
+	/**
+	 * 数据加载[关键]
+	 */
 	function parseUrlAndLoadOntology() {
 
 		console.warn('>> parseUrlAndLoadOntology');
@@ -220,7 +223,11 @@ module.exports = function (graph) {
 			d3.select("#converter-option").classed("selected-ontology", true);
 
 		} else {
+
 			// id of an existing ontology as parameter
+
+			console.warn("data/" + hashParameter + ".json", hashParameter);
+
 			loadOntologyFromUri("data/" + hashParameter + ".json", hashParameter);
 
 			ontologyOptions.each(function () {

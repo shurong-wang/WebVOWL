@@ -120,6 +120,9 @@ module.exports = function () {
 	};
 
 	function loadOntologyFromText(jsonText, filename, alternativeFilename) {
+
+		console.warn('>> loadOntologyFromText');
+
 		pauseMenu.reset();
 
 		if (jsonText===undefined && filename===undefined){
