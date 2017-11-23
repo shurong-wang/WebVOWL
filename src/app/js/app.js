@@ -22,7 +22,7 @@ module.exports = function () {
 		datatypeFilter = webvowl.modules.datatypeFilter(),
 		disjointFilter = webvowl.modules.disjointFilter(),
 		focuser = webvowl.modules.focuser(),
-		emptyLiteralFilter=webvowl.modules.emptyLiteralFilter(),
+		emptyLiteralFilter = webvowl.modules.emptyLiteralFilter(),
 		nodeDegreeFilter = webvowl.modules.nodeDegreeFilter(filterMenu),
 		nodeScalingSwitch = webvowl.modules.nodeScalingSwitch(graph),
 		objectPropertyFilter = webvowl.modules.objectPropertyFilter(),
@@ -32,7 +32,11 @@ module.exports = function () {
 		subclassFilter = webvowl.modules.subclassFilter(),
 		setOperatorFilter = webvowl.modules.setOperatorFilter();
 
+	// *** 初始化 *** //
 	app.initialize = function () {
+
+		console.warn('>> app.initialize');
+
 		options.graphContainerSelector(GRAPH_SELECTOR);
 		options.selectionModules().push(focuser);
 		options.selectionModules().push(selectionDetailDisplayer);

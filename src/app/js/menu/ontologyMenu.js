@@ -27,6 +27,9 @@ module.exports = function (graph) {
 	};
 
 	ontologyMenu.setup = function (_loadOntologyFromText) {
+
+		console.warn('>> ontologyMenu.setup');
+		
 		loadOntologyFromText = _loadOntologyFromText;
 
 		var menuEntry= d3.select("#select");
@@ -59,6 +62,9 @@ module.exports = function (graph) {
 
 
 	function setupUriListener() {
+
+		console.warn('>> setupUriListener');
+
 		// parse the url initially
 		parseUrlAndLoadOntology();
 
@@ -131,6 +137,9 @@ module.exports = function (graph) {
 	}
 
 	function parseUrlAndLoadOntology() {
+
+		console.warn('>> parseUrlAndLoadOntology');
+
 		// count number of hash parameters
 		var urlString=String(location);
 		console.log("-----------------------");
@@ -227,6 +236,9 @@ module.exports = function (graph) {
 	}
 
 	function loadOntologyFromURL(relativePath,requestedURL){
+
+		console.warn('>> loadOntologyFromURL');
+
 		fileToLoad=requestedURL;
 		var cachedOntology = cachedConversions[relativePath];
 		var trimmedRequestedUri = requestedURL.replace(/\/$/g, "");
@@ -282,6 +294,9 @@ module.exports = function (graph) {
 	}
 
 	function loadOntologyFromUri(relativePath, requestedUri) {
+
+		console.warn('>> loadOntologyFromUri');
+
 		fileToLoad=requestedUri;
 		var cachedOntology = cachedConversions[relativePath];
 		var trimmedRequestedUri = requestedUri.replace(/\/$/g, "");
@@ -467,6 +482,9 @@ module.exports = function (graph) {
 	}
 
 	function loadOntologyFromFile(filename) {
+
+		console.warn('>> loadOntologyFromFile');
+		
 		var cachedOntology = cachedConversions[filename];
 		if (cachedOntology) {
 			displayLoadingIndicators();
@@ -513,6 +531,9 @@ module.exports = function (graph) {
 	}
 
 	function loadFromOntology(selectedFile, filename, fromFile) {
+
+		console.warn('>> loadFromOntology');
+
 		var uploadButton = d3.select("#file-converter-button");
 
 		displayLoadingIndicators();
@@ -547,6 +568,9 @@ module.exports = function (graph) {
 	}
 
 	function loadOntologyFromTextAndTrimFilename(text, filename) {
+
+		console.warn('>> loadOntologyFromTextAndTrimFilename');
+
 		var trimmedFilename = filename.split(".")[0];
 		loadOntologyFromText(text, trimmedFilename);
 	}
