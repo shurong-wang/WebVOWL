@@ -470,6 +470,8 @@
       ]
     }
   ],
+
+
   "property": [
     {
       "id": "0",
@@ -541,10 +543,6 @@
     },
     {
       "id": "3",
-      "type": "owl:objectProperty"
-    },
-    {
-      "id": "30",
       "type": "owl:objectProperty"
     },
     {
@@ -936,45 +934,6 @@
       "id": "17"
     },
     {
-      "iri": "http://purl.org/muto/core#previousTag",
-      "inverse": "30",
-      "baseIri": "http://purl.org/muto/core",
-      "range": "4",
-      "annotations": {
-        "isDefinedBy": [
-          {
-            "identifier": "定义",
-            "language": "cn",
-            "value": "http://purl.org/muto/core#",
-            "type": "iri"
-          }
-        ],
-        "versionInfo": [
-          {
-            "identifier": "versionInfo",
-            "language": "en",
-            "value": "Version 1.0: see muto:nextTag",
-            "type": "label"
-          }
-        ]
-      },
-      "label": {
-        "IRI-based": "previousTag",
-        "cn": "私有标签",
-        "en": "previous tag"
-      },
-      "domain": "4",
-      "comment": {
-        "cn": "该属性表示标记列表中前面的标记。它可以用来描述用户输入标签的顺序。",
-        "en": "This property indicates the tag that is preceding in the list of tags. It can be used to describe the order in which the tags have been entered by the user."
-      },
-      "attributes": [
-        "functional",
-        "object"
-      ],
-      "id": "29"
-    },
-    {
       "iri": "http://purl.org/muto/core#tagLabel",
       "baseIri": "http://purl.org/muto/core",
       "range": "25",
@@ -1168,56 +1127,6 @@
         "object"
       ],
       "id": "3"
-    },
-    {
-      "iri": "http://purl.org/muto/core#nextTag",
-      "baseIri": "http://purl.org/muto/core",
-      "range": "4",
-      "annotations": {
-        "isDefinedBy": [
-          {
-            "identifier": "定义",
-            "language": "cn",
-            "value": "http://purl.org/muto/core#",
-            "type": "iri"
-          },
-          {
-            "identifier": "isDefinedBy",
-            "language": "en",
-            "value": "http://purl.org/muto/core#",
-            "type": "iri"
-          }
-        ],
-        "versionInfo": [
-          {
-            "identifier": "版本信息",
-            "language": "cn",
-            "value": "版本1.0:早期版本的MUTO定义了一个数据类型属性MUTO:带有整数值的标记，与这个解决方案相比有一些缺点。",
-            "type": "label"
-          },
-          {
-            "identifier": "versionInfo",
-            "language": "en",
-            "value": "Version 1.0: Earlier versions of MUTO defined a datatype property muto:tagPosition with integer values which has some drawbacks compared to this solution.",
-            "type": "label"
-          }
-        ]
-      },
-      "label": {
-        "IRI-based": "nextTag",
-        "cn": "下一标记",
-        "en": "next tag"
-      },
-      "domain": "4",
-      "comment": {
-        "cn": "这个属性表示标记列表后面跟着的标记。它可以用来描述用户输入标签的顺序。",
-        "en": "This property indicates the tag that follows next in the list of tags. It can be used to describe the order in which the tags have been entered by the user."
-      },
-      "attributes": [
-        "functional",
-        "object"
-      ],
-      "id": "30"
     },
     {
       "iri": "http://purl.org/muto/core#taggingCreated",
