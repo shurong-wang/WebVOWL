@@ -140,10 +140,6 @@
       "type": "owl:Thing"
     },
     {
-      "id": "9",
-      "type": "owl:Thing"
-    },
-    {
       "id": "10",
       "type": "rdfs:Literal"
     },
@@ -192,7 +188,7 @@
       "annotations": {
         "isDefinedBy": [
           {
-            "identifier": "是否被定义",
+            "identifier": "定义",
             "language": "cn",
             "value": "http://purl.org/muto/core#",
             "type": "iri"
@@ -274,17 +270,8 @@
       "baseIri": "http://owl2vowl.de",
       "id": "2",
       "label": {
-        "cn": "事物",
-        "en": "Thing"
-      }
-    },
-    {
-      "iri": "http://www.w3.org/2002/07/owl#Thing",
-      "baseIri": "http://owl2vowl.de",
-      "id": "9",
-      "label": {
-        "cn": "事物",
-        "en": "Thing"
+        "cn": "事物2",
+        "en": "Thing2"
       }
     },
     {
@@ -684,7 +671,7 @@
       "annotations": {
         "isDefinedBy": [
           {
-            "identifier": "被定义",
+            "identifier": "定义",
             "language": "cn",
             "value": "http://purl.org/muto/core#",
             "type": "iri"
@@ -743,7 +730,7 @@
       "annotations": {
         "isDefinedBy": [
           {
-            "identifier": "被定义",
+            "identifier": "定义",
             "language": "cn",
             "value": "http://purl.org/muto/core#",
             "type": "iri"
@@ -796,7 +783,7 @@
       "annotations": {
         "isDefinedBy": [
           {
-            "identifier": "被定义",
+            "identifier": "定义",
             "language": "cn",
             "value": "http://purl.org/muto/core#",
             "type": "iri"
@@ -832,7 +819,7 @@
       "annotations": {
         "isDefinedBy": [
           {
-            "identifier": "被定义",
+            "identifier": "定义",
             "language": "cn",
             "value": "http://purl.org/muto/core#",
             "type": "iri"
@@ -906,7 +893,7 @@
       "annotations": {
         "isDefinedBy": [
           {
-            "identifier": "被定义",
+            "identifier": "定义",
             "language": "cn",
             "value": "http://purl.org/muto/core#",
             "type": "iri"
@@ -956,7 +943,7 @@
       "annotations": {
         "isDefinedBy": [
           {
-            "identifier": "被定义",
+            "identifier": "定义",
             "language": "cn",
             "value": "http://purl.org/muto/core#",
             "type": "iri"
@@ -994,7 +981,7 @@
       "annotations": {
         "isDefinedBy": [
           {
-            "identifier": "被定义",
+            "identifier": "定义",
             "language": "cn",
             "value": "http://purl.org/muto/core#",
             "type": "iri"
@@ -1061,7 +1048,7 @@
       "annotations": {
         "isDefinedBy": [
           {
-            "identifier": "被定义",
+            "identifier": "定义",
             "language": "cn",
             "value": "http://purl.org/muto/core#",
             "type": "iri"
@@ -1099,7 +1086,7 @@
       "annotations": {
         "isDefinedBy": [
           {
-            "identifier": "被定义",
+            "identifier": "定义",
             "language": "cn",
             "value": "http://purl.org/muto/core#",
             "type": "iri"
@@ -1134,7 +1121,7 @@
       "annotations": {
         "isDefinedBy": [
           {
-            "identifier": "被定义",
+            "identifier": "定义",
             "language": "cn",
             "value": "http://purl.org/muto/core#",
             "type": "iri"
@@ -1189,7 +1176,7 @@
       "annotations": {
         "isDefinedBy": [
           {
-            "identifier": "被定义",
+            "identifier": "定义",
             "language": "cn",
             "value": "http://purl.org/muto/core#",
             "type": "iri"
@@ -1239,7 +1226,7 @@
       "annotations": {
         "isDefinedBy": [
           {
-            "identifier": "被定义",
+            "identifier": "定义",
             "language": "cn",
             "value": "http://purl.org/muto/core#",
             "type": "iri"
@@ -1299,7 +1286,7 @@
       "annotations": {
         "isDefinedBy": [
           {
-            "identifier": "被定义",
+            "identifier": "定义",
             "language": "cn",
             "value": "http://purl.org/muto/core#",
             "type": "iri"
@@ -1334,7 +1321,7 @@
       "annotations": {
         "isDefinedBy": [
           {
-            "identifier": "被定义",
+            "identifier": "定义",
             "language": "cn",
             "value": "http://purl.org/muto/core#",
             "type": "iri"
