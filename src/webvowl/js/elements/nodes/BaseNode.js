@@ -7,7 +7,7 @@ module.exports = (function () {
 		BaseElement.apply(this, arguments);
 
 		var that = this,
-		// Basic attributes
+			// Basic attributes
 			complement,
 			disjointUnion,
 			disjointWith,
@@ -15,9 +15,9 @@ module.exports = (function () {
 			intersection,
 			union,
 			links,
-		// Additional attributes
+			// Additional attributes
 			maxIndividualCount,
-		// Element containers
+			// Element containers
 			nodeElement;
 
 
@@ -107,32 +107,32 @@ module.exports = (function () {
 				.on("mouseout", onMouseOut);
 		};
 
-		this.animationProcess=function(){
-            var animRuns=false;
-            if (that.getHalos()) {
-                var haloGr=that.getHalos();
-                var haloEls= haloGr.selectAll(".searchResultA");
-                animRuns=haloGr.attr("animationRunning");
-                if (typeof animRuns !== "boolean") {
-                    // parse this to a boolean value
-                    animRuns = (animRuns === 'true');
-                }
-                if (animRuns===false) {
-                    haloEls.classed("searchResultA", false);
-                    haloEls.classed("searchResultB", true);
-                }
-            }
-            return animRuns;
-        };
+		this.animationProcess = function () {
+			var animRuns = false;
+			if (that.getHalos()) {
+				var haloGr = that.getHalos();
+				var haloEls = haloGr.selectAll(".searchResultA");
+				animRuns = haloGr.attr("animationRunning");
+				if (typeof animRuns !== "boolean") {
+					// parse this to a boolean value
+					animRuns = (animRuns === 'true');
+				}
+				if (animRuns === false) {
+					haloEls.classed("searchResultA", false);
+					haloEls.classed("searchResultB", true);
+				}
+			}
+			return animRuns;
+		};
 
-		this.foreground = function(){
+		this.foreground = function () {
 			var selectedNode = that.nodeElement().node(),
 				nodeContainer = selectedNode.parentNode;
-				// check if the halo is present and an animation is running
-            if (that.animationProcess()===false) {
-                // Append hovered element as last child to the container list.
-                nodeContainer.appendChild(selectedNode);
-            }
+			// check if the halo is present and an animation is running
+			if (that.animationProcess() === false) {
+				// Append hovered element as last child to the container list.
+				nodeContainer.appendChild(selectedNode);
+			}
 
 		};
 
@@ -145,9 +145,9 @@ module.exports = (function () {
 				nodeContainer = selectedNode.parentNode;
 
 			// Append hovered element as last child to the container list.
-            if (that.animationProcess()===false) {
-                nodeContainer.appendChild(selectedNode);
-            }
+			if (that.animationProcess() === false) {
+				nodeContainer.appendChild(selectedNode);
+			}
 			that.setHoverHighlighting(true);
 			that.mouseEntered(true);
 		}

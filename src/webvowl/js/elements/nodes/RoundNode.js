@@ -13,15 +13,15 @@ module.exports = (function () {
 			collapsingGroupElement,
 			pinGroupElement,
 			haloGroupElement = null,
-			rectangularRepresentation=false,
+			rectangularRepresentation = false,
 			textBlock;
 
-		this.setRectangularRepresentation=function(val){
-			rectangularRepresentation=val;
+		this.setRectangularRepresentation = function (val) {
+			rectangularRepresentation = val;
 		};
-		this.getRectangularRepresentation=function(){
+		this.getRectangularRepresentation = function () {
 			return rectangularRepresentation;
-        };
+		};
 
 		this.getHalos = function () {
 			return haloGroupElement;
@@ -110,11 +110,11 @@ module.exports = (function () {
 
 		this.drawHalo = function () {
 			that.halo(true);
-			if (rectangularRepresentation===true) {
-                haloGroupElement = drawTools.drawRectHalo(that.nodeElement(), 80, 80, 5);
-            }else{
-            	haloGroupElement = drawTools.drawHalo(that.nodeElement(), that.actualRadius(), this.removeHalo);
-        	}
+			if (rectangularRepresentation === true) {
+				haloGroupElement = drawTools.drawRectHalo(that.nodeElement(), 80, 80, 5);
+			} else {
+				haloGroupElement = drawTools.drawHalo(that.nodeElement(), that.actualRadius(), this.removeHalo);
+			}
 		};
 
 		/**
@@ -184,11 +184,11 @@ module.exports = (function () {
 			if (additionalCssClasses instanceof Array) {
 				cssClasses = cssClasses.concat(additionalCssClasses);
 			}
-            if (rectangularRepresentation===true) {
-                drawTools.appendRectangularClass(parentElement, 80,80, cssClasses, that.labelForCurrentLanguage(), that.backgroundColor());
-            }else {
-                drawTools.appendCircularClass(parentElement, that.actualRadius(), cssClasses, that.labelForCurrentLanguage(), that.backgroundColor());
-            }
+			if (rectangularRepresentation === true) {
+				drawTools.appendRectangularClass(parentElement, 80, 80, cssClasses, that.labelForCurrentLanguage(), that.backgroundColor());
+			} else {
+				drawTools.appendCircularClass(parentElement, that.actualRadius(), cssClasses, that.labelForCurrentLanguage(), that.backgroundColor());
+			}
 
 			that.postDrawActions(parentElement);
 		};

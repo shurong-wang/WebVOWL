@@ -5,7 +5,7 @@ describe("Truncating of text", function () {
 		tools = require("../../../src/webvowl/js/util/textTools")();
 	});
 
-	it("should not truncate too short strings", function() {
+	it("should not truncate too short strings", function () {
 		var text = "The text length is OK",
 			maxWidth = 1000;
 
@@ -14,7 +14,7 @@ describe("Truncating of text", function () {
 		expect(truncatedText).toBe(text);
 	});
 
-	it("should truncate too long strings", function() {
+	it("should truncate too long strings", function () {
 		var text = "This text is too long",
 			maxWidth = 4;
 
@@ -24,7 +24,7 @@ describe("Truncating of text", function () {
 		expect(truncatedText.length).toBeLessThan(text.length);
 	});
 
-	it("should append three dots when truncating", function() {
+	it("should append three dots when truncating", function () {
 		var text = "This text is waaaaaaaaaay too long",
 			maxWidth = 100;
 

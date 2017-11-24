@@ -19,7 +19,7 @@ module.exports = function (graph) {
 		viewStatusOfSearchEntries = false;
 
 	String.prototype.beginsWith = function (string) {
-		return(this.indexOf(string) === 0);
+		return (this.indexOf(string) === 0);
 	};
 
 	searchMenu.requestDictionaryUpdate = function () {
@@ -48,19 +48,19 @@ module.exports = function (graph) {
 			idList.push(labelDictionary[i].id());
 			stringList.push(lEntry);
 			// add all equivalents to the search space;
-			if (labelDictionary[i].equivalents && labelDictionary[i].equivalents().length>0){
-				var eqs=labelDictionary[i].equivalentsString();
-				var eqsLabels=eqs.split(", ");
-				for (var e=0;e<eqsLabels.length;e++){
-                    idList.push(labelDictionary[i].id());
-                    stringList.push(eqsLabels[e]);
+			if (labelDictionary[i].equivalents && labelDictionary[i].equivalents().length > 0) {
+				var eqs = labelDictionary[i].equivalentsString();
+				var eqsLabels = eqs.split(", ");
+				for (var e = 0; e < eqsLabels.length; e++) {
+					idList.push(labelDictionary[i].id());
+					stringList.push(eqsLabels[e]);
 				}
 			}
 		}
 
 		mergedStringsList = [];
 		mergedIdList = [];
-		var indexInStringList=-1;
+		var indexInStringList = -1;
 		var currentString;
 		var currentObjectId;
 
@@ -98,23 +98,23 @@ module.exports = function (graph) {
 			idListResult = idListResult.substring(0, idListResult.length - 2);
 			idListResult = idListResult + " ]";
 
-			var firstVal=correspondingIdList[0];
+			var firstVal = correspondingIdList[0];
 
-			if (correspondingIdList.length > 1 ){
+			if (correspondingIdList.length > 1) {
 				// we have several ids for a search entry;
 				// we check if they are allSame meaning that we are searching for an equivalent property;
-				var allSame=true;
+				var allSame = true;
 				// using simple for-loop since id list should be small
-				for (var x=0;x<correspondingIdList.length;x++){
-					if (correspondingIdList[x]!==firstVal){
-						allSame=false;
+				for (var x = 0; x < correspondingIdList.length; x++) {
+					if (correspondingIdList[x] !== firstVal) {
+						allSame = false;
 					}
 				}
-				if (allSame===true)
-                    dictionary.push(aString);
+				if (allSame === true)
+					dictionary.push(aString);
 				else
-                dictionary.push(aString + " (" + correspondingIdList.length + ")");
-            }
+					dictionary.push(aString + " (" + correspondingIdList.length + ")");
+			}
 			else
 				dictionary.push(aString);
 			entryNames.push(aString);
@@ -130,16 +130,16 @@ module.exports = function (graph) {
 		searchLineEdit.on("keydown", userNavigation);
 		searchLineEdit.on("click", toggleSearchEntryView);
 		searchLineEdit.on("mouseover", hoverSearchEntryView);
-        var locateButton= d3.select("#locateSearchResult");
-        locateButton.on("click",function(){
-            graph.locateSearchResult();
-        });
+		var locateButton = d3.select("#locateSearchResult");
+		locateButton.on("click", function () {
+			graph.locateSearchResult();
+		});
 
-        locateButton.on("mouseover",function(){
-            searchMenu.hideSearchEntries();
-        });
+		locateButton.on("mouseover", function () {
+			searchMenu.hideSearchEntries();
+		});
 
-    };
+	};
 
 	function hoverSearchEntryView() {
 		searchMenu.showSearchEntries();
@@ -194,29 +194,29 @@ module.exports = function (graph) {
 				htmlCollection[selectedEntry].onclick();
 				searchMenu.hideSearchEntries();
 			}
-			else if (numEntries===0){
+			else if (numEntries === 0) {
 				inputText = searchLineEdit.node().value;
 				// check if input text ends or begins with with space
 				// remove first spaces
-				var clearedText=inputText.replace(/%20/g," ");
-				while (clearedText.beginsWith(" ")){
-					clearedText=clearedText.substr(1,clearedText.length);
+				var clearedText = inputText.replace(/%20/g, " ");
+				while (clearedText.beginsWith(" ")) {
+					clearedText = clearedText.substr(1, clearedText.length);
 				}
 				// remove ending spaces
-				while (clearedText.endsWith(" ")){
-					clearedText=clearedText.substr(0,clearedText.length-1);
+				while (clearedText.endsWith(" ")) {
+					clearedText = clearedText.substr(0, clearedText.length - 1);
 				}
-				var iri=clearedText.replace(/ /g,"%20");
+				var iri = clearedText.replace(/ /g, "%20");
 
-				var valid=ValidURL(iri);
+				var valid = ValidURL(iri);
 				// validate url:
-				if (valid){
-					var ontM=graph.options().ontologyMenu();
+				if (valid) {
+					var ontM = graph.options().ontologyMenu();
 					ontM.setIriText(iri);
-					searchLineEdit.node().value="";
+					searchLineEdit.node().value = "";
 				}
-				else{
-					console.log(iri+" is not a valid URL!");
+				else {
+					console.log(iri + " is not a valid URL!");
 				}
 			}
 		}
@@ -246,7 +246,7 @@ module.exports = function (graph) {
 			}
 		}
 	}
-	searchMenu.getSearchString=function (){return searchLineEdit.node().value;};
+	searchMenu.getSearchString = function () { return searchLineEdit.node().value; };
 	function handleAutoCompletion() {
 		/**  pre condition: autoCompletion has already a valid text**/
 		var htmlCollection;
@@ -261,7 +261,7 @@ module.exports = function (graph) {
 
 		for (i = 0; i < dictionary.length; i++) {
 			var tokenElement = dictionary[i];
-			if (tokenElement === undefined){
+			if (tokenElement === undefined) {
 				//@WORKAROUND : nodes with undefined labels are skipped
 				//@FIX: these nodes are now not added to the dictionary
 				continue;
@@ -294,7 +294,7 @@ module.exports = function (graph) {
 
 		for (i = 0; i < numEntries; i++) {
 			// search for the best entry
-			var indexElement  = 1000000;
+			var indexElement = 1000000;
 			var lengthElement = 1000000;
 			var bestElement = -1;
 			for (var j = 0; j < copyRes.length; j++) {
@@ -322,7 +322,7 @@ module.exports = function (graph) {
 			//add results to the dropdown menu
 			var testEntry = document.createElement('li');
 			testEntry.setAttribute('elementID', newResultsIds[i]);
-			testEntry.onclick= handleClick (newResultsIds[i]);
+			testEntry.onclick = handleClick(newResultsIds[i]);
 			testEntry.setAttribute('class', "dbEntry");
 			var createAText = document.createTextNode(newResults[i]);
 			testEntry.appendChild(createAText);
@@ -346,7 +346,7 @@ module.exports = function (graph) {
 		var numEntries = htmlCollection.length;
 		inputText = searchLineEdit.node().value;
 		d3.select("#locateSearchResult").classed("highlighted", false);
-        d3.select("#locateSearchResult").node().title="Nothing to locate, enter search term.";
+		d3.select("#locateSearchResult").node().title = "Nothing to locate, enter search term.";
 		if (inputText.length === 0) {
 			for (i = 0; i < numEntries; i++)
 				htmlCollection[0].remove();
@@ -362,7 +362,7 @@ module.exports = function (graph) {
 
 		for (i = 0; i < dictionary.length; i++) {
 			var tokenElement = dictionary[i];
-			if (tokenElement === undefined){
+			if (tokenElement === undefined) {
 				//@WORKAROUND : nodes with undefined labels are skipped
 				//@FIX: these nodes are now not added to the dictionary
 				continue;
@@ -394,7 +394,7 @@ module.exports = function (graph) {
 
 		for (i = 0; i < numEntries; i++) {
 			// search for the best entry
-			var indexElement  = 100000000;
+			var indexElement = 100000000;
 			var lengthElement = 100000000;
 			var bestElement = -1;
 			for (var j = 0; j < copyRes.length; j++) {
@@ -417,10 +417,10 @@ module.exports = function (graph) {
 		for (i = 0; i < numEntries; i++) {
 			//add results to the dropdown menu
 			var testEntry;
-			testEntry= document.createElement('li');
+			testEntry = document.createElement('li');
 			testEntry.setAttribute('elementID', newResultsIds[i]);
 			testEntry.setAttribute('class', "dbEntry");
-			testEntry.onclick= handleClick (newResultsIds[i]);
+			testEntry.onclick = handleClick(newResultsIds[i]);
 			var createAText = document.createTextNode(newResults[i]);
 			testEntry.appendChild(createAText);
 			dropDownContainer.node().appendChild(testEntry);
@@ -428,9 +428,9 @@ module.exports = function (graph) {
 		searchMenu.showSearchEntries();
 	}
 
-	function handleClick(elementId){
+	function handleClick(elementId) {
 
-		return function(){
+		return function () {
 			var id = elementId;
 			var correspondingIds = mergedIdList[id];
 
@@ -440,7 +440,7 @@ module.exports = function (graph) {
 
 			graph.resetSearchHighlight();
 			graph.highLightNodes(correspondingIds);
-            d3.select("#locateSearchResult").node().title="Locate search term";
+			d3.select("#locateSearchResult").node().title = "Locate search term";
 			if (autoComStr !== inputText) {
 				handleAutoCompletion();
 			}
@@ -448,13 +448,13 @@ module.exports = function (graph) {
 		};
 	}
 
-	searchMenu.clearText=function(){
-		searchLineEdit.node().value="";
-        d3.select("#locateSearchResult").classed("highlighted", false);
-        d3.select("#locateSearchResult").node().title="Nothing to locate, enter search term.";
+	searchMenu.clearText = function () {
+		searchLineEdit.node().value = "";
+		d3.select("#locateSearchResult").classed("highlighted", false);
+		d3.select("#locateSearchResult").node().title = "Nothing to locate, enter search term.";
 		var htmlCollection = dropDownContainer.node().children;
 		var numEntries = htmlCollection.length;
-		for (var i = 0; i < numEntries; i++){
+		for (var i = 0; i < numEntries; i++) {
 			htmlCollection[0].remove();
 		}
 	};

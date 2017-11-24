@@ -8,7 +8,7 @@ module.exports = function (graph) {
 	var sidebar = {},
 		languageTools = webvowl.util.languageTools(),
 		elementTools = webvowl.util.elementTools(),
-	// Required for reloading when the language changes
+		// Required for reloading when the language changes
 		ontologyInfo,
 		lastSelectedElement;
 
@@ -54,7 +54,7 @@ module.exports = function (graph) {
 		});
 	}
 
-	sidebar.clearOntologyInformation= function(){
+	sidebar.clearOntologyInformation = function () {
 
 		d3.select("#title").text("No title available");
 		d3.select("#about").attr("href", "#").attr("target", "_blank").text("not given");
@@ -78,7 +78,7 @@ module.exports = function (graph) {
 
 		// clear selectedNode info
 		var isTriggerActive = d3.select("#selection-details-trigger").classed("accordion-trigger-active");
-		if (isTriggerActive){
+		if (isTriggerActive) {
 			// close accordion
 			d3.select("#selection-details-trigger").node().click();
 		}

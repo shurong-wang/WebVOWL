@@ -15,7 +15,7 @@ module.exports = function (graph) {
 		loadingError = d3.select("#loading-error"),
 		loadingProgress = d3.select("#loading-progress"),
 		ontologyMenuTimeout,
-		emptyGraph=false,
+		emptyGraph = false,
 		fileToLoad,
 		cachedConversions = {},
 		loadOntologyFromText;
@@ -23,25 +23,25 @@ module.exports = function (graph) {
 
 
 	String.prototype.beginsWith = function (string) {
-		return(this.indexOf(string) === 0);
+		return (this.indexOf(string) === 0);
 	};
 
 	ontologyMenu.setup = function (_loadOntologyFromText) {
 
 		console.warn('>> ontologyMenu.setup');
-		
+
 		loadOntologyFromText = _loadOntologyFromText;
 
-		var menuEntry= d3.select("#select");
-		menuEntry.on("mouseover",function(){
-			var searchMenu=graph.options().searchMenu();
+		var menuEntry = d3.select("#select");
+		menuEntry.on("mouseover", function () {
+			var searchMenu = graph.options().searchMenu();
 			searchMenu.hideSearchEntries();
 		});
 
 		setupConverterButtons();
 		setupUploadButton();
 
-		var descriptionButton = d3.select("#error-description-button").datum({open: false});
+		var descriptionButton = d3.select("#error-description-button").datum({ open: false });
 		descriptionButton.on("click", function (data) {
 			var errorContainer = d3.select("#error-description-container");
 			var errorDetailsButton = d3.select(this);
@@ -94,43 +94,43 @@ module.exports = function (graph) {
 		d3.selectAll("#optionsMenu > li > a").attr("href", location.hash || "#");
 	}
 
-	ontologyMenu.setIriText=function(text){
+	ontologyMenu.setIriText = function (text) {
 		var iriConverterInput = d3.select("#iri-converter-input");
-		iriConverterInput.node().value=text;
+		iriConverterInput.node().value = text;
 
 		var iriConverterButton = d3.select("#iri-converter-button");
 		iriConverterButton.attr("disabled", false);
 		d3.select("#iri-converter-form").on("submit")();
 	};
 
-	function parseOptions(optsArray){
-	// defining a default options object
-        var defObj={};
-        	defObj.sidebar=1;
-			defObj.doc=-1;
-			defObj.cd=200;
-			defObj.dd=120;
-			defObj.filter_datatypes="false";
-			defObj.filter_objectProperties="false";
-			defObj.filter_sco="false";
-			defObj.filter_disjoint="true";
-			defObj.filter_setOperator="false";
-			defObj.mode_dynamic="true";
-			defObj.mode_scaling="true";
-			defObj.mode_compact="false";
-			defObj.mode_colorExt="true";
-			defObj.mode_multiColor="false";
-			defObj.rect=0;
+	function parseOptions(optsArray) {
+		// defining a default options object
+		var defObj = {};
+		defObj.sidebar = 1;
+		defObj.doc = -1;
+		defObj.cd = 200;
+		defObj.dd = 120;
+		defObj.filter_datatypes = "false";
+		defObj.filter_objectProperties = "false";
+		defObj.filter_sco = "false";
+		defObj.filter_disjoint = "true";
+		defObj.filter_setOperator = "false";
+		defObj.mode_dynamic = "true";
+		defObj.mode_scaling = "true";
+		defObj.mode_compact = "false";
+		defObj.mode_colorExt = "true";
+		defObj.mode_multiColor = "false";
+		defObj.rect = 0;
 
-		if (optsArray===undefined){
-            graph.setOptionsFromURL(defObj);
-            return;
+		if (optsArray === undefined) {
+			graph.setOptionsFromURL(defObj);
+			return;
 		}
 		// else parse the given parameters;
-		for (var i=0;i<optsArray.length;i++){
+		for (var i = 0; i < optsArray.length; i++) {
 			// define key and value ;
-			var keyVal=optsArray[i].split('=');
-            defObj[keyVal[0]]=keyVal[1];
+			var keyVal = optsArray[i].split('=');
+			defObj[keyVal[0]] = keyVal[1];
 		}
 		graph.setOptionsFromURL(defObj);
 
@@ -144,66 +144,66 @@ module.exports = function (graph) {
 		console.warn('>> parseUrlAndLoadOntology');
 
 		// count number of hash parameters
-		var urlString=String(location);
+		var urlString = String(location);
 		console.log("-----------------------");
 
-		var numParameters=(urlString.match(/#/g) || []).length;
+		var numParameters = (urlString.match(/#/g) || []).length;
 		// create parameters array
-		var paramArray=[];
-		if (numParameters>0){
-            var tokens=urlString.split("#");
+		var paramArray = [];
+		if (numParameters > 0) {
+			var tokens = urlString.split("#");
 
-            // skip the first token since it is the address of the server
-            for (var i=1;i<tokens.length;i++){
-            	if (tokens[i].length===0){
-            		// this token belongs actually to the last paramArray
-					paramArray[paramArray.length-1]=paramArray[paramArray.length-1]+"#";
-				}else{
-            		paramArray.push(tokens[i]);
-            	}
+			// skip the first token since it is the address of the server
+			for (var i = 1; i < tokens.length; i++) {
+				if (tokens[i].length === 0) {
+					// this token belongs actually to the last paramArray
+					paramArray[paramArray.length - 1] = paramArray[paramArray.length - 1] + "#";
+				} else {
+					paramArray.push(tokens[i]);
+				}
 			}
 		}
-        // using paramaters aray now for identification
-        var hashParameter;
-        var paramlength;
-        var givenOptionsStr;
-        var optionsArray;
-		var optString="opts=[";
-        if (paramArray.length===0){
-            hashParameter = DEFAULT_JSON_NAME;
-            parseOptions();// loads default values
+		// using paramaters aray now for identification
+		var hashParameter;
+		var paramlength;
+		var givenOptionsStr;
+		var optionsArray;
+		var optString = "opts=[";
+		if (paramArray.length === 0) {
+			hashParameter = DEFAULT_JSON_NAME;
+			parseOptions();// loads default values
 		}
-        if (paramArray.length===1){
-        	// check if there is only the opts flag
-			if(paramArray[0].indexOf(optString)>=0){
+		if (paramArray.length === 1) {
+			// check if there is only the opts flag
+			if (paramArray[0].indexOf(optString) >= 0) {
 				// parse the parameters;
-				paramlength=paramArray[0].length;
-				givenOptionsStr=paramArray[0].substr(6,paramlength-6-1);
+				paramlength = paramArray[0].length;
+				givenOptionsStr = paramArray[0].substr(6, paramlength - 6 - 1);
 				// remove the "opts=[" and "]"
-				optionsArray=givenOptionsStr.split(';');
+				optionsArray = givenOptionsStr.split(';');
 				parseOptions(optionsArray);
 
-                hashParameter = DEFAULT_JSON_NAME;
-			}else{
-                hashParameter=paramArray[0];
-                parseOptions();// loads default valuesparseOptions
+				hashParameter = DEFAULT_JSON_NAME;
+			} else {
+				hashParameter = paramArray[0];
+				parseOptions();// loads default valuesparseOptions
 			}
 
-        }
-        if (paramArray.length===2){
-            if (paramArray[0].indexOf(optString)>=0){
-                paramlength=paramArray[0].length;
-                givenOptionsStr=paramArray[0].substr(6,paramlength-6-1);
-                // remove the "opts=[" and "]"
-                optionsArray=givenOptionsStr.split(';');
-                parseOptions(optionsArray);
-            }else{
-                parseOptions();// loads default values
+		}
+		if (paramArray.length === 2) {
+			if (paramArray[0].indexOf(optString) >= 0) {
+				paramlength = paramArray[0].length;
+				givenOptionsStr = paramArray[0].substr(6, paramlength - 6 - 1);
+				// remove the "opts=[" and "]"
+				optionsArray = givenOptionsStr.split(';');
+				parseOptions(optionsArray);
+			} else {
+				parseOptions();// loads default values
 			}
-            hashParameter = paramArray[1];
-        }
+			hashParameter = paramArray[1];
+		}
 		var ontologyOptions = d3.selectAll(".select li").classed("selected-ontology", false);
-		emptyGraph=false;
+		emptyGraph = false;
 		// IRI parameter
 		var iriKey = "iri=";
 		var urlKey = "url=";
@@ -242,18 +242,18 @@ module.exports = function (graph) {
 		}
 	}
 
-	function loadOntologyFromURL(relativePath,requestedURL){
+	function loadOntologyFromURL(relativePath, requestedURL) {
 
 		console.warn('>> loadOntologyFromURL');
 
-		fileToLoad=requestedURL;
+		fileToLoad = requestedURL;
 		var cachedOntology = cachedConversions[relativePath];
 		var trimmedRequestedUri = requestedURL.replace(/\/$/g, "");
 		var filename = trimmedRequestedUri.slice(trimmedRequestedUri.lastIndexOf("/") + 1);
 
 		// check if requested url is a json;
-		var isJSON=requestedURL.toLowerCase().endsWith(".json");
-		if (!isJSON){
+		var isJSON = requestedURL.toLowerCase().endsWith(".json");
+		if (!isJSON) {
 			ontologyMenu.notValidJsonURL();
 			graph.clearGraphData();
 			return;
@@ -270,10 +270,10 @@ module.exports = function (graph) {
 
 
 				// check if error occurred or responseText is empty
-				if ((error!==null && error.status === 500) || (request && request.responseText.length===0)) {
+				if ((error !== null && error.status === 500) || (request && request.responseText.length === 0)) {
 					hideLoadingInformations();
 					ontologyMenu.notValidJsonURL();
-					cachedConversions[relativePath]=undefined;
+					cachedConversions[relativePath] = undefined;
 					return;
 				}
 				var jsonText;
@@ -290,7 +290,7 @@ module.exports = function (graph) {
 				loadOntologyFromText(jsonText, undefined, filename);
 				setLoadingStatus(loadingSuccessful, error ? error.response : undefined, errorInfo);
 
-				if (emptyGraph===true){
+				if (emptyGraph === true) {
 					ontologyMenu.notValidJsonFile();
 					graph.clearGraphData();
 				}
@@ -304,7 +304,7 @@ module.exports = function (graph) {
 
 		console.warn('>> loadOntologyFromUri');
 
-		fileToLoad=requestedUri;
+		fileToLoad = requestedUri;
 		var cachedOntology = cachedConversions[relativePath];
 		var trimmedRequestedUri = requestedUri.replace(/\/$/g, "");
 		var filename = trimmedRequestedUri.slice(trimmedRequestedUri.lastIndexOf("/") + 1);
@@ -317,14 +317,14 @@ module.exports = function (graph) {
 			d3.xhr(relativePath, "application/json", function (error, request) {
 				var loadingSuccessful = !error;
 				var errorInfo;
-                console.log("Requestion XHR FUNCTION");
-				if (error!==null && error.status === 500) {
+				console.log("Requestion XHR FUNCTION");
+				if (error !== null && error.status === 500) {
 					console.log(error);
-                    console.log("HAS AN ERROR AND A STATUS");
+					console.log("HAS AN ERROR AND A STATUS");
 					hideLoadingInformations();
-				 	ontologyMenu.emptyGraphError();
-				 	return;
-				 }
+					ontologyMenu.emptyGraphError();
+					return;
+				}
 
 
 
@@ -356,7 +356,7 @@ module.exports = function (graph) {
 				loadOntologyFromText(jsonText, undefined, filename);
 				setLoadingStatus(loadingSuccessful, error ? error.response : undefined, errorInfo);
 
-				if (emptyGraph===true){
+				if (emptyGraph === true) {
 					ontologyMenu.emptyGraphError();
 					graph.clearGraphData();
 				}
@@ -365,13 +365,13 @@ module.exports = function (graph) {
 		}
 	}
 
-	ontologyMenu.emptyGraphError=function(){
+	ontologyMenu.emptyGraphError = function () {
 
-		emptyGraph=true;
+		emptyGraph = true;
 		loadingError.classed("hidden", false);
 		var errorInfo = d3.select("#error-info");
 		errorInfo.text("There is nothing to visualize.");
-		var description="There is no OWL input under the given IRI("+fileToLoad+"). Please try to load the OWL file directly.";
+		var description = "There is no OWL input under the given IRI(" + fileToLoad + "). Please try to load the OWL file directly.";
 		var descriptionMissing = !description;
 		var descriptionVisible = d3.select("#error-description-button").classed("hidden", descriptionMissing).datum().open;
 		d3.select("#error-description-container").classed("hidden", descriptionMissing || !descriptionVisible);
@@ -380,13 +380,13 @@ module.exports = function (graph) {
 
 	};
 
-	ontologyMenu.notValidJsonURL=function(){
+	ontologyMenu.notValidJsonURL = function () {
 
-		emptyGraph=true;
+		emptyGraph = true;
 		loadingError.classed("hidden", false);
 		var errorInfo = d3.select("#error-info");
 		errorInfo.text("Invalid JSON URL");
-		var description="There is no JSON input under the given URL("+fileToLoad+"). Please try to load the JSON file directly.";
+		var description = "There is no JSON input under the given URL(" + fileToLoad + "). Please try to load the JSON file directly.";
 		var descriptionMissing = !description;
 		var descriptionVisible = d3.select("#error-description-button").classed("hidden", descriptionMissing).datum().open;
 		d3.select("#error-description-container").classed("hidden", descriptionMissing || !descriptionVisible);
@@ -394,13 +394,13 @@ module.exports = function (graph) {
 		graph.clearGraphData();
 	};
 
-	ontologyMenu.notValidJsonFile=function(){
+	ontologyMenu.notValidJsonFile = function () {
 
-		emptyGraph=true;
+		emptyGraph = true;
 		loadingError.classed("hidden", false);
 		var errorInfo = d3.select("#error-info");
 		errorInfo.text("Invalid JSON file");
-		var description="The uploaded file is not a valid JSON file. ("+fileToLoad+")";
+		var description = "The uploaded file is not a valid JSON file. (" + fileToLoad + ")";
 		var descriptionMissing = !description;
 		var descriptionVisible = d3.select("#error-description-button").classed("hidden", descriptionMissing).datum().open;
 		d3.select("#error-description-container").classed("hidden", descriptionMissing || !descriptionVisible);
@@ -423,23 +423,23 @@ module.exports = function (graph) {
 		});
 
 		d3.select("#iri-converter-form").on("submit", function () {
-			var inputName=iriConverterInput.property("value");
+			var inputName = iriConverterInput.property("value");
 
 			// remove first spaces
-			var clearedName=inputName.replace(/%20/g," ");
-			while (clearedName.beginsWith(" ")){
-				clearedName=clearedName.substr(1,clearedName.length);
+			var clearedName = inputName.replace(/%20/g, " ");
+			while (clearedName.beginsWith(" ")) {
+				clearedName = clearedName.substr(1, clearedName.length);
 			}
 			// remove ending spaces
-			while (clearedName.endsWith(" ")){
-				clearedName=clearedName.substr(0,clearedName.length-1);
+			while (clearedName.endsWith(" ")) {
+				clearedName = clearedName.substr(0, clearedName.length - 1);
 			}
 			// check if iri is actually an url for a json file (ends with .json)
 			// create lowercase filenames;
-			inputName=clearedName;
-			var lc_iri=inputName.toLowerCase();
+			inputName = clearedName;
+			var lc_iri = inputName.toLowerCase();
 			if (lc_iri.endsWith(".json")) {
-			 	console.log("file is an URL for a json ");
+				console.log("file is an URL for a json ");
 				location.hash = "url=" + inputName;
 				iriConverterInput.property("value", "");
 				iriConverterInput.on("input")();
@@ -491,13 +491,13 @@ module.exports = function (graph) {
 	function loadOntologyFromFile(filename) {
 
 		console.warn('>> loadOntologyFromFile');
-		
+
 		var cachedOntology = cachedConversions[filename];
 		if (cachedOntology) {
 			displayLoadingIndicators();
 			loadOntologyFromText(cachedOntology, filename);
 			setLoadingStatus(true);
-			if (emptyGraph===true){
+			if (emptyGraph === true) {
 				ontologyMenu.emptyGraphError();
 			}
 			hideLoadingInformations();
@@ -519,7 +519,7 @@ module.exports = function (graph) {
 			displayLoadingIndicators();
 			loadFromJson(selectedFile, filename);
 		} else {
-			loadFromOntology(selectedFile, filename,true);
+			loadFromOntology(selectedFile, filename, true);
 		}
 	}
 
@@ -530,7 +530,7 @@ module.exports = function (graph) {
 			displayLoadingIndicators();
 			loadOntologyFromTextAndTrimFilename(reader.result, filename);
 			setLoadingStatus(true);
-			if (emptyGraph===true){
+			if (emptyGraph === true) {
 				ontologyMenu.emptyGraphError();
 			}
 			hideLoadingInformations();
@@ -565,9 +565,9 @@ module.exports = function (graph) {
 
 			}
 			hideLoadingInformations();
-			if (emptyGraph===true && fromFile===true){
+			if (emptyGraph === true && fromFile === true) {
 				console.log("Failed to convert the file");
-				cachedConversions[filename]=undefined;
+				cachedConversions[filename] = undefined;
 				ontologyMenu.notValidJsonFile();
 			}
 		};
@@ -633,7 +633,7 @@ module.exports = function (graph) {
 			errorInfo.text(information);
 		} else {
 			errorInfo.html("Ontology could not be loaded.<br>Is it a valid OWL ontology? Please check with <a target=\"_blank\"" +
-			"href=\"http://visualdataweb.de/validator/\">OWL Validator</a>.");
+				"href=\"http://visualdataweb.de/validator/\">OWL Validator</a>.");
 		}
 
 		var descriptionMissing = !description;

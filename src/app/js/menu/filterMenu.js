@@ -11,13 +11,13 @@ module.exports = function (graph) {
 		menuElement = d3.select("#filterOption a"),
 		nodeDegreeContainer = d3.select("#nodeDegreeFilteringOption"),
 		graphDegreeLevel,
-		defaultDegreeValue=0,
+		defaultDegreeValue = 0,
 		degreeSlider;
 
-    filterMenu.setDefaultDegreeValue=function(val){defaultDegreeValue=val;};
-    filterMenu.getDefaultDegreeValue=function(){return defaultDegreeValue;};
+	filterMenu.setDefaultDegreeValue = function (val) { defaultDegreeValue = val; };
+	filterMenu.getDefaultDegreeValue = function () { return defaultDegreeValue; };
 
-	filterMenu.getGraphObject=function(){
+	filterMenu.getGraphObject = function () {
 		return graph;
 	};
 	/** some getter function  **/
@@ -38,9 +38,9 @@ module.exports = function (graph) {
 	 * @param nodeDegreeFilter filters nodes by their degree
 	 */
 	filterMenu.setup = function (datatypeFilter, objectPropertyFilter, subclassFilter, disjointFilter, setOperatorFilter, nodeDegreeFilter) {
-		var menuEntry= d3.select("#filterOption");
-		menuEntry.on("mouseover",function(){
-			var searchMenu=graph.options().searchMenu();
+		var menuEntry = d3.select("#filterOption");
+		menuEntry.on("mouseover", function () {
+			var searchMenu = graph.options().searchMenu();
 			searchMenu.hideSearchEntries();
 		});
 		menuElement.on("mouseleave", function () {
@@ -54,7 +54,7 @@ module.exports = function (graph) {
 		addFilterItem(setOperatorFilter, "setoperator", "Set operators", "#setOperatorFilteringOption");
 
 		addNodeDegreeFilter(nodeDegreeFilter, nodeDegreeContainer);
-        addAnimationFinishedListener();
+		addAnimationFinishedListener();
 	};
 
 
@@ -73,7 +73,7 @@ module.exports = function (graph) {
 			.property("checked", filter.enabled());
 
 		// Store for easier resetting
-		checkboxData.push({checkbox: filterCheckbox, defaultState: filter.enabled()});
+		checkboxData.push({ checkbox: filterCheckbox, defaultState: filter.enabled() });
 
 		filterCheckbox.on("click", function (silent) {
 			// There might be no parameters passed because of a manual
@@ -132,7 +132,7 @@ module.exports = function (graph) {
 		degreeSlider.on("change", function (silent) {
 			if (silent !== true) {
 				graph.update();
-				graphDegreeLevel=degreeSlider.property("value");
+				graphDegreeLevel = degreeSlider.property("value");
 			}
 		});
 
@@ -144,24 +144,24 @@ module.exports = function (graph) {
 
 
 		// adding wheel events
-		degreeSlider.on("wheel",handleWheelEvent);
-		degreeSlider.on("focusout",function(){
-			if (degreeSlider.property("value")!==graphDegreeLevel) {
+		degreeSlider.on("wheel", handleWheelEvent);
+		degreeSlider.on("focusout", function () {
+			if (degreeSlider.property("value") !== graphDegreeLevel) {
 				graph.update();
 			}
 		});
 	}
 
-	function handleWheelEvent(){
-		var wheelEvent=d3.event;
+	function handleWheelEvent() {
+		var wheelEvent = d3.event;
 
 		var offset;
-		if (wheelEvent.deltaY<0) offset=1;
-		if (wheelEvent.deltaY>0) offset=-1;
+		if (wheelEvent.deltaY < 0) offset = 1;
+		if (wheelEvent.deltaY > 0) offset = -1;
 
-		var oldVal=parseInt(degreeSlider.property("value"));
-		var newSliderValue=oldVal+offset;
-		if (oldVal!==newSliderValue) {
+		var oldVal = parseInt(degreeSlider.property("value"));
+		var newSliderValue = oldVal + offset;
+		if (oldVal !== newSliderValue) {
 			// only update when they are different [reducing redundant updates]
 			// set the new value and emit an update signal
 			degreeSlider.property("value", newSliderValue);
@@ -169,7 +169,7 @@ module.exports = function (graph) {
 			graph.update();
 		}
 	}
-	
+
 	function setSliderValue(slider, value) {
 		slider.property("value", value).on("input")();
 	}
@@ -195,16 +195,16 @@ module.exports = function (graph) {
 	};
 
 	function addAnimationFinishedListener() {
-        menuElement.node().addEventListener("animationend", function () {
-           console.log("filter button animation ended");
-           menuElement.classed("buttonPulse", false);
-            menuElement.classed("filterMenuButtonHighlight", true);
-        });
-    }
+		menuElement.node().addEventListener("animationend", function () {
+			console.log("filter button animation ended");
+			menuElement.classed("buttonPulse", false);
+			menuElement.classed("filterMenuButtonHighlight", true);
+		});
+	}
 
-    filterMenu.killButtonAnimation=function(){
-        menuElement.classed("buttonPulse", false);
-        menuElement.classed("filterMenuButtonHighlight", false);
+	filterMenu.killButtonAnimation = function () {
+		menuElement.classed("buttonPulse", false);
+		menuElement.classed("filterMenuButtonHighlight", false);
 	};
 
 
@@ -215,16 +215,16 @@ module.exports = function (graph) {
 		menuElement.classed("highlighted", enable);
 		nodeDegreeContainer.classed("highlighted", enable);
 		// pulse button handling
-		if (menuElement.classed("buttonPulse")===true && enable===true){
+		if (menuElement.classed("buttonPulse") === true && enable === true) {
 			menuElement.classed("buttonPulse", false);
-			var timer= setTimeout(function() {
+			var timer = setTimeout(function () {
 				menuElement.classed("buttonPulse", enable);
 				clearTimeout(timer);
 				// after the time is done, remove the pulse but stay highlighted
 			}, 100);
-		}else {
+		} else {
 			menuElement.classed("buttonPulse", enable);
-            menuElement.classed("filterMenuButtonHighlight", enable);
+			menuElement.classed("filterMenuButtonHighlight", enable);
 		}
 	};
 
@@ -242,21 +242,21 @@ module.exports = function (graph) {
 		}
 	};
 
-	filterMenu.getCheckBoxValue=function(id){
-        for (var i = 0; i < checkboxData.length; i++) {
-            var cbdId = checkboxData[i].checkbox.attr("id");
-            if (cbdId === id) {
-                return checkboxData[i].checkbox.property("checked");
+	filterMenu.getCheckBoxValue = function (id) {
+		for (var i = 0; i < checkboxData.length; i++) {
+			var cbdId = checkboxData[i].checkbox.attr("id");
+			if (cbdId === id) {
+				return checkboxData[i].checkbox.property("checked");
 
-            }
-        }
+			}
+		}
 	};
 	// set the value of the slider
 	filterMenu.setDegreeSliderValue = function (val) {
 		degreeSlider.property("value", val);
 	};
 
-	filterMenu.getDegreeSliderValue = function(){
+	filterMenu.getDegreeSliderValue = function () {
 		return degreeSlider.property("value");
 	};
 
@@ -265,10 +265,10 @@ module.exports = function (graph) {
 
 		var silent = true;
 		var sliderValue = degreeSlider.property("value");
-		console.log("what is degrSlider Value;?"+sliderValue);
+		console.log("what is degrSlider Value;?" + sliderValue);
 		if (sliderValue > 0) {
 			filterMenu.highlightForDegreeSlider(true);
-		} else{
+		} else {
 			filterMenu.highlightForDegreeSlider(false);
 		}
 

@@ -20,19 +20,19 @@ module.exports = function (graphContainerSelector) {
 		parser = require("./parser")(graph),
 		language = "default",
 		paused = false,
-	// Container for visual elements
+		// Container for visual elements
 		graphContainer,
 		nodeContainer,
 		labelContainer,
 		cardinalityContainer,
 		linkContainer,
-	// Visual elements
+		// Visual elements
 		nodeElements,
 		labelGroupElements,
 		linkGroups,
 		linkPathElements,
 		cardinalityElements,
-	// Internal data
+		// Internal data
 		classNodes,
 		labelNodes,
 		links,
@@ -42,453 +42,453 @@ module.exports = function (graphContainerSelector) {
 		force,
 		dragBehaviour,
 		zoomFactor,
-		transformAnimation=false,
+		transformAnimation = false,
 		graphTranslation,
 		graphUpdateRequired = false,
-		pulseNodeIds=[],
+		pulseNodeIds = [],
 		nodeArrayForPulse = [],
 		nodeMap = [],
-        locationId = 0,
-		defaultZoom=1.0,
-		defaultTargetZoom=0.8,
-        global_dof=-1,
-        visibleSidebar=1,
+		locationId = 0,
+		defaultZoom = 1.0,
+		defaultTargetZoom = 0.8,
+		global_dof = -1,
+		visibleSidebar = 1,
 		zoom;
 
 
-    graph.updateSideBarVis=function(init){
-        var vis=graph.getSidebarVisibility();
-        graph.showSidebar(parseInt(vis),init);
+	graph.updateSideBarVis = function (init) {
+		var vis = graph.getSidebarVisibility();
+		graph.showSidebar(parseInt(vis), init);
 
-    };
+	};
 
-    //TODO: Set proper function names and put them on reasonable positions in the code..
-    graph.showSidebar=function(val,init){
-        // make val to bool
-        if (val===1) visibleSidebar=true;
-        if (val===0) visibleSidebar=false;
-        if (val===1) {
-            d3.select("#sidebarExpandButton").node().innerHTML=">";
-            if (init===true) {
-                // set the sidebar visibility
-                d3.select("#detailsArea").classed("hidden",!visibleSidebar);
-                d3.select("#canvasArea").style({
-                    'position': 'relative',
-                    'margin': '0',
-                    'padding': '0',
-                    'width': '78%'
-                });
-                d3.select("#optionsMenu").style({
-                    'box-sizing': 'border-box',
-                    'color': '#fff',
-                    'display': 'block',
-                    'height': '40px',
-                    'margin': '-2px 0 0',
-                    'padding': '0',
-                    'width': '78%'
-                });
+	//TODO: Set proper function names and put them on reasonable positions in the code..
+	graph.showSidebar = function (val, init) {
+		// make val to bool
+		if (val === 1) visibleSidebar = true;
+		if (val === 0) visibleSidebar = false;
+		if (val === 1) {
+			d3.select("#sidebarExpandButton").node().innerHTML = "收起";
+			if (init === true) {
+				// set the sidebar visibility
+				d3.select("#detailsArea").classed("hidden", !visibleSidebar);
+				d3.select("#canvasArea").style({
+					'position': 'relative',
+					'margin': '0',
+					'padding': '0',
+					'width': '78%'
+				});
+				d3.select("#optionsMenu").style({
+					'box-sizing': 'border-box',
+					'color': '#fff',
+					'display': 'block',
+					'height': '40px',
+					'margin': '-2px 0 0',
+					'padding': '0',
+					'width': '78%'
+				});
 
-            } else { // this is when the user pressed collapse or expand sidebar
-                d3.select("#canvasArea").style({
-                    'position': 'relative',
-                    'margin': '0',
-                    'padding': '0',
-                    'width': '78%',
-                    '-webkit-animation-name': 'sbCollapseAnimation',
-                    '-webkit-animation-duration': '0.5s'
-                });
-                d3.select("#optionsMenu").style({
-                    'box-sizing': 'border-box',
-                    'color': '#fff',
-                    'display': 'block',
-                    'height': '40px',
-                    'margin': '-2px 0 0',
-                    'padding': '0',
-                    'width': '78%',
-                    '-webkit-animation-name': 'sbCollapseAnimation',
-                    '-webkit-animation-duration': '0.5s'
+			} else { // this is when the user pressed collapse or expand sidebar
+				d3.select("#canvasArea").style({
+					'position': 'relative',
+					'margin': '0',
+					'padding': '0',
+					'width': '78%',
+					'-webkit-animation-name': 'sbCollapseAnimation',
+					'-webkit-animation-duration': '0.5s'
+				});
+				d3.select("#optionsMenu").style({
+					'box-sizing': 'border-box',
+					'color': '#fff',
+					'display': 'block',
+					'height': '40px',
+					'margin': '-2px 0 0',
+					'padding': '0',
+					'width': '78%',
+					'-webkit-animation-name': 'sbCollapseAnimation',
+					'-webkit-animation-duration': '0.5s'
 
-                });
-            }
-            options.width(window.innerWidth - (window.innerWidth * 0.22));
-            graph.options().navigationMenu().updateVisibilityStatus();
-        }
+				});
+			}
+			options.width(window.innerWidth - (window.innerWidth * 0.22));
+			graph.options().navigationMenu().updateVisibilityStatus();
+		}
 
-        if (val===0){
-            d3.select("#detailsArea").classed("hidden",true);
+		if (val === 0) {
+			d3.select("#detailsArea").classed("hidden", true);
 
-            d3.select("#sidebarExpandButton").node().innerHTML="<";
-            // adjust the layout
-            if (init===true) {
-                d3.select("#canvasArea").style({
-                    'position': 'relative',
-                    'margin': '0',
-                    'padding': '0',
-                    'width': '100%'
-                });
-                d3.select("#optionsMenu").style({
-                    'box-sizing': 'border-box',
-                    'color': '#fff',
-                    'display': 'block',
-                    'height': '40px',
-                    'margin': '-2px 0 0',
-                    'padding': '0',
-                    'width': '100%'
-                });
-            }else {
-                d3.select("#canvasArea").style({
-                    'position': 'relative',
-                    'margin': '0',
-                    'padding': '0',
-                    'width': '100%',
-                    '-webkit-animation-name': 'sbExpandAnimation',
-                    '-webkit-animation-duration': '0.5s'
+			d3.select("#sidebarExpandButton").node().innerHTML = "展开";
+			// adjust the layout
+			if (init === true) {
+				d3.select("#canvasArea").style({
+					'position': 'relative',
+					'margin': '0',
+					'padding': '0',
+					'width': '100%'
+				});
+				d3.select("#optionsMenu").style({
+					'box-sizing': 'border-box',
+					'color': '#fff',
+					'display': 'block',
+					'height': '40px',
+					'margin': '-2px 0 0',
+					'padding': '0',
+					'width': '100%'
+				});
+			} else {
+				d3.select("#canvasArea").style({
+					'position': 'relative',
+					'margin': '0',
+					'padding': '0',
+					'width': '100%',
+					'-webkit-animation-name': 'sbExpandAnimation',
+					'-webkit-animation-duration': '0.5s'
 
-                });
-                d3.select("#optionsMenu").style({
-                    'box-sizing': 'border-box',
-                    'color': '#fff',
-                    'display': 'block',
-                    'height': '40px',
-                    'margin': '-2px 0 0',
-                    'padding': '0',
-                    'width': '100%',
-                    '-webkit-animation-name': 'sbExpandAnimation',
-                    '-webkit-animation-duration': '0.5s'
-                });
-            }
-            options.width(window.innerWidth);
-            graph.options().navigationMenu().updateVisibilityStatus();
-        }
-        if (graphContainer) {
-             if (val===0){
-                var svgElement = d3.selectAll(".vowlGraph");
-                svgElement.attr("width", options.width());
-                svgElement.attr("height", options.height());
-                graphContainer.attr("transform", "translate(" + graphTranslation + ")scale(" + zoomFactor + ")");
-             }
-        }
-    };
+				});
+				d3.select("#optionsMenu").style({
+					'box-sizing': 'border-box',
+					'color': '#fff',
+					'display': 'block',
+					'height': '40px',
+					'margin': '-2px 0 0',
+					'padding': '0',
+					'width': '100%',
+					'-webkit-animation-name': 'sbExpandAnimation',
+					'-webkit-animation-duration': '0.5s'
+				});
+			}
+			options.width(window.innerWidth);
+			graph.options().navigationMenu().updateVisibilityStatus();
+		}
+		if (graphContainer) {
+			if (val === 0) {
+				var svgElement = d3.selectAll(".vowlGraph");
+				svgElement.attr("width", options.width());
+				svgElement.attr("height", options.height());
+				graphContainer.attr("transform", "translate(" + graphTranslation + ")scale(" + zoomFactor + ")");
+			}
+		}
+	};
 
-    graph.getSidebarVisibility=function(){
-        var isHidden=d3.select("#detailsArea").classed("hidden");
-        if (isHidden===false) return String(1);
-        if (isHidden===true) return String(0);
-    };
+	graph.getSidebarVisibility = function () {
+		var isHidden = d3.select("#detailsArea").classed("hidden");
+		if (isHidden === false) return String(1);
+		if (isHidden === true) return String(0);
+	};
 
-	graph.setOptionsFromURL=function(opts){
-	    if (opts.sidebar!==undefined)
-            graph.showSidebar(parseInt(opts.sidebar),true);
-        if (opts.doc ){
-            options.filterMenu().setDegreeSliderValue(opts.doc);
-            graph.setGlobalDOF(opts.doc);
-        }
+	graph.setOptionsFromURL = function (opts) {
+		if (opts.sidebar !== undefined)
+			graph.showSidebar(parseInt(opts.sidebar), true);
+		if (opts.doc) {
+			options.filterMenu().setDegreeSliderValue(opts.doc);
+			graph.setGlobalDOF(opts.doc);
+		}
 
-		if (opts.cd ) options.classDistance(opts.cd); // class distance
-        if (opts.dd) options.datatypeDistance(opts.dd); // data distance
+		if (opts.cd) options.classDistance(opts.cd); // class distance
+		if (opts.dd) options.datatypeDistance(opts.dd); // data distance
 		if (opts.cd || opts.dd) graph.options().gravityMenu().reset(); // reset the values so the slider is updated;
 
-		var settingFlag=false;
+		var settingFlag = false;
 
-		if (opts.filter_datatypes){
-			if (opts.filter_datatypes==="true") settingFlag=true;
-			graph.options().filterMenu().setCheckBoxValue("datatypeFilterCheckbox",settingFlag);
+		if (opts.filter_datatypes) {
+			if (opts.filter_datatypes === "true") settingFlag = true;
+			graph.options().filterMenu().setCheckBoxValue("datatypeFilterCheckbox", settingFlag);
 		}
-        settingFlag=false;
-        if (opts.filter_objectProperties){
-            if (opts.filter_objectProperties==="true") settingFlag=true;
-            graph.options().filterMenu().setCheckBoxValue("objectPropertyFilterCheckbox",settingFlag);
-        }
-        settingFlag=false;
-        if (opts.filter_sco){
-            if (opts.filter_sco==="true") settingFlag=true;
-            graph.options().filterMenu().setCheckBoxValue("subclassFilterCheckbox",settingFlag);
-        }
-        settingFlag=false;
-        if (opts.filter_disjoint){
-            if (opts.filter_disjoint==="true") settingFlag=true;
-            graph.options().filterMenu().setCheckBoxValue("disjointFilterCheckbox",settingFlag);
-        }
-        settingFlag=false;
-        if (opts.filter_setOperator){
-            if (opts.filter_setOperator==="true") settingFlag=true;
-            graph.options().filterMenu().setCheckBoxValue("setoperatorFilterCheckbox",settingFlag);
-        }
+		settingFlag = false;
+		if (opts.filter_objectProperties) {
+			if (opts.filter_objectProperties === "true") settingFlag = true;
+			graph.options().filterMenu().setCheckBoxValue("objectPropertyFilterCheckbox", settingFlag);
+		}
+		settingFlag = false;
+		if (opts.filter_sco) {
+			if (opts.filter_sco === "true") settingFlag = true;
+			graph.options().filterMenu().setCheckBoxValue("subclassFilterCheckbox", settingFlag);
+		}
+		settingFlag = false;
+		if (opts.filter_disjoint) {
+			if (opts.filter_disjoint === "true") settingFlag = true;
+			graph.options().filterMenu().setCheckBoxValue("disjointFilterCheckbox", settingFlag);
+		}
+		settingFlag = false;
+		if (opts.filter_setOperator) {
+			if (opts.filter_setOperator === "true") settingFlag = true;
+			graph.options().filterMenu().setCheckBoxValue("setoperatorFilterCheckbox", settingFlag);
+		}
 
-        graph.options().filterMenu().updateSettings();
+		graph.options().filterMenu().updateSettings();
 
 
-        // modesMenu
-        settingFlag=false;
-        if (opts.mode_dynamic) {
-            if (opts.mode_dynamic==="true") settingFlag=true;
-            graph.options().modeMenu().setDynamicLabelWidth(settingFlag);
-            graph.options().dynamicLabelWidth(settingFlag);
-        }
+		// modesMenu
+		settingFlag = false;
+		if (opts.mode_dynamic) {
+			if (opts.mode_dynamic === "true") settingFlag = true;
+			graph.options().modeMenu().setDynamicLabelWidth(settingFlag);
+			graph.options().dynamicLabelWidth(settingFlag);
+		}
 		// settingFlag=false;
-        // THIS SHOULD NOT BE SET USING THE OPTIONS ON THE URL
-        // if (opts.mode_picnpin) {
-        //     graph.options().filterMenu().setCheckBoxValue("pickandpinModuleCheckbox", settingFlag);
-        // }
+		// THIS SHOULD NOT BE SET USING THE OPTIONS ON THE URL
+		// if (opts.mode_picnpin) {
+		//     graph.options().filterMenu().setCheckBoxValue("pickandpinModuleCheckbox", settingFlag);
+		// }
 
-        settingFlag=false;
-        if (opts.mode_scaling) {
-            if (opts.mode_scaling==="true") settingFlag=true;
-            graph.options().modeMenu().setCheckBoxValue("nodescalingModuleCheckbox", settingFlag);
-        }
+		settingFlag = false;
+		if (opts.mode_scaling) {
+			if (opts.mode_scaling === "true") settingFlag = true;
+			graph.options().modeMenu().setCheckBoxValue("nodescalingModuleCheckbox", settingFlag);
+		}
 
-        settingFlag=false;
-        if (opts.mode_compact) {
-            if (opts.mode_compact==="true") settingFlag=true;
-            graph.options().modeMenu().setCheckBoxValue("compactnotationModuleCheckbox", settingFlag);
-        }
+		settingFlag = false;
+		if (opts.mode_compact) {
+			if (opts.mode_compact === "true") settingFlag = true;
+			graph.options().modeMenu().setCheckBoxValue("compactnotationModuleCheckbox", settingFlag);
+		}
 
-        settingFlag=false;
-        if (opts.mode_colorExt) {
-            if (opts.mode_colorExt==="true") settingFlag=true;
-        	graph.options().modeMenu().setCheckBoxValue("colorexternalsModuleCheckbox",settingFlag);
-        }
+		settingFlag = false;
+		if (opts.mode_colorExt) {
+			if (opts.mode_colorExt === "true") settingFlag = true;
+			graph.options().modeMenu().setCheckBoxValue("colorexternalsModuleCheckbox", settingFlag);
+		}
 
-        settingFlag=false;
-        if (opts.mode_multiColor) {
-            if (opts.mode_multiColor==="true") settingFlag=true;
-            graph.options().modeMenu().setColorSwitchStateUsingURL(settingFlag);
-        }
-        graph.options().modeMenu().updateSettingsUsingURL();
-        graph.options().rectangularRepresentation(opts.rect);
+		settingFlag = false;
+		if (opts.mode_multiColor) {
+			if (opts.mode_multiColor === "true") settingFlag = true;
+			graph.options().modeMenu().setColorSwitchStateUsingURL(settingFlag);
+		}
+		graph.options().modeMenu().updateSettingsUsingURL();
+		graph.options().rectangularRepresentation(opts.rect);
 
-    };
-	graph.getGlobalDOF=function() {
-            return global_dof;
-        };
-    graph.setGlobalDOF=function(val) {
-        global_dof=val;
-    };
+	};
+	graph.getGlobalDOF = function () {
+		return global_dof;
+	};
+	graph.setGlobalDOF = function (val) {
+		global_dof = val;
+	};
 
-	graph.setDefaultZoom=function(val){
-		defaultZoom=val;
+	graph.setDefaultZoom = function (val) {
+		defaultZoom = val;
 		graph.reset();
 	};
-	graph.setTargetZoom=function(val){
-		defaultTargetZoom=val;
+	graph.setTargetZoom = function (val) {
+		defaultTargetZoom = val;
 	};
 
-    function updateHaloRadius() {
-        if (pulseNodeIds && pulseNodeIds.length > 0) {
-            var forceNodes = force.nodes();
-            for (var i = 0; i < pulseNodeIds.length; i++) {
-                var node = forceNodes[pulseNodeIds[i]];
-                if (node) {
-                	if (node.property) {
-                        // match search strings with property label
-                        if (node.property().inverse) {
-                            var searchString = graph.options().searchMenu().getSearchString().toLowerCase();
-                            var name = node.property().labelForCurrentLanguage().toLowerCase();
-                            if (name===searchString) computeDistanceToCenter(node);
-                            else {
-                                node.property().removeHalo();
-                            	if (!node.property().inverse().getHalos())
-                            		node.property().inverse().drawHalo();
-                            	computeDistanceToCenter(node, true);
-                            }
-                        }
-                    }
-                    computeDistanceToCenter(node);
-                }
-            }
-        }
-    }
-    function getScreenCoords(x, y, translate, scale) {
-        var xn = translate[0] + x * scale;
-        var yn = translate[1] + y * scale;
-        return {x: xn, y: yn};
-    }
+	function updateHaloRadius() {
+		if (pulseNodeIds && pulseNodeIds.length > 0) {
+			var forceNodes = force.nodes();
+			for (var i = 0; i < pulseNodeIds.length; i++) {
+				var node = forceNodes[pulseNodeIds[i]];
+				if (node) {
+					if (node.property) {
+						// match search strings with property label
+						if (node.property().inverse) {
+							var searchString = graph.options().searchMenu().getSearchString().toLowerCase();
+							var name = node.property().labelForCurrentLanguage().toLowerCase();
+							if (name === searchString) computeDistanceToCenter(node);
+							else {
+								node.property().removeHalo();
+								if (!node.property().inverse().getHalos())
+									node.property().inverse().drawHalo();
+								computeDistanceToCenter(node, true);
+							}
+						}
+					}
+					computeDistanceToCenter(node);
+				}
+			}
+		}
+	}
+	function getScreenCoords(x, y, translate, scale) {
+		var xn = translate[0] + x * scale;
+		var yn = translate[1] + y * scale;
+		return { x: xn, y: yn };
+	}
 
-    function computeDistanceToCenter(node, inverse) {
-        var container = node;
-        var w = graph.options().width();
-        var h = graph.options().height();
-        var posXY = getScreenCoords(node.x, node.y, graphTranslation, zoomFactor);
+	function computeDistanceToCenter(node, inverse) {
+		var container = node;
+		var w = graph.options().width();
+		var h = graph.options().height();
+		var posXY = getScreenCoords(node.x, node.y, graphTranslation, zoomFactor);
 
-        var highlightOfInv=false;
+		var highlightOfInv = false;
 
-        if (inverse && inverse===true){
-            highlightOfInv=true;
-            posXY = getScreenCoords(node.x, node.y+20, graphTranslation, zoomFactor);
-        }
-        var x = posXY.x;
-        var y = posXY.y;
-        var nodeIsRect = false;
-        var halo;
-        var roundHalo;
-        var rectHalo;
-        var borderPoint_x = 0;
-        var borderPoint_y = 0;
-        var defaultRadius;
-        var offset = 15;
-        var radius;
+		if (inverse && inverse === true) {
+			highlightOfInv = true;
+			posXY = getScreenCoords(node.x, node.y + 20, graphTranslation, zoomFactor);
+		}
+		var x = posXY.x;
+		var y = posXY.y;
+		var nodeIsRect = false;
+		var halo;
+		var roundHalo;
+		var rectHalo;
+		var borderPoint_x = 0;
+		var borderPoint_y = 0;
+		var defaultRadius;
+		var offset = 15;
+		var radius;
 
-        if (node.property && highlightOfInv===true ) {
-            rectHalo = node.property().inverse().getHalos().select("rect");
-            rectHalo.classed("hidden", true);
+		if (node.property && highlightOfInv === true) {
+			rectHalo = node.property().inverse().getHalos().select("rect");
+			rectHalo.classed("hidden", true);
 
-            roundHalo = node.property().inverse().getHalos().select("circle");
-            if (roundHalo.node() === null) {
-                radius = node.property().inverse().width()+15;
+			roundHalo = node.property().inverse().getHalos().select("circle");
+			if (roundHalo.node() === null) {
+				radius = node.property().inverse().width() + 15;
 
-                roundHalo = node.property().inverse().getHalos().append("circle")
-                    .classed("searchResultB", true)
-                    .classed("searchResultA", false)
-                    .attr("r", radius + 15);
+				roundHalo = node.property().inverse().getHalos().append("circle")
+					.classed("searchResultB", true)
+					.classed("searchResultA", false)
+					.attr("r", radius + 15);
 
-            }
-            halo = roundHalo; // swap the halo to be round
-            nodeIsRect = true;
-            container = node.property().inverse();
-        }
+			}
+			halo = roundHalo; // swap the halo to be round
+			nodeIsRect = true;
+			container = node.property().inverse();
+		}
 
-        if (node.id) {
-            if (!node.getHalos()) return; // something went wrong before
-            halo = node.getHalos().select("rect");
-            if (halo.node() === null) {
-                // this is a round node
-                nodeIsRect = false;
-                roundHalo = node.getHalos().select("circle");
-                defaultRadius = node.actualRadius();
-                roundHalo.attr("r", defaultRadius + offset);
-                halo = roundHalo;
-            } else { // this is a rect node
-                nodeIsRect = true;
-                rectHalo = node.getHalos().select("rect");
-                rectHalo.classed("hidden", true);
-                roundHalo = node.getHalos().select("circle");
-                if (roundHalo.node() === null) {
-                    radius = node.width();
-                    roundHalo = node.getHalos().append("circle")
-                        .classed("searchResultB", true)
-                        .classed("searchResultA", false)
-                        .attr("r", radius + offset);
-                }
-                halo = roundHalo;
-            }
-        }
-        if (node.property && !inverse) {
-            if (!node.property().getHalos()) return; // something went wrong before
-            rectHalo = node.property().getHalos().select("rect");
-            rectHalo.classed("hidden", true);
+		if (node.id) {
+			if (!node.getHalos()) return; // something went wrong before
+			halo = node.getHalos().select("rect");
+			if (halo.node() === null) {
+				// this is a round node
+				nodeIsRect = false;
+				roundHalo = node.getHalos().select("circle");
+				defaultRadius = node.actualRadius();
+				roundHalo.attr("r", defaultRadius + offset);
+				halo = roundHalo;
+			} else { // this is a rect node
+				nodeIsRect = true;
+				rectHalo = node.getHalos().select("rect");
+				rectHalo.classed("hidden", true);
+				roundHalo = node.getHalos().select("circle");
+				if (roundHalo.node() === null) {
+					radius = node.width();
+					roundHalo = node.getHalos().append("circle")
+						.classed("searchResultB", true)
+						.classed("searchResultA", false)
+						.attr("r", radius + offset);
+				}
+				halo = roundHalo;
+			}
+		}
+		if (node.property && !inverse) {
+			if (!node.property().getHalos()) return; // something went wrong before
+			rectHalo = node.property().getHalos().select("rect");
+			rectHalo.classed("hidden", true);
 
-            roundHalo = node.property().getHalos().select("circle");
-            if (roundHalo.node() === null) {
-                radius = node.property().width();
+			roundHalo = node.property().getHalos().select("circle");
+			if (roundHalo.node() === null) {
+				radius = node.property().width();
 
-                roundHalo = node.property().getHalos().append("circle")
-                    .classed("searchResultB", true)
-                    .classed("searchResultA", false)
-                    .attr("r", radius + 15);
+				roundHalo = node.property().getHalos().append("circle")
+					.classed("searchResultB", true)
+					.classed("searchResultA", false)
+					.attr("r", radius + 15);
 
-            }
-            halo = roundHalo; // swap the halo to be round
-            nodeIsRect = true;
-            container = node.property();
-        }
+			}
+			halo = roundHalo; // swap the halo to be round
+			nodeIsRect = true;
+			container = node.property();
+		}
 
-        if (x < 0 || x > w || y < 0 || y > h) {
-            // node outside viewport;
-            // check for quadrant and get the correct boarder point (intersection with viewport)
-            if (x < 0 && y < 0) {
-                borderPoint_x = 0;
-                borderPoint_y = 0;
-            } else if (x > 0 && x < w && y < 0) {
-                borderPoint_x = x;
-                borderPoint_y = 0;
-            } else if (x > w && y < 0) {
-                borderPoint_x = w;
-                borderPoint_y = 0;
-            } else if (x > w && y > 0 && y < h) {
-                borderPoint_x = w;
-                borderPoint_y = y;
-            } else if (x > w && y > h) {
-                borderPoint_x = w;
-                borderPoint_y = h;
-            } else if (x > 0 && x < w && y > h) {
-                borderPoint_x = x;
-                borderPoint_y = h;
-            } else if (x < 0 && y > h) {
-                borderPoint_x = 0;
-                borderPoint_y = h;
-            } else if (x < 0 && y > 0 && y < h) {
-                borderPoint_x = 0;
-                borderPoint_y = y;
-            }
-            // kill all pulses of nodes that are outside the viewport
-            container.getHalos().select("rect").classed("searchResultA", false);
-            container.getHalos().select("circle").classed("searchResultA", false);
-            container.getHalos().select("rect").classed("searchResultB", true);
-            container.getHalos().select("circle").classed("searchResultB", true);
-            halo.classed("hidden", false);
-            // compute in pixel coordinates length of difference vector
-            var borderRadius_x = borderPoint_x - x;
-            var borderRadius_y = borderPoint_y - y;
+		if (x < 0 || x > w || y < 0 || y > h) {
+			// node outside viewport;
+			// check for quadrant and get the correct boarder point (intersection with viewport)
+			if (x < 0 && y < 0) {
+				borderPoint_x = 0;
+				borderPoint_y = 0;
+			} else if (x > 0 && x < w && y < 0) {
+				borderPoint_x = x;
+				borderPoint_y = 0;
+			} else if (x > w && y < 0) {
+				borderPoint_x = w;
+				borderPoint_y = 0;
+			} else if (x > w && y > 0 && y < h) {
+				borderPoint_x = w;
+				borderPoint_y = y;
+			} else if (x > w && y > h) {
+				borderPoint_x = w;
+				borderPoint_y = h;
+			} else if (x > 0 && x < w && y > h) {
+				borderPoint_x = x;
+				borderPoint_y = h;
+			} else if (x < 0 && y > h) {
+				borderPoint_x = 0;
+				borderPoint_y = h;
+			} else if (x < 0 && y > 0 && y < h) {
+				borderPoint_x = 0;
+				borderPoint_y = y;
+			}
+			// kill all pulses of nodes that are outside the viewport
+			container.getHalos().select("rect").classed("searchResultA", false);
+			container.getHalos().select("circle").classed("searchResultA", false);
+			container.getHalos().select("rect").classed("searchResultB", true);
+			container.getHalos().select("circle").classed("searchResultB", true);
+			halo.classed("hidden", false);
+			// compute in pixel coordinates length of difference vector
+			var borderRadius_x = borderPoint_x - x;
+			var borderRadius_y = borderPoint_y - y;
 
-            var len = borderRadius_x * borderRadius_x + borderRadius_y * borderRadius_y;
-            len = Math.sqrt(len);
+			var len = borderRadius_x * borderRadius_x + borderRadius_y * borderRadius_y;
+			len = Math.sqrt(len);
 
-            var normedX = borderRadius_x / len;
-            var normedY = borderRadius_y / len;
+			var normedX = borderRadius_x / len;
+			var normedY = borderRadius_y / len;
 
-            len = len + 20; // add 20 px;
+			len = len + 20; // add 20 px;
 
-            // re-normalized vector
-            var newVectorX = normedX * len + x;
-            var newVectorY = normedY * len + y;
-            // compute world coordinates of this point
-            var wX = (newVectorX - graphTranslation[0]) / zoomFactor;
-            var wY = (newVectorY - graphTranslation[1]) / zoomFactor;
+			// re-normalized vector
+			var newVectorX = normedX * len + x;
+			var newVectorY = normedY * len + y;
+			// compute world coordinates of this point
+			var wX = (newVectorX - graphTranslation[0]) / zoomFactor;
+			var wY = (newVectorY - graphTranslation[1]) / zoomFactor;
 
-            // compute distance in world coordinates
-            var dx = wX - node.x;
-            var dy = wY - node.y;
-            if ( highlightOfInv===true)
-                dy = wY - node.y-20;
+			// compute distance in world coordinates
+			var dx = wX - node.x;
+			var dy = wY - node.y;
+			if (highlightOfInv === true)
+				dy = wY - node.y - 20;
 
-            if ( highlightOfInv===false && node.property && node.property().inverse())
-                dy = wY - node.y+20;
+			if (highlightOfInv === false && node.property && node.property().inverse())
+				dy = wY - node.y + 20;
 
-            var newRadius = Math.sqrt(dx * dx + dy * dy);
-            halo = container.getHalos().select("circle");
-            // sanity checks and setting new halo radius
-            if (!nodeIsRect) {
-                defaultRadius = node.actualRadius() + offset;
-                if (newRadius < defaultRadius) {
-                    newRadius = defaultRadius;
-                }
-                halo.attr("r", newRadius);
-            } else {
+			var newRadius = Math.sqrt(dx * dx + dy * dy);
+			halo = container.getHalos().select("circle");
+			// sanity checks and setting new halo radius
+			if (!nodeIsRect) {
+				defaultRadius = node.actualRadius() + offset;
+				if (newRadius < defaultRadius) {
+					newRadius = defaultRadius;
+				}
+				halo.attr("r", newRadius);
+			} else {
 				defaultRadius = 0.5 * container.width();
-                if (newRadius<defaultRadius)
-                	newRadius=defaultRadius;
-                halo.attr("r", newRadius);
-            }
-        } else { // node is in viewport , render original;
-            // reset the halo to original radius
-            defaultRadius = node.actualRadius() + 15;
-            if (!nodeIsRect) {
-                halo.attr("r", defaultRadius);
-            } else { // this is rectangular node render as such
-                halo = container.getHalos().select("rect");
-                halo.classed("hidden", false);
-                //halo.classed("searchResultB", true);
-                //halo.classed("searchResultA", false);
-                var aCircHalo = container.getHalos().select("circle");
-                aCircHalo.classed("hidden", true);
+				if (newRadius < defaultRadius)
+					newRadius = defaultRadius;
+				halo.attr("r", newRadius);
+			}
+		} else { // node is in viewport , render original;
+			// reset the halo to original radius
+			defaultRadius = node.actualRadius() + 15;
+			if (!nodeIsRect) {
+				halo.attr("r", defaultRadius);
+			} else { // this is rectangular node render as such
+				halo = container.getHalos().select("rect");
+				halo.classed("hidden", false);
+				//halo.classed("searchResultB", true);
+				//halo.classed("searchResultA", false);
+				var aCircHalo = container.getHalos().select("circle");
+				aCircHalo.classed("hidden", true);
 
-                container.getHalos().select("rect").classed("hidden", false);
-                container.getHalos().select("circle").classed("hidden", true);
-            }
-        }
-    }
+				container.getHalos().select("rect").classed("hidden", false);
+				container.getHalos().select("circle").classed("hidden", true);
+			}
+		}
+	}
 
-    function recalculatePositions() {
+	function recalculatePositions() {
 		// Set node positions
 		nodeElements.attr("transform", function (node) {
 			return "translate(" + node.x + "," + node.y + ")";
@@ -530,44 +530,44 @@ module.exports = function (graphContainerSelector) {
 			return "translate(" + (pos.x + normalV.x) + "," + (pos.y + normalV.y) + ")";
 		});
 
-        updateHaloRadius();
+		updateHaloRadius();
 	}
 
 	/** Adjusts the containers current scale and position. */
 	function zoomed() {
-        var zoomEventByMWheel=false;
-        if (d3.event.sourceEvent) {
-            if (d3.event.sourceEvent.deltaY)
-                zoomEventByMWheel=true;
-        }
+		var zoomEventByMWheel = false;
+		if (d3.event.sourceEvent) {
+			if (d3.event.sourceEvent.deltaY)
+				zoomEventByMWheel = true;
+		}
 
-         if (zoomEventByMWheel===false){
-             if (transformAnimation===true){
-                 return;
-             }
-            zoomFactor = d3.event.scale;
-            graphTranslation = d3.event.translate;
-            graphContainer.attr("transform", "translate(" + graphTranslation + ")scale(" + zoomFactor + ")");
-            updateHaloRadius();
-            return;
+		if (zoomEventByMWheel === false) {
+			if (transformAnimation === true) {
+				return;
+			}
+			zoomFactor = d3.event.scale;
+			graphTranslation = d3.event.translate;
+			graphContainer.attr("transform", "translate(" + graphTranslation + ")scale(" + zoomFactor + ")");
+			updateHaloRadius();
+			return;
 		}
 		/** animate the transition **/
-        zoomFactor = d3.event.scale;
-        graphTranslation = d3.event.translate;
-        graphContainer.transition()
-            .tween("attr.translate", function () {
-                return function (t) {
-                	transformAnimation=true;
-                    var tr = d3.transform(graphContainer.attr("transform"));
-                    graphTranslation[0] = tr.translate[0];
-                    graphTranslation[1] = tr.translate[1];
-                    zoomFactor=tr.scale[0];
-                    updateHaloRadius();
-                };
-            })
-			.each("end", function(){transformAnimation=false;})
-            .attr("transform", "translate(" + graphTranslation + ")scale(" + zoomFactor + ")")
-            .ease('linear')
+		zoomFactor = d3.event.scale;
+		graphTranslation = d3.event.translate;
+		graphContainer.transition()
+			.tween("attr.translate", function () {
+				return function (t) {
+					transformAnimation = true;
+					var tr = d3.transform(graphContainer.attr("transform"));
+					graphTranslation[0] = tr.translate[0];
+					graphTranslation[1] = tr.translate[1];
+					zoomFactor = tr.scale[0];
+					updateHaloRadius();
+				};
+			})
+			.each("end", function () { transformAnimation = false; })
+			.attr("transform", "translate(" + graphTranslation + ")scale(" + zoomFactor + ")")
+			.ease('linear')
 			.duration(250);
 	}// end of zoomed function
 
@@ -575,7 +575,7 @@ module.exports = function (graphContainerSelector) {
 	function initializeGraph() {
 
 		options.graphContainerSelector(graphContainerSelector);
-		var moved=false;
+		var moved = false;
 		force = d3.layout.force()
 			.on("tick", recalculatePositions);
 
@@ -586,24 +586,24 @@ module.exports = function (graphContainerSelector) {
 			.on("dragstart", function (d) {
 				d3.event.sourceEvent.stopPropagation(); // Prevent panning
 				d.locked(true);
-                moved=false;
+				moved = false;
 			})
 			.on("drag", function (d) {
 				d.px = d3.event.x;
 				d.py = d3.event.y;
 				force.resume();
-                updateHaloRadius();
-                moved=true;
+				updateHaloRadius();
+				moved = true;
 			})
 			.on("dragend", function (d) {
 				d.locked(false);
-                var pnp=graph.options().pickAndPinModule();
-                if (pnp.enabled()===true && moved===true){
-                	if (d.id){ // node
-                		pnp.handle(d,true);
+				var pnp = graph.options().pickAndPinModule();
+				if (pnp.enabled() === true && moved === true) {
+					if (d.id) { // node
+						pnp.handle(d, true);
 					}
-					if (d.property){
-                		pnp.handle(d.property(),true);
+					if (d.property) {
+						pnp.handle(d.property(), true);
 					}
 				}
 			});
@@ -611,7 +611,7 @@ module.exports = function (graphContainerSelector) {
 		// Apply the zooming factor.
 		zoom = d3.behavior.zoom()
 			.duration(150)
-	    	.scaleExtent([options.minMagnification(), options.maxMagnification()])
+			.scaleExtent([options.minMagnification(), options.maxMagnification()])
 			.on("zoom", zoomed);
 	}
 	initializeGraph();
@@ -640,20 +640,20 @@ module.exports = function (graphContainerSelector) {
 		return labelNodes;
 	};
 
-    graph.initSideBarAnimation=function(){
-        d3.select("#canvasArea").node().addEventListener("animationend", function(){
-            d3.select("#detailsArea").classed("hidden",!visibleSidebar);
-            var svgElement = d3.selectAll(".vowlGraph");
-            svgElement.attr("width", options.width());
-            svgElement.attr("height", options.height());
-            recalculatePositions();
-            // setting the graph position properly to the graph container
-            graphContainer.attr("transform", "translate(" + graphTranslation + ")scale(" + zoomFactor + ")");
-            graph.options().navigationMenu().updateVisibilityStatus();
-            // kill the filter menu animation;
-            graph.options().filterMenu().killButtonAnimation();
-        });
-    };
+	graph.initSideBarAnimation = function () {
+		d3.select("#canvasArea").node().addEventListener("animationend", function () {
+			d3.select("#detailsArea").classed("hidden", !visibleSidebar);
+			var svgElement = d3.selectAll(".vowlGraph");
+			svgElement.attr("width", options.width());
+			svgElement.attr("height", options.height());
+			recalculatePositions();
+			// setting the graph position properly to the graph container
+			graphContainer.attr("transform", "translate(" + graphTranslation + ")scale(" + zoomFactor + ")");
+			graph.options().navigationMenu().updateVisibilityStatus();
+			// kill the filter menu animation;
+			graph.options().filterMenu().killButtonAnimation();
+		});
+	};
 
 	/** Loads all settings, removes the old graph (if it exists) and draws a new one. */
 	graph.start = function () {
@@ -717,7 +717,7 @@ module.exports = function (graphContainerSelector) {
 				nodeMap[node.property().id()] = j;
 				var inverse = node.inverse();
 				if (inverse) {
-				  	nodeMap[inverse.id()] = j;
+					nodeMap[inverse.id()] = j;
 				}
 			}
 		}
@@ -773,11 +773,11 @@ module.exports = function (graphContainerSelector) {
 	/** resetting the graph **/
 	graph.reset = function () {
 		// window size
-		var w=0.5*graph.options().width();
-        var h=0.5*graph.options().height();
+		var w = 0.5 * graph.options().width();
+		var h = 0.5 * graph.options().height();
 		// computing inital translation for the graph due tue the dynamic default zoom level
-        var tx=w-defaultZoom*w;
-        var ty=h-defaultZoom*h;
+		var tx = w - defaultZoom * w;
+		var ty = h - defaultZoom * h;
 		zoom.translate([tx, ty])
 			.scale(defaultZoom);
 	};
@@ -852,7 +852,7 @@ module.exports = function (graphContainerSelector) {
 	};
 
 	graph.updatePulseIds = function (nodeIdArray) {
-        pulseNodeIds=[];
+		pulseNodeIds = [];
 		for (var i = 0; i < nodeIdArray.length; i++) {
 			var selectedId = nodeIdArray[i];
 			var forceId = nodeMap[selectedId];
@@ -870,93 +870,96 @@ module.exports = function (graphContainerSelector) {
 				}
 			}
 		}
-	    locationId = 0;
-        if (pulseNodeIds.length > 0) {
-            d3.select("#locateSearchResult").classed("highlighted", true);
-            d3.select("#locateSearchResult").node().title="Locate search term";
-        }
-        else {
-            d3.select("#locateSearchResult").classed("highlighted", false);
-            d3.select("#locateSearchResult").node().title="Nothing to locate, enter search term.";
-        }
+		locationId = 0;
+		if (pulseNodeIds.length > 0) {
+			d3.select("#locateSearchResult").classed("highlighted", true);
+			d3.select("#locateSearchResult").node().title = "Locate search term";
+		}
+		else {
+			d3.select("#locateSearchResult").classed("highlighted", false);
+			d3.select("#locateSearchResult").node().title = "Nothing to locate, enter search term.";
+		}
 
 	};
 
-    function transform(p,cx,cy) {
-    	// one iteration step for the lacate target animation
-		zoomFactor=graph.options().height()/ p[2];
-        graphTranslation=[(cx - p[0] * zoomFactor),(cy - p[1] * zoomFactor)];
-        updateHaloRadius();
-        // update the values in case the user wants to break the animation
-        zoom.translate(graphTranslation);
-        zoom.scale(zoomFactor);
-        return "translate(" + graphTranslation[0] + "," +  graphTranslation[1] + ")scale(" + zoomFactor + ")";
-    }
+	function transform(p, cx, cy) {
+		// one iteration step for the lacate target animation
+		zoomFactor = graph.options().height() / p[2];
+		graphTranslation = [(cx - p[0] * zoomFactor), (cy - p[1] * zoomFactor)];
+		updateHaloRadius();
+		// update the values in case the user wants to break the animation
+		zoom.translate(graphTranslation);
+		zoom.scale(zoomFactor);
+		return "translate(" + graphTranslation[0] + "," + graphTranslation[1] + ")scale(" + zoomFactor + ")";
+	}
 
 
 
-    function targetLocationZoom(target) {
-        // store the original information
-        var cx=0.5*graph.options().width();
-        var cy=0.5*graph.options().height();
-        var cp=getWorldPosFromScreen(cx,cy,graphTranslation,zoomFactor);
-        var sP=[cp.x,cp.y,graph.options().height()/zoomFactor];
+	function targetLocationZoom(target) {
+		// store the original information
+		var cx = 0.5 * graph.options().width();
+		var cy = 0.5 * graph.options().height();
+		var cp = getWorldPosFromScreen(cx, cy, graphTranslation, zoomFactor);
+		var sP = [cp.x, cp.y, graph.options().height() / zoomFactor];
 
-        var zoomLevel=Math.max(defaultZoom+0.5*defaultZoom,defaultTargetZoom);
-        var eP=[target.x,target.y,graph.options().height()/zoomLevel];
-		var pos_intp=d3.interpolateZoom(sP,eP);
+		var zoomLevel = Math.max(defaultZoom + 0.5 * defaultZoom, defaultTargetZoom);
+		var eP = [target.x, target.y, graph.options().height() / zoomLevel];
+		var pos_intp = d3.interpolateZoom(sP, eP);
 
-		var lenAnimation=pos_intp.duration;
-		if (lenAnimation>2500){
-			lenAnimation=2500;
+		var lenAnimation = pos_intp.duration;
+		if (lenAnimation > 2500) {
+			lenAnimation = 2500;
 		}
 
-        graphContainer.attr("transform", transform(sP,cx,cy))
-        	.transition()
-            .duration(lenAnimation)
-            .attrTween("transform", function() { return function(t) {
-            	return transform(pos_intp(t),cx,cy); }; })
-            .each("end", function() {
-                graphContainer.attr("transform", "translate(" + graphTranslation + ")scale(" + zoomFactor + ")");
-                zoom.translate(graphTranslation);
-                zoom.scale(zoomFactor);
-                updateHaloRadius();
-            });
-    }
+		graphContainer.attr("transform", transform(sP, cx, cy))
+			.transition()
+			.duration(lenAnimation)
+			.attrTween("transform", function () {
+				return function (t) {
+					return transform(pos_intp(t), cx, cy);
+				};
+			})
+			.each("end", function () {
+				graphContainer.attr("transform", "translate(" + graphTranslation + ")scale(" + zoomFactor + ")");
+				zoom.translate(graphTranslation);
+				zoom.scale(zoomFactor);
+				updateHaloRadius();
+			});
+	}
 
-    function getWorldPosFromScreen(x,y,translate,scale){
-        var temp=scale[0];
-        var xn,yn;
-        if (temp) {
-             xn = (x - translate[0]) / temp;
-             yn = (y - translate[1]) / temp;
-        }else{
-             xn = (x - translate[0]) / scale;
-             yn = (y - translate[1]) / scale;
+	function getWorldPosFromScreen(x, y, translate, scale) {
+		var temp = scale[0];
+		var xn, yn;
+		if (temp) {
+			xn = (x - translate[0]) / temp;
+			yn = (y - translate[1]) / temp;
+		} else {
+			xn = (x - translate[0]) / scale;
+			yn = (y - translate[1]) / scale;
 		}
-        return {x: xn, y: yn};
-    }
+		return { x: xn, y: yn };
+	}
 
-    graph.locateSearchResult = function () {
+	graph.locateSearchResult = function () {
 
-        if (pulseNodeIds && pulseNodeIds.length > 0) {
-            // move the center of the viewport to this location
-			if (transformAnimation===true) return; // << prevents incrementing the location id if we are in an animation
-            var node = force.nodes()[pulseNodeIds[locationId]];
-            locationId++;
-            locationId = locationId % pulseNodeIds.length;
-            // pull the node in front
-            if (node.id) {
-            	node.foreground();
-            }
-            if (node.property){
-            	node.property().foreground();
+		if (pulseNodeIds && pulseNodeIds.length > 0) {
+			// move the center of the viewport to this location
+			if (transformAnimation === true) return; // << prevents incrementing the location id if we are in an animation
+			var node = force.nodes()[pulseNodeIds[locationId]];
+			locationId++;
+			locationId = locationId % pulseNodeIds.length;
+			// pull the node in front
+			if (node.id) {
+				node.foreground();
+			}
+			if (node.property) {
+				node.property().foreground();
 			}
 
 			// locate it
-            targetLocationZoom(node);
-        }
-    };
+			targetLocationZoom(node);
+		}
+	};
 
 	graph.highLightNodes = function (nodeIdArray) {
 		if (nodeIdArray.length === 0) {
@@ -1012,16 +1015,16 @@ module.exports = function (graphContainerSelector) {
 				}
 			}
 		}
-        d3.select("#locateSearchResult").classed("highlighted", true);
-        locationId = 0;
+		d3.select("#locateSearchResult").classed("highlighted", true);
+		locationId = 0;
 		updateHaloRadius();
 	};
 
 	/**
 	 * removes data when data could not be loaded
 	 */
-	graph.clearGraphData=function(){
-		var sidebar=graph.options().sidebar();
+	graph.clearGraphData = function () {
+		var sidebar = graph.options().sidebar();
 		if (sidebar)
 			sidebar.clearOntologyInformation();
 		if (graphContainer)
@@ -1141,18 +1144,18 @@ module.exports = function (graphContainerSelector) {
 		});
 	}
 
-	function generateDictionary(data){
+	function generateDictionary(data) {
 		var i;
 		var originalDictionary = [];
 		var nodes = data.nodes;
 		for (i = 0; i < nodes.length; i++) {
 			// check if node has a label
-			if (nodes[i].labelForCurrentLanguage()!==undefined)
+			if (nodes[i].labelForCurrentLanguage() !== undefined)
 				originalDictionary.push(nodes[i]);
 		}
-		var props= data.properties;
+		var props = data.properties;
 		for (i = 0; i < props.length; i++) {
-			if (props[i].labelForCurrentLanguage()!==undefined)
+			if (props[i].labelForCurrentLanguage() !== undefined)
 				originalDictionary.push(props[i]);
 		}
 		parser.setDictionary(originalDictionary);
@@ -1189,11 +1192,11 @@ module.exports = function (graphContainerSelector) {
 
 	function loadGraphData() {
 		// reset the locate button and previously selected locations and other variables
-		nodeArrayForPulse=[];
-        pulseNodeIds = [];
-        locationId=0;
+		nodeArrayForPulse = [];
+		pulseNodeIds = [];
+		locationId = 0;
 		d3.select("#locateSearchResult").classed("highlighted", false);
-        d3.select("#locateSearchResult").node().title="Nothing to locate, enter search term.";
+		d3.select("#locateSearchResult").node().title = "Nothing to locate, enter search term.";
 
 
 		parser.parse(options.data());
@@ -1239,10 +1242,10 @@ module.exports = function (graphContainerSelector) {
 		});
 		storeLinksOnNodes(classNodes, links);
 		setForceLayoutData(classNodes, labelNodes, links);
-        for (var i=0;i<classNodes.length;i++){
-            if (classNodes[i].setRectangularRepresentation)
-            classNodes[i].setRectangularRepresentation(graph.options().rectangularRepresentation());
-        }
+		for (var i = 0; i < classNodes.length; i++) {
+			if (classNodes[i].setRectangularRepresentation)
+				classNodes[i].setRectangularRepresentation(graph.options().rectangularRepresentation());
+		}
 	}
 
 	function filterFunction(module, data, initializing) {

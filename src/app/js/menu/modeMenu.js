@@ -6,8 +6,8 @@
  */
 module.exports = function (graph) {
 
-	var SAME_COLOR_MODE = {text: "Multicolor", type: "same"};
-	var GRADIENT_COLOR_MODE = {text: "Multicolor", type: "gradient"};
+	var SAME_COLOR_MODE = { text: "Multicolor", type: "same" };
+	var GRADIENT_COLOR_MODE = { text: "Multicolor", type: "gradient" };
 
 	var modeMenu = {},
 		checkboxes = [],
@@ -22,8 +22,8 @@ module.exports = function (graph) {
 	};
 
 
-	modeMenu.setDynamicLabelWidth=function(val){
-        dynamicLabelWidthCheckBox.property("checked",val);
+	modeMenu.setDynamicLabelWidth = function (val) {
+		dynamicLabelWidthCheckBox.property("checked", val);
 	};
 	// getter for checkboxes
 	modeMenu.getCheckBoxContainer = function () {
@@ -38,41 +38,41 @@ module.exports = function (graph) {
 	 * Connects the website with the available graph modes.
 	 */
 	modeMenu.setup = function (pickAndPin, nodeScaling, compactNotation, colorExternals) {
-		var menuEntry= d3.select("#moduleOption");
-		menuEntry.on("mouseover",function(){
-			var searchMenu=graph.options().searchMenu();
+		var menuEntry = d3.select("#moduleOption");
+		menuEntry.on("mouseover", function () {
+			var searchMenu = graph.options().searchMenu();
 			searchMenu.hideSearchEntries();
 		});
-        addCheckBox("labelWidth","Dynamic label width","#dynamicLabelWidth",graph.options().dynamicLabelWidth,1);
+		addCheckBox("labelWidth", "Dynamic label width", "#dynamicLabelWidth", graph.options().dynamicLabelWidth, 1);
 		addModeItem(pickAndPin, "pickandpin", "Pick & pin", "#pickAndPinOption", false);
 		addModeItem(nodeScaling, "nodescaling", "Node scaling", "#nodeScalingOption", true);
 		addModeItem(compactNotation, "compactnotation", "Compact notation", "#compactNotationOption", true);
 		var container = addModeItem(colorExternals, "colorexternals", "Color externals", "#colorExternalsOption", true);
 		colorModeSwitch = addExternalModeSelection(container, colorExternals);
 	};
-    function addCheckBox(identifier, modeName, selector,onChangeFunc,updateLvl) {
-        var moduleOptionContainer = d3.select(selector)
-            .append("div")
-            .classed("checkboxContainer", true);
+	function addCheckBox(identifier, modeName, selector, onChangeFunc, updateLvl) {
+		var moduleOptionContainer = d3.select(selector)
+			.append("div")
+			.classed("checkboxContainer", true);
 
-        var moduleCheckbox = moduleOptionContainer.append("input")
-            .classed("moduleCheckbox", true)
-            .attr("id", identifier + "ModuleCheckbox")
-            .attr("type", "checkbox")
-            .property("checked", onChangeFunc());
+		var moduleCheckbox = moduleOptionContainer.append("input")
+			.classed("moduleCheckbox", true)
+			.attr("id", identifier + "ModuleCheckbox")
+			.attr("type", "checkbox")
+			.property("checked", onChangeFunc());
 
-        moduleCheckbox.on("click", function (d) {
-            var isEnabled = moduleCheckbox.property("checked");
-            onChangeFunc(isEnabled);
-            if (updateLvl>0){
-                graph.update(); // maybe to much of an update
-            }
-        });
-        moduleOptionContainer.append("label")
-            .attr("for", identifier + "ModuleCheckbox")
-            .text(modeName);
-        dynamicLabelWidthCheckBox=moduleCheckbox;
-    }
+		moduleCheckbox.on("click", function (d) {
+			var isEnabled = moduleCheckbox.property("checked");
+			onChangeFunc(isEnabled);
+			if (updateLvl > 0) {
+				graph.update(); // maybe to much of an update
+			}
+		});
+		moduleOptionContainer.append("label")
+			.attr("for", identifier + "ModuleCheckbox")
+			.text(modeName);
+		dynamicLabelWidthCheckBox = moduleCheckbox;
+	}
 
 	function addModeItem(module, identifier, modeName, selector, updateGraphOnClick) {
 		var moduleOptionContainer,
@@ -81,7 +81,7 @@ module.exports = function (graph) {
 		moduleOptionContainer = d3.select(selector)
 			.append("div")
 			.classed("checkboxContainer", true)
-			.datum({module: module, defaultState: module.enabled()});
+			.datum({ module: module, defaultState: module.enabled() });
 
 		moduleCheckbox = moduleOptionContainer.append("input")
 			.classed("moduleCheckbox", true)
@@ -108,7 +108,7 @@ module.exports = function (graph) {
 	}
 
 	function addExternalModeSelection(container, colorExternalsMode) {
-		var button = container.append("button").datum({active: false}).classed("color-mode-switch", true);
+		var button = container.append("button").datum({ active: false }).classed("color-mode-switch", true);
 		applyColorModeSwitchState(button, colorExternalsMode);
 
 		button.on("click", function (silent) {
@@ -175,32 +175,32 @@ module.exports = function (graph) {
 			}
 		}
 	};
-    modeMenu.getCheckBoxValue = function (id) {
-        for (var i = 0; i < checkboxes.length; i++) {
-            var cbdId = checkboxes[i].attr("id");
-            if (cbdId === id) {
-                return checkboxes[i].property("checked");
-            }
-        }
-    };
+	modeMenu.getCheckBoxValue = function (id) {
+		for (var i = 0; i < checkboxes.length; i++) {
+			var cbdId = checkboxes[i].attr("id");
+			if (cbdId === id) {
+				return checkboxes[i].property("checked");
+			}
+		}
+	};
 
 	modeMenu.setColorSwitchState = function (state) {
 		// need the !state because we simulate later a click
 		modeMenu.colorModeState(!state);
 	};
-    modeMenu.setColorSwitchStateUsingURL = function (state) {
-        // need the !state because we simulate later a click
-        modeMenu.colorModeState(!state);
-        colorModeSwitch.on("click")(true);
-    };
+	modeMenu.setColorSwitchStateUsingURL = function (state) {
+		// need the !state because we simulate later a click
+		modeMenu.colorModeState(!state);
+		colorModeSwitch.on("click")(true);
+	};
 
 
-    modeMenu.updateSettingsUsingURL = function () {
-        var silent = true;
-        checkboxes.forEach(function (checkbox) {
-            checkbox.on("click")(checkbox.datum(), silent);
-        });
-    };
+	modeMenu.updateSettingsUsingURL = function () {
+		var silent = true;
+		checkboxes.forEach(function (checkbox) {
+			checkbox.on("click")(checkbox.datum(), silent);
+		});
+	};
 
 	modeMenu.updateSettings = function () {
 		var silent = true;

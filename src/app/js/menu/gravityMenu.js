@@ -16,9 +16,9 @@ module.exports = function (graph) {
 	 * Adds the gravity sliders to the website.
 	 */
 	gravityMenu.setup = function () {
-		var menuEntry= d3.select("#gravityOption");
-		menuEntry.on("mouseover",function(){
-			var searchMenu=graph.options().searchMenu();
+		var menuEntry = d3.select("#gravityOption");
+		menuEntry.on("mouseover", function () {
+			var searchMenu = graph.options().searchMenu();
 			searchMenu.hideSearchEntries();
 		});
 		addDistanceSlider("#classSliderOption", "class", "Class distance", options.classDistance);
@@ -33,7 +33,7 @@ module.exports = function (graph) {
 
 		sliderContainer = d3.select(selector)
 			.append("div")
-			.datum({distanceFunction: distanceFunction}) // connect the options-function with the slider
+			.datum({ distanceFunction: distanceFunction }) // connect the options-function with the slider
 			.classed("distanceSliderContainer", true);
 
 		var slider = sliderContainer.append("input")
@@ -57,7 +57,7 @@ module.exports = function (graph) {
 		// Store slider for easier resetting
 		sliders.push(slider);
 
-		slider.on("focusout",function(){
+		slider.on("focusout", function () {
 			graph.updateStyle();
 		});
 
@@ -70,15 +70,15 @@ module.exports = function (graph) {
 		});
 
 		// add wheel event to the slider
-		slider.on("wheel",function(){
-			var wheelEvent=d3.event;
+		slider.on("wheel", function () {
+			var wheelEvent = d3.event;
 			var offset;
-			if (wheelEvent.deltaY<0) offset=10;
-			if (wheelEvent.deltaY>0) offset=-10;
-			var oldVal=parseInt(slider.property("value"));
-			var newSliderValue=oldVal+offset;
-			if (newSliderValue!==oldVal){
-				slider.property("value",newSliderValue);
+			if (wheelEvent.deltaY < 0) offset = 10;
+			if (wheelEvent.deltaY > 0) offset = -10;
+			var oldVal = parseInt(slider.property("value"));
+			var newSliderValue = oldVal + offset;
+			if (newSliderValue !== oldVal) {
+				slider.property("value", newSliderValue);
 				distanceFunction(newSliderValue);
 				slider.on("input")(); // << set text and update the graphStyles
 			}

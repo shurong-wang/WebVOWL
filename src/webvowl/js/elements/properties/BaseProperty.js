@@ -17,7 +17,7 @@ module.exports = (function () {
 		BaseElement.apply(this, arguments);
 
 		var that = this,
-		// Basic attributes
+			// Basic attributes
 			cardinality,
 			domain,
 			inverse,
@@ -27,27 +27,27 @@ module.exports = (function () {
 			range,
 			subproperties,
 			superproperties,
-		// Style attributes
+			// Style attributes
 			linkType = "normal",
 			markerType = "filled",
 			labelVisible = true,
-		// Element containers
+			// Element containers
 			cardinalityElement,
 			labelElement,
 			linkGroup,
 			markerElement,
-		// Other
+			// Other
 			pinGroupElement,
 			haloGroupElement,
-			myWidth=80,
+			myWidth = 80,
 
 			redundantProperties = [];
 
-		this.getHalos=function(){
+		this.getHalos = function () {
 			return haloGroupElement;
 		};
 
-		this.getPin=function(){
+		this.getPin = function () {
 			return pinGroupElement;
 		};
 
@@ -266,7 +266,7 @@ module.exports = (function () {
 
 			return equivalentProperties
 				.map(function (property) {
-					if (property===undefined || typeof(property)==="string"){ // @WORKAROUND
+					if (property === undefined || typeof (property) === "string") { // @WORKAROUND
 						return "ERROR";
 					}
 					return property.labelForCurrentLanguage();
@@ -347,16 +347,16 @@ module.exports = (function () {
 			// check for additional objects that we can highlight
 			if (!that.labelElement())
 				return;
-			if (that.labelElement().node().parentNode===null){
-			 	return;
+			if (that.labelElement().node().parentNode === null) {
+				return;
 			}
 			var selectedLabelGroup = that.labelElement().node().parentNode,
-			labelContainer = selectedLabelGroup.parentNode,
-			selectedLinkGroup = that.linkGroup().node(),
-			linkContainer = that.linkGroup().node().parentNode;
-			if (that.animationProcess()===false) {
-                labelContainer.appendChild(selectedLabelGroup);
-            }
+				labelContainer = selectedLabelGroup.parentNode,
+				selectedLinkGroup = that.linkGroup().node(),
+				linkContainer = that.linkGroup().node().parentNode;
+			if (that.animationProcess() === false) {
+				labelContainer.appendChild(selectedLabelGroup);
+			}
 			linkContainer.appendChild(selectedLinkGroup);
 		};
 
@@ -389,22 +389,22 @@ module.exports = (function () {
 
 		this.drawPin = function () {
 			that.pinned(true);
-			if (that.inverse()){
+			if (that.inverse()) {
 				// check which element is rendered on top and add a pin to it
-				var tr_that=that.labelElement().attr("transform");
-                var tr_inv=that.inverse().labelElement().attr("transform");
+				var tr_that = that.labelElement().attr("transform");
+				var tr_inv = that.inverse().labelElement().attr("transform");
 
-                var thatY= /translate\(\s*([^\s,)]+)[ ,]([^\s,)]+)/.exec(tr_that)[2];
-                var invY= /translate\(\s*([^\s,)]+)[ ,]([^\s,)]+)/.exec(tr_inv)[2];
+				var thatY = /translate\(\s*([^\s,)]+)[ ,]([^\s,)]+)/.exec(tr_that)[2];
+				var invY = /translate\(\s*([^\s,)]+)[ ,]([^\s,)]+)/.exec(tr_inv)[2];
 
-                if (thatY<invY)
-                    pinGroupElement = drawTools.drawPin(that.labelElement(), 0.5*that.width()-10, -25, this.removePin);
+				if (thatY < invY)
+					pinGroupElement = drawTools.drawPin(that.labelElement(), 0.5 * that.width() - 10, -25, this.removePin);
 				else
-                    pinGroupElement = drawTools.drawPin(that.inverse().labelElement(), 0.5*that.inverse().width()-10, -25, this.removePin);
+					pinGroupElement = drawTools.drawPin(that.inverse().labelElement(), 0.5 * that.inverse().width() - 10, -25, this.removePin);
 
 			}
 			else
-				pinGroupElement = drawTools.drawPin(that.labelElement(), 0.5*that.width()-10, -25, this.removePin);
+				pinGroupElement = drawTools.drawPin(that.labelElement(), 0.5 * that.width() - 10, -25, this.removePin);
 		};
 
 		/**
@@ -418,43 +418,43 @@ module.exports = (function () {
 			graph.updateStyle();
 		};
 
-		this.removeHalo=function(){
+		this.removeHalo = function () {
 			that.halo(false);
 			if (haloGroupElement) {
 				haloGroupElement.remove();
-				haloGroupElement=null;
+				haloGroupElement = null;
 			}
 		};
 
-		this.animationProcess=function(){
-            var animRuns=false;
-            if (that.getHalos()) {
-            	var haloGr=that.getHalos();
-                var haloEls= haloGr.selectAll(".searchResultA");
-                animRuns=haloGr.attr("animationRunning");
+		this.animationProcess = function () {
+			var animRuns = false;
+			if (that.getHalos()) {
+				var haloGr = that.getHalos();
+				var haloEls = haloGr.selectAll(".searchResultA");
+				animRuns = haloGr.attr("animationRunning");
 
 				if (typeof animRuns !== "boolean") {
-                    // parse this to a boolean value
-                    animRuns = (animRuns === 'true');
-                }
-                if (animRuns===false) {
-                    haloEls.classed("searchResultA", false);
-                    haloEls.classed("searchResultB", true);
-                }
-            }
-            return animRuns;
-        };
+					// parse this to a boolean value
+					animRuns = (animRuns === 'true');
+				}
+				if (animRuns === false) {
+					haloEls.classed("searchResultA", false);
+					haloEls.classed("searchResultB", true);
+				}
+			}
+			return animRuns;
+		};
 
-		this.drawHalo= function(){
+		this.drawHalo = function () {
 			that.halo(true);
-			var offset=0;
-            if (that.labelElement()){
-                var labelNode= that.labelElement().node();
-                var labelContainer = labelNode.parentNode;
-                // do this only if animation is not running
-                if (that.animationProcess()===false)
-                    labelContainer.appendChild(labelNode);
-            }
+			var offset = 0;
+			if (that.labelElement()) {
+				var labelNode = that.labelElement().node();
+				var labelContainer = labelNode.parentNode;
+				// do this only if animation is not running
+				if (that.animationProcess() === false)
+					labelContainer.appendChild(labelNode);
+			}
 			haloGroupElement = drawTools.drawRectHalo(that, that.width(), that.height(), offset);
 
 			// append at highest level;
@@ -465,67 +465,67 @@ module.exports = (function () {
 
 			// check for all other things;
 
-            var haloNode= haloGroupElement.node();
-            var haloContainer = haloNode.parentNode;
-            haloContainer.appendChild(haloNode);
-            var selectedNode;
-            var nodeContainer;
-            if (that.pinned()){
-                selectedNode = pinGroupElement.node();
+			var haloNode = haloGroupElement.node();
+			var haloContainer = haloNode.parentNode;
+			haloContainer.appendChild(haloNode);
+			var selectedNode;
+			var nodeContainer;
+			if (that.pinned()) {
+				selectedNode = pinGroupElement.node();
 				nodeContainer = selectedNode.parentNode;
-             	nodeContainer.appendChild(selectedNode);
-            }
-            if (that.inverse() && that.inverse().pinned()){
-            	if (that.inverse().getPin()){
-                	selectedNode = that.inverse().getPin().node();
-                	nodeContainer = selectedNode.parentNode;
-                	nodeContainer.appendChild(selectedNode);
-            	}
-            }
+				nodeContainer.appendChild(selectedNode);
+			}
+			if (that.inverse() && that.inverse().pinned()) {
+				if (that.inverse().getPin()) {
+					selectedNode = that.inverse().getPin().node();
+					nodeContainer = selectedNode.parentNode;
+					nodeContainer.appendChild(selectedNode);
+				}
+			}
 		};
 
-		this.getMyWidth=function(){
+		this.getMyWidth = function () {
 			// use a simple heuristic
-            var text = that.labelForCurrentLanguage();
-            myWidth =measureTextWidth(text,"text")+20;
+			var text = that.labelForCurrentLanguage();
+			myWidth = measureTextWidth(text, "text") + 20;
 
-            // check for sub names;
-			var indicatorText=that.indicationString();
-            var indicatorWidth=measureTextWidth(indicatorText,"subtext")+20;
-			if (indicatorWidth>myWidth)
-				myWidth=indicatorWidth;
+			// check for sub names;
+			var indicatorText = that.indicationString();
+			var indicatorWidth = measureTextWidth(indicatorText, "subtext") + 20;
+			if (indicatorWidth > myWidth)
+				myWidth = indicatorWidth;
 
 			return myWidth;
 		};
 
-        function measureTextWidth(text, textStyle) {
-            // Set a default value
-            if (!textStyle) {
-                textStyle = "text";
-            }
-            var d = d3.select("body")
-                    .append("div")
-                    .attr("class", textStyle)
-                    .attr("id", "width-test") // tag this element to identify it
-                    .attr("style", "position:absolute; float:left; white-space:nowrap; visibility:hidden;")
-                    .text(text),
-                w = document.getElementById("width-test").offsetWidth;
-            d.remove();
-            return w;
-        }
-        this.textWidth = function () {
-           //
-            if(graph.options().dynamicLabelWidth()===true) {
-                return that.getMyWidth();
-            }
-            return labelWidth;
-        };
-        this.width= function(){
-			if(graph.options().dynamicLabelWidth()===true){
+		function measureTextWidth(text, textStyle) {
+			// Set a default value
+			if (!textStyle) {
+				textStyle = "text";
+			}
+			var d = d3.select("body")
+				.append("div")
+				.attr("class", textStyle)
+				.attr("id", "width-test") // tag this element to identify it
+				.attr("style", "position:absolute; float:left; white-space:nowrap; visibility:hidden;")
+				.text(text),
+				w = document.getElementById("width-test").offsetWidth;
+			d.remove();
+			return w;
+		}
+		this.textWidth = function () {
+			//
+			if (graph.options().dynamicLabelWidth() === true) {
 				return that.getMyWidth();
 			}
 			return labelWidth;
-        };
+		};
+		this.width = function () {
+			if (graph.options().dynamicLabelWidth() === true) {
+				return that.getMyWidth();
+			}
+			return labelWidth;
+		};
 
 		forceLayoutNodeFunctions.addTo(this);
 	};

@@ -11,7 +11,7 @@ module.exports = (function () {
 			type,
 			iri,
 			baseIri,
-		// Additional attributes
+			// Additional attributes
 			annotations,
 			attributes = [],
 			backgroundColor,
@@ -19,13 +19,13 @@ module.exports = (function () {
 			description,
 			equivalentBase,
 			visualAttributes = [],
-		// Style attributes
+			// Style attributes
 			focused = false,
 			indications = [],
 			mouseEntered = false,
 			styleClass,
 			visible = true,
-		// Other
+			// Other
 			languageTools = require("../util/languageTools")();
 
 

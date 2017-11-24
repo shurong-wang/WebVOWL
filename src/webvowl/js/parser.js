@@ -16,15 +16,15 @@ module.exports = function (graph) {
 		classMap,
 		settingsData,
 		settingsImported = false,
-		dictionary=[],
+		dictionary = [],
 		propertyMap;
 
-	parser.getDictionary=function(){
+	parser.getDictionary = function () {
 		return dictionary;
 	};
 
-	parser.setDictionary=function(d){
-		dictionary=d;
+	parser.setDictionary = function (d) {
+		dictionary = d;
 	};
 
 	parser.settingsImported = function () {
@@ -493,8 +493,8 @@ module.exports = function (graph) {
 				property.domain(property.domain().equivalentBase());
 				propertyWasRerouted = true;
 			}
-			if (property.range()===undefined){
-				console.warn("No range was found for id:"+property.id());
+			if (property.range() === undefined) {
+				console.warn("No range was found for id:" + property.id());
 				return;
 			}
 			if (wasNodeMerged(property.range())) {

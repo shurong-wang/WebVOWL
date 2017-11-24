@@ -5,7 +5,7 @@ module.exports = function () {
 		options = graph.graphOptions(),
 		languageTools = webvowl.util.languageTools(),
 		GRAPH_SELECTOR = "#graph",
-	// Modules for the webvowl app
+		// Modules for the webvowl app
 		exportMenu = require("./menu/exportMenu")(graph),
 		filterMenu = require("./menu/filterMenu")(graph),
 		gravityMenu = require("./menu/gravityMenu")(graph),
@@ -16,7 +16,7 @@ module.exports = function () {
 		searchMenu = require("./menu/searchMenu")(graph),
 		navigationMenu = require("./menu/navigationMenu")(graph),
 		sidebar = require("./sidebar")(graph),
-	// Graph modules
+		// Graph modules
 		colorExternalsSwitch = webvowl.modules.colorExternalsSwitch(graph),
 		compactNotationSwitch = webvowl.modules.compactNotationSwitch(graph),
 		datatypeFilter = webvowl.modules.datatypeFilter(),
@@ -64,24 +64,24 @@ module.exports = function () {
 		sidebar.setup();
 
 
-        var agentVersion=getInternetExplorerVersion();
-        console.log("agent Version "+agentVersion);
-       	if (agentVersion> 0 && agentVersion<= 11) {
-        	console.log("this agent is not supported");
+		var agentVersion = getInternetExplorerVersion();
+		console.log("agent Version " + agentVersion);
+		if (agentVersion > 0 && agentVersion <= 11) {
+			console.log("this agent is not supported");
 			d3.select("#browserCheck").classed("hidden", false);
-			d3.select("#killWarning" ).classed("hidden", true);
-			d3.select("#optionsArea" ).classed("hidden", true);
+			d3.select("#killWarning").classed("hidden", true);
+			d3.select("#optionsArea").classed("hidden", true);
 			d3.select("#logo").classed("hidden", true);
-        } else {
+		} else {
 			d3.select("#logo").classed("hidden", false);
-			if (agentVersion===12) {
-                d3.select("#browserCheck").classed("hidden", false);
-                d3.select("#killWarning").classed("hidden", false);
-            } else {
-                d3.select("#browserCheck").classed("hidden", true);
+			if (agentVersion === 12) {
+				d3.select("#browserCheck").classed("hidden", false);
+				d3.select("#killWarning").classed("hidden", false);
+			} else {
+				d3.select("#browserCheck").classed("hidden", true);
 			}
 
-            resetMenu.setup([gravityMenu, filterMenu, modeMenu, focuser, selectionDetailDisplayer, pauseMenu]);
+			resetMenu.setup([gravityMenu, filterMenu, modeMenu, focuser, selectionDetailDisplayer, pauseMenu]);
 			searchMenu.setup();
 			navigationMenu.setup();
 
@@ -97,7 +97,7 @@ module.exports = function () {
 			options.ontologyMenu(ontologyMenu);
 			options.navigationMenu(navigationMenu);
 			options.sidebar(sidebar);
-            ontologyMenu.setup(loadOntologyFromText);
+			ontologyMenu.setup(loadOntologyFromText);
 
 			graph.start();
 			adjustSize();
@@ -109,14 +109,14 @@ module.exports = function () {
 			defZoom = Math.min(w, h) / 1000;
 
 			// initialize the values;
-            d3.select("#sidebarExpandButton").on("click",function(){
-                var settingValue=parseInt(graph.getSidebarVisibility());
-                if (settingValue===1) graph.showSidebar(0);
-                else  graph.showSidebar(1);
-            });
+			d3.select("#sidebarExpandButton").on("click", function () {
+				var settingValue = parseInt(graph.getSidebarVisibility());
+				if (settingValue === 1) graph.showSidebar(0);
+				else graph.showSidebar(1);
+			});
 			graph.setDefaultZoom(defZoom);
 			graph.initSideBarAnimation();
-        }
+		}
 	};
 
 	function loadOntologyFromText(jsonText, filename, alternativeFilename) {
@@ -125,7 +125,7 @@ module.exports = function () {
 
 		pauseMenu.reset();
 
-		if (jsonText===undefined && filename===undefined){
+		if (jsonText === undefined && filename === undefined) {
 			console.log("Nothing to load");
 			return;
 		}
@@ -135,12 +135,12 @@ module.exports = function () {
 			// validate JSON FILE
 			var validJSON;
 			try {
-				data =JSON.parse(jsonText);
-				validJSON=true;
-			} catch (e){
-				validJSON=false;
+				data = JSON.parse(jsonText);
+				validJSON = true;
+			} catch (e) {
+				validJSON = false;
 			}
-			if (validJSON===false){
+			if (validJSON === false) {
 				// the server output is not a valid json file
 				console.log("Retrieved data is not valid! (JSON.parse Error)");
 				ontologyMenu.emptyGraphError();
@@ -162,11 +162,11 @@ module.exports = function () {
 
 		//@WORKAROUND
 		// check if data has classes and properties;
-		var classCount				  = parseInt(data.metrics.classCount);
-		var objectPropertyCount		  = parseInt(data.metrics.objectPropertyCount);
-		var datatypePropertyCount	  = parseInt(data.metrics.datatypePropertyCount);
+		var classCount = parseInt(data.metrics.classCount);
+		var objectPropertyCount = parseInt(data.metrics.objectPropertyCount);
+		var datatypePropertyCount = parseInt(data.metrics.datatypePropertyCount);
 
-		if (classCount === 0 && objectPropertyCount===0 && datatypePropertyCount===0 ){
+		if (classCount === 0 && objectPropertyCount === 0 && datatypePropertyCount === 0) {
 			// generate message for the user;
 			ontologyMenu.emptyGraphError();
 		}
@@ -174,7 +174,7 @@ module.exports = function () {
 		exportMenu.setJsonText(jsonText);
 		options.data(data);
 		graph.load();
-		
+
 		sidebar.updateOntologyInformation(data, statistics);
 		exportMenu.setFilename(filename);
 	}
@@ -185,11 +185,11 @@ module.exports = function () {
 			height = window.innerHeight - 40,
 			width = window.innerWidth - (window.innerWidth * 0.22);
 
-		if (graph.getSidebarVisibility()==="0"){
-            height = window.innerHeight - 40 ;
-            width = window.innerWidth;
+		if (graph.getSidebarVisibility() === "0") {
+			height = window.innerHeight - 40;
+			width = window.innerWidth;
 
-        }
+		}
 
 		graphContainer.style("height", height + "px");
 		svg.attr("width", width)
@@ -203,47 +203,47 @@ module.exports = function () {
 
 		navigationMenu.updateVisibilityStatus();
 		// update also the padding options of loading and the logo positions;
-		var warningDiv=d3.select("#browserCheck");
-		if (warningDiv.classed("hidden")===false ) {
-            var offset=10+warningDiv.node().getBoundingClientRect().height;
-            d3.select("#logo").style("padding", offset+"px 10px");
-        }else {
+		var warningDiv = d3.select("#browserCheck");
+		if (warningDiv.classed("hidden") === false) {
+			var offset = 10 + warningDiv.node().getBoundingClientRect().height;
+			d3.select("#logo").style("padding", offset + "px 10px");
+		} else {
 			// remove the dynamic padding from the logo element;
-            d3.select("#logo").style("padding", "10px");
-        }
+			d3.select("#logo").style("padding", "10px");
+		}
 	}
 
-	function getInternetExplorerVersion(){
-        var ua,
-            re,
-            rv = -1;
+	function getInternetExplorerVersion() {
+		var ua,
+			re,
+			rv = -1;
 
-        // check for edge
-        var isEdge=/(?:\b(MS)?IE\s+|\bTrident\/7\.0;.*\s+rv:|\bEdge\/)(\d+)/.test(navigator.userAgent);
-        if (isEdge){
-            rv  = parseInt("12");
-            return rv;
-        }
+		// check for edge
+		var isEdge = /(?:\b(MS)?IE\s+|\bTrident\/7\.0;.*\s+rv:|\bEdge\/)(\d+)/.test(navigator.userAgent);
+		if (isEdge) {
+			rv = parseInt("12");
+			return rv;
+		}
 
-        var isIE11 = /Trident.*rv[ :]*11\./.test(navigator.userAgent);
-        if (isIE11){
-            rv  = parseInt("11");
-            return rv;
-        }
-        if (navigator.appName === "Microsoft Internet Explorer") {
-            ua = navigator.userAgent;
-            re = new RegExp("MSIE ([0-9]{1,}[\\.0-9]{0,})");
-            if (re.exec(ua) !== null) {
-                rv = parseFloat(RegExp.$1);
-            }
-        } else if (navigator.appName === "Netscape") {
-            ua = navigator.userAgent;
-            re = new RegExp("Trident/.*rv:([0-9]{1,}[\\.0-9]{0,})");
-            if (re.exec(ua) !== null) {
-                rv = parseFloat(RegExp.$1);
-            }
-        }
-        return rv;
+		var isIE11 = /Trident.*rv[ :]*11\./.test(navigator.userAgent);
+		if (isIE11) {
+			rv = parseInt("11");
+			return rv;
+		}
+		if (navigator.appName === "Microsoft Internet Explorer") {
+			ua = navigator.userAgent;
+			re = new RegExp("MSIE ([0-9]{1,}[\\.0-9]{0,})");
+			if (re.exec(ua) !== null) {
+				rv = parseFloat(RegExp.$1);
+			}
+		} else if (navigator.appName === "Netscape") {
+			ua = navigator.userAgent;
+			re = new RegExp("Trident/.*rv:([0-9]{1,}[\\.0-9]{0,})");
+			if (re.exec(ua) !== null) {
+				rv = parseFloat(RegExp.$1);
+			}
+		}
+		return rv;
 	}
 
 	return app;

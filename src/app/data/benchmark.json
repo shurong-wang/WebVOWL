@@ -14,23 +14,29 @@
 		}
 	],
 	"header": {
-        "title": {
-          "iriBased": "Benchmark Graph",
-          "en": "Benchmark Graph",
-		  "de": "Benchmark Graph (DE)",
-		  "undefined": "Benchmark Graph (UNDEFINED)"
-        },
+		"title": {
+			"iriBased": "Benchmark Graph",
+			"en": "Benchmark Graph",
+			"de": "Benchmark Graph (DE)",
+			"undefined": "Benchmark Graph (UNDEFINED)"
+		},
 		"iri": "#",
 		"version": "0.1",
-		"author": ["Vincent Link", "Eduard Marbach"],
+		"author": [
+			"Vincent Link",
+			"Eduard Marbach"
+		],
 		"description": {
-          "iriBased": "The benchmark graph contains all visual elements of VOWL to test WebVOWL conformance with the specification and special cases.",
-          "en": "The benchmark graph contains all visual elements of VOWL to test WebVOWL conformance with the specification and special cases.",
-          "de": "Deutsche Beschreibung"
-        },
-        "languages": [
-          "en", "de", "unset", "iriBased"
-        ]
+			"iriBased": "The benchmark graph contains all visual elements of VOWL to test WebVOWL conformance with the specification and special cases.",
+			"en": "The benchmark graph contains all visual elements of VOWL to test WebVOWL conformance with the specification and special cases.",
+			"de": "Deutsche Beschreibung"
+		},
+		"languages": [
+			"en",
+			"de",
+			"unset",
+			"iriBased"
+		]
 	},
 	"class": [
 		{
@@ -72,7 +78,7 @@
 			"id": "DisjointTest2",
 			"type": "owl:Class",
 			"label": "DisjointTest2"
-		}   ,
+		},
 		{
 			"id": "SetOperatorTest",
 			"type": "owl:Class",
@@ -94,13 +100,723 @@
 			"id": "IntersectionTest",
 			"type": "owl:intersectionOf",
 			"label": "Intersection",
-			"individuals": [{"a": "b"},{"a": "b"},{"a": "b"}]
+			"individuals": [
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				}
+			]
 		},
 		{
 			"id": "UnionTest",
 			"type": "owl:unionOf",
 			"label": "Union",
-			"individuals": [{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"}]
+			"individuals": [
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				}
+			]
 		},
 		{
 			"id": "DisjointUnionTest",
@@ -115,7 +831,12 @@
 		{
 			"id": "NodeTest",
 			"type": "owl:Class",
-			"label": {"de": "KnotenTest", "en": "NodeTest", "unset": "NodeTest", "iriBased": "NodeTest"}
+			"label": {
+				"de": "KnotenTest",
+				"en": "NodeTest",
+				"unset": "NodeTest",
+				"iriBased": "NodeTest"
+			}
 		},
 		{
 			"id": "ExternalClass",
@@ -266,7 +987,7 @@
 		{
 			"id": "cardinalityTest1",
 			"type": "owl:Class"
-		}  ,
+		},
 		{
 			"id": "cardinalityTest2",
 			"type": "owl:Class"
@@ -288,7 +1009,20 @@
 		{
 			"id": "ClassFeatureTest",
 			"label": "Class Feature Test",
-			"individuals": [{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"}],
+			"individuals": [
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				}
+			],
 			"comment": "Class Feature Test comment"
 		},
 		{
@@ -303,7 +1037,9 @@
 		{
 			"id": "AnonymousClass",
 			"label": "Anonymous Class",
-			"attributes": ["anonymous"]
+			"attributes": [
+				"anonymous"
+			]
 		}
 	],
 	"datatype": [
@@ -325,7 +1061,20 @@
 		{
 			"id": "DatatypeFeatureTest",
 			"label": "Datatype Feature Test",
-			"individuals": [{"a": "b"},{"a": "b"},{"a": "b"},{"a": "b"}],
+			"individuals": [
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				},
+				{
+					"a": "b"
+				}
+			],
 			"comment": "Datatype Feature Test comment"
 		}
 	],
@@ -1094,7 +1843,9 @@
 			"domain": "IndicationTest1",
 			"range": "IndicationTest2",
 			"label": "hasKey",
-			"attributes": ["key"]
+			"attributes": [
+				"key"
+			]
 		},
 		{
 			"id": "TransitiveProperty",

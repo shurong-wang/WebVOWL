@@ -1,3 +1,18 @@
+### 数据加载 ###
+
+* >> app.initialize
+
+* >> ontologyMenu.setup
+
+* >> setupUriListener
+
+* >> parseUrlAndLoadOntology
+
+* >> loadOntologyFromUri
+
+* >> loadOntologyFromText
+
+
 ### 开发依赖 ###
 
 * connect-livereload              //  
@@ -31,18 +46,3 @@
 * style-loader                    //  
 * webpack                         //  
 * webpack-dev-server              //  
-
-
-### 数据加载流程 ###
-
-* >> app.initialize
-
-* >> ontologyMenu.setup
-
-* >> setupUriListener
-
-* >> parseUrlAndLoadOntology
-
-* >> loadOntologyFromUri
-
-* >> loadOntologyFromText

@@ -64,68 +64,68 @@ module.exports = function (graph) {
 						break;
 					}
 				}
-			 	// repair if needed;
+				// repair if needed;
 				checkArrowRequirement();
 
-				var bothVisible=checkBothArrows();
-				var lastIndex=visibleEntries.lastIndexOf(1);
+				var bothVisible = checkBothArrows();
+				var lastIndex = visibleEntries.lastIndexOf(1);
 
-				if (!bothVisible){
+				if (!bothVisible) {
 					// disable the last entry;
-					visibleEntries[lastIndex]=0;
-					allMenuEntries[lastIndex].style.display="none";
+					visibleEntries[lastIndex] = 0;
+					allMenuEntries[lastIndex].style.display = "none";
 				}
 
-				 	// try to fill from left ; now
-				var anchorRight=visibleEntries.lastIndexOf(1);
-				for (i=anchorRight-1;i>=0;i--){
-					visibleEntries[i]=0;
-					allMenuEntries[i].style.display="block";
+				// try to fill from left ; now
+				var anchorRight = visibleEntries.lastIndexOf(1);
+				for (i = anchorRight - 1; i >= 0; i--) {
+					visibleEntries[i] = 0;
+					allMenuEntries[i].style.display = "block";
 					currentTopValue = allMenuEntries[elementToShow].getBoundingClientRect().top;
-					objTopValue= allMenuEntries[i].getBoundingClientRect().top;
-					if (currentTopValue===objTopValue){
-						visibleEntries[i]=1;
-					}else{
-						allMenuEntries[i].style.display="none";
-						visibleEntries[i]=0;
+					objTopValue = allMenuEntries[i].getBoundingClientRect().top;
+					if (currentTopValue === objTopValue) {
+						visibleEntries[i] = 1;
+					} else {
+						allMenuEntries[i].style.display = "none";
+						visibleEntries[i] = 0;
 						break;
 					}
 				}
 				// repair if needed;
 				checkArrowRequirement();
-				bothVisible=checkBothArrows();
-				if (!bothVisible){
+				bothVisible = checkBothArrows();
+				if (!bothVisible) {
 					// disable the last entry;
-					lastIndex=visibleEntries.indexOf(1);
-					if (lastIndex!==-1) {
+					lastIndex = visibleEntries.indexOf(1);
+					if (lastIndex !== -1) {
 						visibleEntries[lastIndex] = 0;
 						allMenuEntries[lastIndex].style.display = "none";
 					}
 				}
 				// todo: check why we need 3 times this;
 				checkArrowRequirement();
-				bothVisible=checkBothArrows();
-				if (!bothVisible){
+				bothVisible = checkBothArrows();
+				if (!bothVisible) {
 					// disable the last entry;
-					lastIndex=visibleEntries.indexOf(1);
-					if (lastIndex!==-1) {
+					lastIndex = visibleEntries.indexOf(1);
+					if (lastIndex !== -1) {
 						visibleEntries[lastIndex] = 0;
 						allMenuEntries[lastIndex].style.display = "none";
 					}
 				}
 				checkArrowRequirement();
-				bothVisible=checkBothArrows();
-				if (!bothVisible){
+				bothVisible = checkBothArrows();
+				if (!bothVisible) {
 					// disable the last entry;
-					lastIndex=visibleEntries.indexOf(1);
-					if (lastIndex!==-1) {
+					lastIndex = visibleEntries.indexOf(1);
+					if (lastIndex !== -1) {
 						visibleEntries[lastIndex] = 0;
 						allMenuEntries[lastIndex].style.display = "none";
 					}
 				}
 				checkArrowRequirement();
 			}
-   		    setArrowHighlighting();
+			setArrowHighlighting();
 		});
 		buttonRight.on("click", function () {
 			// set the first 0 to zero;
@@ -133,40 +133,40 @@ module.exports = function (graph) {
 			if (visibleEntries[visibleEntries.length - 1] === 1) {
 				return;
 			} else {
-				var elementToShow=visibleEntries.lastIndexOf(1)+1;
+				var elementToShow = visibleEntries.lastIndexOf(1) + 1;
 
-				var anchorRight=visibleEntries.lastIndexOf(1);
+				var anchorRight = visibleEntries.lastIndexOf(1);
 				// hide everything from anchorRight
 				var i;
-				for (i=anchorRight-1;i>=0;i--){
-					visibleEntries[i]=0;
-					allMenuEntries[i].style.display="none";
+				for (i = anchorRight - 1; i >= 0; i--) {
+					visibleEntries[i] = 0;
+					allMenuEntries[i].style.display = "none";
 				}
-				visibleEntries[elementToShow]=1;
-				allMenuEntries[elementToShow].style.display="block";
+				visibleEntries[elementToShow] = 1;
+				allMenuEntries[elementToShow].style.display = "block";
 
-				for (i=anchorRight-1;i>=0;i--){
-					visibleEntries[i]=0;
-					allMenuEntries[i].style.display="block";
+				for (i = anchorRight - 1; i >= 0; i--) {
+					visibleEntries[i] = 0;
+					allMenuEntries[i].style.display = "block";
 
 					var currentTopValue = allMenuEntries[elementToShow].getBoundingClientRect().top;
-					var objTopValue= allMenuEntries[i].getBoundingClientRect().top;
-					if (currentTopValue===objTopValue){
-						visibleEntries[i]=1;
-					}else{
-						allMenuEntries[i].style.display="none";
-						visibleEntries[i]=0;
+					var objTopValue = allMenuEntries[i].getBoundingClientRect().top;
+					if (currentTopValue === objTopValue) {
+						visibleEntries[i] = 1;
+					} else {
+						allMenuEntries[i].style.display = "none";
+						visibleEntries[i] = 0;
 						break;
 					}
 
 				}
 				// repair if needed;
 				checkArrowRequirement();
-				var bothVisible=checkBothArrows();
-				if (!bothVisible){
+				var bothVisible = checkBothArrows();
+				if (!bothVisible) {
 					// disable the last entry;
-					var lastIndex=visibleEntries.indexOf(1);
-					if (lastIndex!==-1) {
+					var lastIndex = visibleEntries.indexOf(1);
+					if (lastIndex !== -1) {
 						visibleEntries[lastIndex] = 0;
 						allMenuEntries[lastIndex].style.display = "none";
 					}
@@ -183,7 +183,7 @@ module.exports = function (graph) {
 		// we neglect the last 2 value because it is the arrow object
 		var i;
 		var firstOne = visibleEntries.indexOf(1);
-		if (firstOne===-1){
+		if (firstOne === -1) {
 			fillFromBeginning();
 			firstOne = visibleEntries.indexOf(1);
 		}
@@ -200,53 +200,53 @@ module.exports = function (graph) {
 			}
 		}
 		// get anchors;
-		var anchorLeft=visibleEntries.indexOf(1);
-		var anchorRight=visibleEntries.lastIndexOf(1);
+		var anchorLeft = visibleEntries.indexOf(1);
+		var anchorRight = visibleEntries.lastIndexOf(1);
 
-		if (anchorLeft===-1 && anchorRight===-1){
+		if (anchorLeft === -1 && anchorRight === -1) {
 			fillFromBeginning();
-			anchorLeft=visibleEntries.indexOf(1);
-			anchorRight=visibleEntries.lastIndexOf(1);
+			anchorLeft = visibleEntries.indexOf(1);
+			anchorRight = visibleEntries.lastIndexOf(1);
 		}
 		// try to add more entries;
-		for (i = anchorLeft+1; i < allMenuEntries.length - 2; i++) {
+		for (i = anchorLeft + 1; i < allMenuEntries.length - 2; i++) {
 			// enable the value;
-			allMenuEntries[i].style.display="block";
+			allMenuEntries[i].style.display = "block";
 			currentTopValue = allMenuEntries[anchorLeft].getBoundingClientRect().top;
-			objTopValue= allMenuEntries[i].getBoundingClientRect().top;
+			objTopValue = allMenuEntries[i].getBoundingClientRect().top;
 
-			if (currentTopValue===objTopValue){
-				visibleEntries[i]=1;
-			}else{
-				allMenuEntries[i].style.display="none";
-				visibleEntries[i]=0;
+			if (currentTopValue === objTopValue) {
+				visibleEntries[i] = 1;
+			} else {
+				allMenuEntries[i].style.display = "none";
+				visibleEntries[i] = 0;
 				break;
 			}
 		}
 		checkArrowRequirement();
 
-		var bothVisible=checkBothArrows();
+		var bothVisible = checkBothArrows();
 		var lastIndex;
-		if (!bothVisible && anchorLeft===0){
+		if (!bothVisible && anchorLeft === 0) {
 			// disable the last entry;
-			lastIndex=visibleEntries.lastIndexOf(1);
-			if (lastIndex!==-1) {
+			lastIndex = visibleEntries.lastIndexOf(1);
+			if (lastIndex !== -1) {
 				visibleEntries[lastIndex] = 0;
-				allMenuEntries[lastIndex].style.display="none";
+				allMenuEntries[lastIndex].style.display = "none";
 			}
 		}
 
-		if (anchorLeft!==0 || anchorRight!==visibleEntries.length){
-			 //try to add elements to menu
-			anchorRight=visibleEntries.lastIndexOf(1);
+		if (anchorLeft !== 0 || anchorRight !== visibleEntries.length) {
+			//try to add elements to menu
+			anchorRight = visibleEntries.lastIndexOf(1);
 
-			if (anchorRight>=1){
+			if (anchorRight >= 1) {
 				// hide everything from anchorRight
-				for (i=anchorRight-1;i>=0;i--){
-					visibleEntries[i]=0;
-					allMenuEntries[i].style.display="none";
+				for (i = anchorRight - 1; i >= 0; i--) {
+					visibleEntries[i] = 0;
+					allMenuEntries[i].style.display = "none";
 				}
-				for (i=anchorRight-1;i>=0;i--) {
+				for (i = anchorRight - 1; i >= 0; i--) {
 					visibleEntries[i] = 0;
 					allMenuEntries[i].style.display = "block";
 
@@ -263,18 +263,18 @@ module.exports = function (graph) {
 			}
 			// repair if needed;
 			checkArrowRequirement();
-			bothVisible=checkBothArrows();
-			if (!bothVisible){
+			bothVisible = checkBothArrows();
+			if (!bothVisible) {
 				// disable the last entry;
-				lastIndex=visibleEntries.indexOf(1);
-				if (lastIndex!==-1) {
+				lastIndex = visibleEntries.indexOf(1);
+				if (lastIndex !== -1) {
 					visibleEntries[lastIndex] = 0;
 					allMenuEntries[lastIndex].style.display = "none";
 				}
 			}
 		}
 		// sanity check
-		if (visibleEntries.indexOf(1)===-1){
+		if (visibleEntries.indexOf(1) === -1) {
 			fillFromBeginning();
 		}
 
@@ -282,11 +282,11 @@ module.exports = function (graph) {
 	};
 
 	function fillFromBeginning() {
-		visibleEntries[0]=1;
-		allMenuEntries[0].style.display="block";
+		visibleEntries[0] = 1;
+		allMenuEntries[0].style.display = "block";
 	}
 
-	function checkArrowRequirement(){
+	function checkArrowRequirement() {
 		// hides if not needed
 		var leftArrowId = allMenuEntries.length - 2;
 		var rightArrowId = allMenuEntries.length - 1;
@@ -298,28 +298,28 @@ module.exports = function (graph) {
 		}
 	}
 
-	function checkBothArrows(){
+	function checkBothArrows() {
 		if (visibleEntries.indexOf(0) === -1) {
 			return true; // no need to show them
 		}
 		var leftArrowId = allMenuEntries.length - 2;
 		var rightArrowId = allMenuEntries.length - 1;
-		var firstElement=visibleEntries.indexOf(1);
-		if (firstElement===-1){
+		var firstElement = visibleEntries.indexOf(1);
+		if (firstElement === -1) {
 			fillFromBeginning(); // panic: no elements are visible
-			firstElement=visibleEntries.indexOf(1);
+			firstElement = visibleEntries.indexOf(1);
 		}
 
 		var currentTopValue = allMenuEntries[firstElement].getBoundingClientRect().top;
-		var leftTopValue= allMenuEntries[leftArrowId].getBoundingClientRect().top;
-		var rightTopValue= allMenuEntries[rightArrowId].getBoundingClientRect().top;
+		var leftTopValue = allMenuEntries[leftArrowId].getBoundingClientRect().top;
+		var rightTopValue = allMenuEntries[rightArrowId].getBoundingClientRect().top;
 
 		allMenuEntries[leftArrowId].style.display = "block";
 		allMenuEntries[rightArrowId].style.display = "block";
 
-		var bothVisible=false;
-		if (currentTopValue===leftTopValue && currentTopValue === rightTopValue){
-			bothVisible=true;
+		var bothVisible = false;
+		if (currentTopValue === leftTopValue && currentTopValue === rightTopValue) {
+			bothVisible = true;
 		}
 		return bothVisible;
 	}

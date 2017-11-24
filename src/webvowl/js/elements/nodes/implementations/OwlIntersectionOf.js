@@ -34,7 +34,7 @@ module.exports = (function () {
 			symbol.append("path")
 				.attr("class", "nofill")
 				.attr("d", "m 9,5 c 0,-2 0,-4 0,-6 0,0 0,0 0,0 0,0 0,-1.8 -1,-2.3 -0.7,-0.6 -1.7,-0.8 -2.9," +
-			               "-0.8 -1.2,0 -2,0 -3,0.8 -0.7,0.5 -1,1.4 -1,2.3 0,2 0,4 0,6")
+				"-0.8 -1.2,0 -2,0 -3,0.8 -0.7,0.5 -1,1.4 -1,2.3 0,2 0,4 0,6")
 				.attr("transform", "scale(.5)translate(5,0)");
 
 			symbol.attr("transform",

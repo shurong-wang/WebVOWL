@@ -13,8 +13,8 @@ module.exports = (function () {
 			width = 60,
 			pinGroupElement,
 			haloGroupElement,
-            labelWidth = 80,
-            myWidth=80,
+			labelWidth = 80,
+			myWidth = 80,
 			smallestRadius = height / 2;
 
 		// Properties
@@ -47,61 +47,61 @@ module.exports = (function () {
 		this.setHoverHighlighting = function (enable) {
 			that.nodeElement().selectAll("rect").classed("hovered", enable);
 
-			var haloGroup=that.getHalos();
-			if (haloGroup){
-				var test=haloGroup.selectAll(".searchResultA");
+			var haloGroup = that.getHalos();
+			if (haloGroup) {
+				var test = haloGroup.selectAll(".searchResultA");
 				test.classed("searchResultA", false);
 				test.classed("searchResultB", true);
 			}
 
 		};
 
-        this.textWidth = function () {
-            //
-            if(graph.options().dynamicLabelWidth()===true) {
-                return that.getMyWidth();
-            }
-            return labelWidth;
-        };
-        this.width= function(){
-            if(graph.options().dynamicLabelWidth()===true){
-                return that.getMyWidth();
-            }
-            return labelWidth;
-        };
+		this.textWidth = function () {
+			//
+			if (graph.options().dynamicLabelWidth() === true) {
+				return that.getMyWidth();
+			}
+			return labelWidth;
+		};
+		this.width = function () {
+			if (graph.options().dynamicLabelWidth() === true) {
+				return that.getMyWidth();
+			}
+			return labelWidth;
+		};
 
-        this.getMyWidth=function(){
-            // use a simple heuristic
-            var text = that.labelForCurrentLanguage();
-            myWidth =measureTextWidth(text,"text")+20;
+		this.getMyWidth = function () {
+			// use a simple heuristic
+			var text = that.labelForCurrentLanguage();
+			myWidth = measureTextWidth(text, "text") + 20;
 
-            // check for sub names;
-            var indicatorText=that.indicationString();
-            var indicatorWidth=measureTextWidth(indicatorText,"subtext")+20;
-            if (indicatorWidth>myWidth)
-                myWidth=indicatorWidth;
+			// check for sub names;
+			var indicatorText = that.indicationString();
+			var indicatorWidth = measureTextWidth(indicatorText, "subtext") + 20;
+			if (indicatorWidth > myWidth)
+				myWidth = indicatorWidth;
 
-            return myWidth;
-        };
+			return myWidth;
+		};
 
 		this.textWidth = function () {
-            return that.width();
+			return that.width();
 		};
-        function measureTextWidth(text, textStyle) {
-            // Set a default value
-            if (!textStyle) {
-                textStyle = "text";
-            }
-            var d = d3.select("body")
-                    .append("div")
-                    .attr("class", textStyle)
-                    .attr("id", "width-test") // tag this element to identify it
-                    .attr("style", "position:absolute; float:left; white-space:nowrap; visibility:hidden;")
-                    .text(text),
-                w = document.getElementById("width-test").offsetWidth;
-            d.remove();
-            return w;
-        }
+		function measureTextWidth(text, textStyle) {
+			// Set a default value
+			if (!textStyle) {
+				textStyle = "text";
+			}
+			var d = d3.select("body")
+				.append("div")
+				.attr("class", textStyle)
+				.attr("id", "width-test") // tag this element to identify it
+				.attr("style", "position:absolute; float:left; white-space:nowrap; visibility:hidden;")
+				.text(text),
+				w = document.getElementById("width-test").offsetWidth;
+			d.remove();
+			return w;
+		}
 
 		this.toggleFocus = function () {
 			that.focused(!that.focused());
@@ -124,7 +124,7 @@ module.exports = (function () {
 			if (additionalCssClasses instanceof Array) {
 				cssClasses = cssClasses.concat(additionalCssClasses);
 			}
-            drawTools.appendRectangularClass(parentElement, that.width(), that.height(), cssClasses, that.labelForCurrentLanguage(), that.backgroundColor());
+			drawTools.appendRectangularClass(parentElement, that.width(), that.height(), cssClasses, that.labelForCurrentLanguage(), that.backgroundColor());
 
 			textBlock = new CenteringTextElement(parentElement, that.backgroundColor());
 			textBlock.addText(that.labelForCurrentLanguage());
@@ -160,7 +160,7 @@ module.exports = (function () {
 			that.halo(false);
 			if (haloGroupElement) {
 				haloGroupElement.remove();
-				haloGroupElement=null;
+				haloGroupElement = null;
 			}
 		};
 
@@ -171,11 +171,11 @@ module.exports = (function () {
 			haloGroupElement = drawTools.drawRectHalo(that, this.width(), this.height(), offset);
 
 
-            if (that.pinned()){
-                var selectedNode = pinGroupElement.node();
-                var nodeContainer = selectedNode.parentNode;
-                nodeContainer .appendChild(selectedNode);
-            }
+			if (that.pinned()) {
+				var selectedNode = pinGroupElement.node();
+				var nodeContainer = selectedNode.parentNode;
+				nodeContainer.appendChild(selectedNode);
+			}
 
 		};
 	};

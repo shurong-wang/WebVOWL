@@ -32,8 +32,8 @@ module.exports = (function () {
 			that.nodeElement(element);
 
 			drawTools.appendCircularClass(element, that.actualRadius(),
-			                              that.collectCssClasses().join(" "),
-			                              that.labelForCurrentLanguage(), that.backgroundColor());
+				that.collectCssClasses().join(" "),
+				that.labelForCurrentLanguage(), that.backgroundColor());
 		};
 
 		this.postDrawActions = function () {
@@ -53,13 +53,13 @@ module.exports = (function () {
 
 			if (!graph.options().compactNotation()) {
 
-				if (that.indicationString().length>0) {
+				if (that.indicationString().length > 0) {
 					textElement.addSubText(that.indicationString(), 17);
 					textElement.addInstanceCount(that.individuals().length, 30);
-				}else{
+				} else {
 					textElement.addInstanceCount(that.individuals().length, 17);
 				}
-			}else {
+			} else {
 				textElement.addInstanceCount(that.individuals().length, 17);
 			}
 

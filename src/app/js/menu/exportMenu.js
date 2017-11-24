@@ -11,22 +11,22 @@ module.exports = function (graph) {
 		copyButton,
 		exportableJsonText;
 
-    var defObj={};
-    defObj.sidebar="1";
-    defObj.doc=-1;
-    defObj.cd=200;
-    defObj.dd=120;
-    defObj.filter_datatypes="false";
-    defObj.filter_objectProperties="false";
-    defObj.filter_sco="false";
-    defObj.filter_disjoint="true";
-    defObj.filter_setOperator="false";
-    defObj.mode_dynamic="true";
-    defObj.mode_scaling="true";
-    defObj.mode_compact="false";
-    defObj.mode_colorExt="true";
-    defObj.mode_multiColor="false";
-    defObj.rect=0;
+	var defObj = {};
+	defObj.sidebar = "1";
+	defObj.doc = -1;
+	defObj.cd = 200;
+	defObj.dd = 120;
+	defObj.filter_datatypes = "false";
+	defObj.filter_objectProperties = "false";
+	defObj.filter_sco = "false";
+	defObj.filter_disjoint = "true";
+	defObj.filter_setOperator = "false";
+	defObj.mode_dynamic = "true";
+	defObj.mode_scaling = "true";
+	defObj.mode_compact = "false";
+	defObj.mode_colorExt = "true";
+	defObj.mode_multiColor = "false";
+	defObj.rect = 0;
 
 
 
@@ -39,13 +39,13 @@ module.exports = function (graph) {
 		exportJsonButton = d3.select("#exportJson")
 			.on("click", exportJson);
 
-		copyButton=d3.select("#copyBt")
-            .on("click", copyUrl);
+		copyButton = d3.select("#copyBt")
+			.on("click", copyUrl);
 
 
-        var menuEntry= d3.select("#export");
-		menuEntry.on("mouseover",function(){
-			var searchMenu=graph.options().searchMenu();
+		var menuEntry = d3.select("#export");
+		menuEntry.on("mouseover", function () {
+			var searchMenu = graph.options().searchMenu();
 			searchMenu.hideSearchEntries();
 			exportAsUrl();
 		});
@@ -59,15 +59,15 @@ module.exports = function (graph) {
 		exportableJsonText = jsonText;
 	};
 
-	function copyUrl(){
-        d3.select("#exportedUrl").node().focus();
-        d3.select("#exportedUrl").node().select();
-        document.execCommand("copy");
+	function copyUrl() {
+		d3.select("#exportedUrl").node().focus();
+		d3.select("#exportedUrl").node().select();
+		document.execCommand("copy");
 	}
 
-	function prepareOptionString(defOpts,currOpts){
-		var setOptions=0;
-        var optsString="opts=[";
+	function prepareOptionString(defOpts, currOpts) {
+		var setOptions = 0;
+		var optsString = "opts=[";
 		// compare each key pair value
 
 		for (var name in defOpts) {
@@ -81,81 +81,81 @@ module.exports = function (graph) {
 				}
 			}
 		}
-		optsString+="]";
-		if (setOptions===0){ return "";}
+		optsString += "]";
+		if (setOptions === 0) { return ""; }
 		return optsString;
 	}
 
-	function exportAsUrl(){
+	function exportAsUrl() {
 
-        var currObj={};
-        currObj.sidebar=graph.getSidebarVisibility();
+		var currObj = {};
+		currObj.sidebar = graph.getSidebarVisibility();
 
-        // identify default value given by ontology;
-		var defOntValue=graph.options().filterMenu().getDefaultDegreeValue();
-		var currentValue=graph.options().filterMenu().getDegreeSliderValue();
-		if (parseInt(defOntValue)===parseInt(currentValue)) {
-			currObj.doc=-1;
-		}else{ currObj.doc=currentValue;}
+		// identify default value given by ontology;
+		var defOntValue = graph.options().filterMenu().getDefaultDegreeValue();
+		var currentValue = graph.options().filterMenu().getDegreeSliderValue();
+		if (parseInt(defOntValue) === parseInt(currentValue)) {
+			currObj.doc = -1;
+		} else { currObj.doc = currentValue; }
 
-        currObj.cd=graph.options().classDistance();
-        currObj.dd=graph.options().datatypeDistance();
-        currObj.filter_datatypes=String(graph.options().filterMenu().getCheckBoxValue("datatypeFilterCheckbox"));
-        currObj.filter_sco=String(graph.options().filterMenu().getCheckBoxValue("subclassFilterCheckbox"));
-        currObj.filter_disjoint=String(graph.options().filterMenu().getCheckBoxValue("disjointFilterCheckbox"));
-        currObj.filter_setOperator=String(graph.options().filterMenu().getCheckBoxValue("setoperatorFilterCheckbox"));
-        currObj.filter_objectProperties=String(graph.options().filterMenu().getCheckBoxValue("objectPropertyFilterCheckbox"));
-        currObj.mode_dynamic=String(graph.options().dynamicLabelWidth());
-        currObj.mode_scaling=String(graph.options().modeMenu().getCheckBoxValue("nodescalingModuleCheckbox"));
-        currObj.mode_compact=String(graph.options().modeMenu().getCheckBoxValue("compactnotationModuleCheckbox"));
-        currObj.mode_colorExt=String(graph.options().modeMenu().getCheckBoxValue("colorexternalsModuleCheckbox"));
-        currObj.mode_multiColor=String(graph.options().modeMenu().colorModeState());
-        currObj.rect=0;
+		currObj.cd = graph.options().classDistance();
+		currObj.dd = graph.options().datatypeDistance();
+		currObj.filter_datatypes = String(graph.options().filterMenu().getCheckBoxValue("datatypeFilterCheckbox"));
+		currObj.filter_sco = String(graph.options().filterMenu().getCheckBoxValue("subclassFilterCheckbox"));
+		currObj.filter_disjoint = String(graph.options().filterMenu().getCheckBoxValue("disjointFilterCheckbox"));
+		currObj.filter_setOperator = String(graph.options().filterMenu().getCheckBoxValue("setoperatorFilterCheckbox"));
+		currObj.filter_objectProperties = String(graph.options().filterMenu().getCheckBoxValue("objectPropertyFilterCheckbox"));
+		currObj.mode_dynamic = String(graph.options().dynamicLabelWidth());
+		currObj.mode_scaling = String(graph.options().modeMenu().getCheckBoxValue("nodescalingModuleCheckbox"));
+		currObj.mode_compact = String(graph.options().modeMenu().getCheckBoxValue("compactnotationModuleCheckbox"));
+		currObj.mode_colorExt = String(graph.options().modeMenu().getCheckBoxValue("colorexternalsModuleCheckbox"));
+		currObj.mode_multiColor = String(graph.options().modeMenu().colorModeState());
+		currObj.rect = 0;
 
 
-        var optsString=prepareOptionString(defObj,currObj);
-        var urlString=String(location);
-        var htmlElement;
-        // when everything is default then there is nothing to write
-		if (optsString.length===0){
-            // building up parameter list;
-            htmlElement=d3.select("#exportedUrl").node();
-            htmlElement.value=urlString;
-            htmlElement.focus();
-            htmlElement.select();
-            htmlElement.title=urlString;
-            return;
+		var optsString = prepareOptionString(defObj, currObj);
+		var urlString = String(location);
+		var htmlElement;
+		// when everything is default then there is nothing to write
+		if (optsString.length === 0) {
+			// building up parameter list;
+			htmlElement = d3.select("#exportedUrl").node();
+			htmlElement.value = urlString;
+			htmlElement.focus();
+			htmlElement.select();
+			htmlElement.title = urlString;
+			return;
 		}
 
-        // generate the options string;
-        var numParameters=(urlString.match(/#/g) || []).length;
-        var newUrlString;
-        if (numParameters===undefined || numParameters===0){
-            newUrlString=urlString+"#"+optsString;
+		// generate the options string;
+		var numParameters = (urlString.match(/#/g) || []).length;
+		var newUrlString;
+		if (numParameters === undefined || numParameters === 0) {
+			newUrlString = urlString + "#" + optsString;
 		}
-        if (numParameters>0) {
-            var tokens = urlString.split("#");
-            var i;
-            if (tokens[1].indexOf("opts=[")>=0){
-				tokens[1]=optsString;
-                newUrlString=tokens[0];
-			}else{
-                newUrlString=tokens[0]+"#";
-                newUrlString+=optsString;
+		if (numParameters > 0) {
+			var tokens = urlString.split("#");
+			var i;
+			if (tokens[1].indexOf("opts=[") >= 0) {
+				tokens[1] = optsString;
+				newUrlString = tokens[0];
+			} else {
+				newUrlString = tokens[0] + "#";
+				newUrlString += optsString;
 			}
 			// append parameters
-            for (i=1;i<tokens.length;i++){
-            	if (tokens[i].length>0) {
-                    newUrlString += "#" + tokens[i];
-                }
-            }
-        }
-        // building up parameter list;
-        htmlElement=d3.select("#exportedUrl").node();
-        htmlElement.value=newUrlString;
-        htmlElement.focus();
-        htmlElement.select();
-        htmlElement.title=newUrlString;
+			for (i = 1; i < tokens.length; i++) {
+				if (tokens[i].length > 0) {
+					newUrlString += "#" + tokens[i];
+				}
+			}
+		}
+		// building up parameter list;
+		htmlElement = d3.select("#exportedUrl").node();
+		htmlElement.value = newUrlString;
+		htmlElement.focus();
+		htmlElement.select();
+		htmlElement.title = newUrlString;
 	}
 	function exportSvg() {
 		// Get the d3js SVG element
@@ -174,7 +174,7 @@ module.exports = function (graph) {
 
 		// Insert the reference to VOWL
 		graphSvgCode = "<!-- Created with WebVOWL (version " + webvowl.version + ")" +
-		               ", http://vowl.visualdataweb.org -->\n" + graphSvgCode;
+			", http://vowl.visualdataweb.org -->\n" + graphSvgCode;
 
 		escapedGraphSvgCode = escapeUnicodeCharacters(graphSvgCode);
 		//btoa(); Creates a base-64 encoded ASCII string from a "string" of binary data.
@@ -209,34 +209,34 @@ module.exports = function (graph) {
 	}
 
 	function inlineVowlStyles() {
-		setStyleSensitively(".text", [{name: "font-family", value: "Helvetica, Arial, sans-serif"}, {name: "font-size", value: "12px"}]);
-		setStyleSensitively(".subtext", [{name: "font-size", value: "9px"}]);
-		setStyleSensitively(".text.instance-count", [{name: "fill", value: "#666"}]);
-		setStyleSensitively(".external + text .instance-count", [{name: "fill", value: "#aaa"}]);
-		setStyleSensitively(".cardinality", [{name: "font-size", value: "10px"}]);
-		setStyleSensitively(".text, .embedded", [{name: "pointer-events", value: "none"}]);
-		setStyleSensitively(".class, .object, .disjoint, .objectproperty, .disjointwith, .equivalentproperty, .transitiveproperty, .functionalproperty, .inversefunctionalproperty, .symmetricproperty, .allvaluesfromproperty, .somevaluesfromproperty", [{name: "fill", value: "#acf"}]);
-		setStyleSensitively(".label .datatype, .datatypeproperty", [{name: "fill", value: "#9c6"}]);
-		setStyleSensitively(".rdf, .rdfproperty", [{name: "fill", value: "#c9c"}]);
-		setStyleSensitively(".literal, .node .datatype", [{name: "fill", value: "#fc3"}]);
-		setStyleSensitively(".deprecated, .deprecatedproperty", [{name: "fill", value: "#ccc"}]);
-		setStyleSensitively(".external, .externalproperty", [{name: "fill", value: "#36c"}]);
-		setStyleSensitively("path, .nofill", [{name: "fill", value: "none"}]);
-		setStyleSensitively("marker path", [{name: "fill", value: "#000"}]);
-		setStyleSensitively(".class, path, line, .fineline", [{name: "stroke", value: "#000"}]);
-		setStyleSensitively(".white, .subclass, .subclassproperty, .external + text", [{name: "fill", value: "#fff"}]);
-		setStyleSensitively(".class.hovered, .property.hovered, .cardinality.hovered, .cardinality.focused, circle.pin, .filled.hovered, .filled.focused", [{name: "fill", value: "#f00"}, {name: "cursor", value: "pointer"}]);
-		setStyleSensitively(".focused, path.hovered", [{name: "stroke", value: "#f00"}]);
-		setStyleSensitively(".indirect-highlighting, .feature:hover", [{name: "fill", value: "#f90"}]);
-		setStyleSensitively(".values-from", [{name: "stroke", value: "#69c"}]);
-		setStyleSensitively(".symbol, .values-from.filled", [{name: "fill", value: "#69c"}]);
-		setStyleSensitively(".class, path, line", [{name: "stroke-width", value: "2"}]);
-		setStyleSensitively(".fineline", [{name: "stroke-width", value: "1"}]);
-		setStyleSensitively(".dashed, .anonymous", [{name: "stroke-dasharray", value: "8"}]);
-		setStyleSensitively(".dotted", [{name: "stroke-dasharray", value: "3"}]);
-		setStyleSensitively("rect.focused, circle.focused", [{name: "stroke-width", value: "4px"}]);
-		setStyleSensitively(".nostroke", [{name: "stroke", value: "none"}]);
-		setStyleSensitively("marker path", [{name: "stroke-dasharray", value: "100"}]);
+		setStyleSensitively(".text", [{ name: "font-family", value: "Helvetica, Arial, sans-serif" }, { name: "font-size", value: "12px" }]);
+		setStyleSensitively(".subtext", [{ name: "font-size", value: "9px" }]);
+		setStyleSensitively(".text.instance-count", [{ name: "fill", value: "#666" }]);
+		setStyleSensitively(".external + text .instance-count", [{ name: "fill", value: "#aaa" }]);
+		setStyleSensitively(".cardinality", [{ name: "font-size", value: "10px" }]);
+		setStyleSensitively(".text, .embedded", [{ name: "pointer-events", value: "none" }]);
+		setStyleSensitively(".class, .object, .disjoint, .objectproperty, .disjointwith, .equivalentproperty, .transitiveproperty, .functionalproperty, .inversefunctionalproperty, .symmetricproperty, .allvaluesfromproperty, .somevaluesfromproperty", [{ name: "fill", value: "#acf" }]);
+		setStyleSensitively(".label .datatype, .datatypeproperty", [{ name: "fill", value: "#9c6" }]);
+		setStyleSensitively(".rdf, .rdfproperty", [{ name: "fill", value: "#c9c" }]);
+		setStyleSensitively(".literal, .node .datatype", [{ name: "fill", value: "#fc3" }]);
+		setStyleSensitively(".deprecated, .deprecatedproperty", [{ name: "fill", value: "#ccc" }]);
+		setStyleSensitively(".external, .externalproperty", [{ name: "fill", value: "#36c" }]);
+		setStyleSensitively("path, .nofill", [{ name: "fill", value: "none" }]);
+		setStyleSensitively("marker path", [{ name: "fill", value: "#000" }]);
+		setStyleSensitively(".class, path, line, .fineline", [{ name: "stroke", value: "#000" }]);
+		setStyleSensitively(".white, .subclass, .subclassproperty, .external + text", [{ name: "fill", value: "#fff" }]);
+		setStyleSensitively(".class.hovered, .property.hovered, .cardinality.hovered, .cardinality.focused, circle.pin, .filled.hovered, .filled.focused", [{ name: "fill", value: "#f00" }, { name: "cursor", value: "pointer" }]);
+		setStyleSensitively(".focused, path.hovered", [{ name: "stroke", value: "#f00" }]);
+		setStyleSensitively(".indirect-highlighting, .feature:hover", [{ name: "fill", value: "#f90" }]);
+		setStyleSensitively(".values-from", [{ name: "stroke", value: "#69c" }]);
+		setStyleSensitively(".symbol, .values-from.filled", [{ name: "fill", value: "#69c" }]);
+		setStyleSensitively(".class, path, line", [{ name: "stroke-width", value: "2" }]);
+		setStyleSensitively(".fineline", [{ name: "stroke-width", value: "1" }]);
+		setStyleSensitively(".dashed, .anonymous", [{ name: "stroke-dasharray", value: "8" }]);
+		setStyleSensitively(".dotted", [{ name: "stroke-dasharray", value: "3" }]);
+		setStyleSensitively("rect.focused, circle.focused", [{ name: "stroke-width", value: "4px" }]);
+		setStyleSensitively(".nostroke", [{ name: "stroke", value: "none" }]);
+		setStyleSensitively("marker path", [{ name: "stroke-dasharray", value: "100" }]);
 	}
 
 	function setStyleSensitively(selector, styles) {
@@ -285,8 +285,8 @@ module.exports = function (graph) {
 						element.style(styleName, null);
 					}
 				}
-				if (element.datum && element.datum().type){
-					if (element.datum().type()==="rdfs:subClassOf") {
+				if (element.datum && element.datum().type) {
+					if (element.datum().type() === "rdfs:subClassOf") {
 						element.style("fill", null);
 					}
 				}

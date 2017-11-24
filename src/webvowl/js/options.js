@@ -15,7 +15,7 @@ module.exports = function () {
 		minMagnification = 0.01,
 		maxMagnification = 4,
 		compactNotation = false,
-		dynamicLabelWidth=true,
+		dynamicLabelWidth = true,
 		// some filters
 		literalFilter,
 		// menus
@@ -29,44 +29,44 @@ module.exports = function () {
 		ontologyMenu,
 		sidebar,
 		navigationMenu,
-		rectangularRep=false,
+		rectangularRep = false,
 		scaleNodesByIndividuals = false;
 
-	options.rectangularRepresentation=function(val){
-		if (!arguments.length){
+	options.rectangularRepresentation = function (val) {
+		if (!arguments.length) {
 			return rectangularRep;
-		}else{
-			var intVal=parseInt(val);
-			if ( intVal===0 ){
-				rectangularRep=false;
-			}else{
-				rectangularRep=true;
+		} else {
+			var intVal = parseInt(val);
+			if (intVal === 0) {
+				rectangularRep = false;
+			} else {
+				rectangularRep = true;
 			}
 		}
 	};
 
-    options.dynamicLabelWidth=function(val){
-        if (!arguments.length)
-        	return dynamicLabelWidth;
-        else{
-            dynamicLabelWidth=val;
+	options.dynamicLabelWidth = function (val) {
+		if (!arguments.length)
+			return dynamicLabelWidth;
+		else {
+			dynamicLabelWidth = val;
 		}
 	};
-	options.sidebar= function(s){
+	options.sidebar = function (s) {
 		if (!arguments.length) return sidebar;
 		sidebar = s;
 		return options;
 
 	};
 
-	options.navigationMenu= function (m){
+	options.navigationMenu = function (m) {
 		if (!arguments.length) return navigationMenu;
 		navigationMenu = m;
 		return options;
 
 	};
 
-	options.ontologyMenu = function (m){
+	options.ontologyMenu = function (m) {
 		if (!arguments.length) return ontologyMenu;
 		ontologyMenu = m;
 		return options;
@@ -210,9 +210,9 @@ module.exports = function () {
 		return options;
 	};
 
-	options.literalFilter=function (p) {
+	options.literalFilter = function (p) {
 		if (!arguments.length) return literalFilter;
-		literalFilter=p;
+		literalFilter = p;
 		return options;
 	};
 
