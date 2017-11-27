@@ -29,7 +29,7 @@ equivalentPropertyMerger.merge = function (properties, nodes, propertyMap, nodeM
 
 		var mergeNode = findMergeNode(propertyWithEquivalents, nodeMap);
 		if (!mergeNode) {
-			if (mergeNode!==undefined) {
+			if (mergeNode !== undefined) {
 				mergeNode = createDefaultMergeNode(property, graph);
 				mergeNodes.push(mergeNode);
 			}
@@ -75,7 +75,7 @@ function mapPropertiesRangesToType(properties, nodeMap) {
 	var typeMap = d3.map();
 
 	properties.forEach(function (property) {
-		if (property===undefined) //@ WORKAROUND
+		if (property === undefined) //@ WORKAROUND
 			return;
 
 		var range = nodeMap[property.range()];
@@ -109,7 +109,7 @@ function replaceRangesAndCollectNodesToHide(propertyWithEquivalents, mergeNode, 
 
 	propertyWithEquivalents.forEach(function (property) {
 
-		if (property===undefined || mergeNode===undefined) // @ WORKAROUND
+		if (property === undefined || mergeNode === undefined) // @ WORKAROUND
 			return;
 		var oldRangeId = property.range();
 		property.range(mergeNode.id());

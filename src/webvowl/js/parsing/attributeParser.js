@@ -4,14 +4,14 @@
  */
 module.exports = (function () {
 	var attributeParser = {},
-	// Style
+		// Style
 		ANONYMOUS = "anonymous",
 		DATATYPE = "datatype",
 		DEPRECATED = "deprecated",
 		EXTERNAL = "external",
 		OBJECT = "object",
 		RDF = "rdf",
-	// Representations
+		// Representations
 		ASYMMETRIC = "asymmetric",
 		FUNCTIONAL = "functional",
 		INVERSE_FUNCTIONAL = "inverse functional",
@@ -20,14 +20,14 @@ module.exports = (function () {
 		REFLEXIVE = "reflexive",
 		SYMMETRIC = "symmetric",
 		TRANSITIVE = "transitive",
-	// Attribute groups
+		// Attribute groups
 		VISUAL_ATTRIBUTE_GROUPS = [
 			[DEPRECATED, DATATYPE, OBJECT, RDF],
 			[ANONYMOUS]
 		],
 		CLASS_INDICATIONS = [DEPRECATED, EXTERNAL],
 		PROPERTY_INDICATIONS = [ASYMMETRIC, FUNCTIONAL, INVERSE_FUNCTIONAL, IRREFLEXIVE, KEY, REFLEXIVE, SYMMETRIC,
-		                        TRANSITIVE];
+			TRANSITIVE];
 
 	/**
 	 * Parses and sets the attributes of a class.
