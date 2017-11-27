@@ -95,7 +95,9 @@ module.exports = function (graphContainerSelector) {
 					'padding': '0',
 					'width': '78%',
 					'-webkit-animation-name': 'sbCollapseAnimation',
-					'-webkit-animation-duration': '0.5s'
+					'-webkit-animation-duration': '0.5s',
+					'animation-name': 'sbCollapseAnimation',
+					'animation-duration': '0.5s'
 				});
 				d3.select("#optionsMenu").style({
 					'box-sizing': 'border-box',
@@ -106,7 +108,9 @@ module.exports = function (graphContainerSelector) {
 					'padding': '0',
 					'width': '78%',
 					'-webkit-animation-name': 'sbCollapseAnimation',
-					'-webkit-animation-duration': '0.5s'
+					'-webkit-animation-duration': '0.5s',
+					'animation-name': 'sbCollapseAnimation',
+					'animation-duration': '0.5s'
 
 				});
 			}
@@ -142,7 +146,9 @@ module.exports = function (graphContainerSelector) {
 					'padding': '0',
 					'width': '100%',
 					'-webkit-animation-name': 'sbExpandAnimation',
-					'-webkit-animation-duration': '0.5s'
+					'-webkit-animation-duration': '0.5s',
+					'animation-name': 'sbExpandAnimation',
+					'animation-duration': '0.5s'
 
 				});
 				d3.select("#optionsMenu").style({
@@ -154,7 +160,9 @@ module.exports = function (graphContainerSelector) {
 					'padding': '0',
 					'width': '100%',
 					'-webkit-animation-name': 'sbExpandAnimation',
-					'-webkit-animation-duration': '0.5s'
+					'-webkit-animation-duration': '0.5s',
+					'animation-name': 'sbExpandAnimation',
+					'animation-duration': '0.5s'
 				});
 			}
 			options.width(window.innerWidth);

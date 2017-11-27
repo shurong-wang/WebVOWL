@@ -12,6 +12,7 @@
 
 * >> loadOntologyFromText
 
+
 ### 数据结构 ###
 
 #### 顶层数据结构 #### 
@@ -118,6 +119,12 @@
     }
 ]
 ```
+
+### 关键方法 ###
+
+* applyFixedLocationAttributes // 固定节点布局 Pause
+
+
 
 #### property 结构 #### 
 
