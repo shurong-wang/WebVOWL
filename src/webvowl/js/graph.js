@@ -233,8 +233,8 @@ module.exports = function (graphContainerSelector) {
 			graph.options().modeMenu().setDynamicLabelWidth(settingFlag);
 			graph.options().dynamicLabelWidth(settingFlag);
 		}
-		// settingFlag=false;
-		// THIS SHOULD NOT BE SET USING THE OPTIONS ON THE URL
+		// settingFlag = false;
+		// // THIS SHOULD NOT BE SET USING THE OPTIONS ON THE URL
 		// if (opts.mode_picnpin) {
 		//     graph.options().filterMenu().setCheckBoxValue("pickandpinModuleCheckbox", settingFlag);
 		// }
@@ -266,9 +266,11 @@ module.exports = function (graphContainerSelector) {
 		graph.options().rectangularRepresentation(opts.rect);
 
 	};
+
 	graph.getGlobalDOF = function () {
 		return global_dof;
 	};
+
 	graph.setGlobalDOF = function (val) {
 		global_dof = val;
 	};
@@ -277,6 +279,7 @@ module.exports = function (graphContainerSelector) {
 		defaultZoom = val;
 		graph.reset();
 	};
+
 	graph.setTargetZoom = function (val) {
 		defaultTargetZoom = val;
 	};
@@ -292,11 +295,13 @@ module.exports = function (graphContainerSelector) {
 						if (node.property().inverse) {
 							var searchString = graph.options().searchMenu().getSearchString().toLowerCase();
 							var name = node.property().labelForCurrentLanguage().toLowerCase();
-							if (name === searchString) computeDistanceToCenter(node);
-							else {
+							if (name === searchString) {
+								computeDistanceToCenter(node);
+							} else {
 								node.property().removeHalo();
-								if (!node.property().inverse().getHalos())
+								if (!node.property().inverse().getHalos()) {
 									node.property().inverse().drawHalo();
+								}
 								computeDistanceToCenter(node, true);
 							}
 						}
@@ -306,6 +311,7 @@ module.exports = function (graphContainerSelector) {
 			}
 		}
 	}
+
 	function getScreenCoords(x, y, translate, scale) {
 		var xn = translate[0] + x * scale;
 		var yn = translate[1] + y * scale;
@@ -635,6 +641,7 @@ module.exports = function (graphContainerSelector) {
 	graph.scaleFactor = function () {
 		return zoomFactor;
 	};
+
 	graph.translation = function () {
 		return graphTranslation;
 	};
@@ -643,6 +650,7 @@ module.exports = function (graphContainerSelector) {
 	graph.graphNodeElements = function () {
 		return nodeElements;
 	};
+
 	/** Returns the visible Label Nodes */
 	graph.graphLabelElements = function () {
 		return labelNodes;
@@ -656,7 +664,7 @@ module.exports = function (graphContainerSelector) {
 			svgElement.attr("height", options.height());
 			recalculatePositions();
 			// setting the graph position properly to the graph container
-			graphContainer.attr("transform", "translate(" + graphTranslation + ")scale(" + zoomFactor + ")");
+			graphContainer.attr("transform", "translate(" + graphTranslation + ") scale(" + zoomFactor + ")");
 			graph.options().navigationMenu().updateVisibilityStatus();
 			// kill the filter menu animation;
 			graph.options().filterMenu().killButtonAnimation();
@@ -671,7 +679,7 @@ module.exports = function (graphContainerSelector) {
 		graph.update();
 	};
 
-	/**    Updates only the style of the graph. */
+	/** Updates only the style of the graph. */
 	graph.updateStyle = function () {
 		refreshGraphStyle();
 		force.start();
@@ -898,7 +906,7 @@ module.exports = function (graphContainerSelector) {
 		// update the values in case the user wants to break the animation
 		zoom.translate(graphTranslation);
 		zoom.scale(zoomFactor);
-		return "translate(" + graphTranslation[0] + "," + graphTranslation[1] + ")scale(" + zoomFactor + ")";
+		return "translate(" + graphTranslation[0] + "," + graphTranslation[1] + ") scale(" + zoomFactor + ")";
 	}
 
 
@@ -928,7 +936,7 @@ module.exports = function (graphContainerSelector) {
 				};
 			})
 			.each("end", function () {
-				graphContainer.attr("transform", "translate(" + graphTranslation + ")scale(" + zoomFactor + ")");
+				graphContainer.attr("transform", "translate(" + graphTranslation + ") scale(" + zoomFactor + ")");
 				zoom.translate(graphTranslation);
 				zoom.scale(zoomFactor);
 				updateHaloRadius();
