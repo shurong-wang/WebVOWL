@@ -1,0 +1,1281 @@
+{
+    "_comment": "公司主页： https://www.lagou.com/gongsi/j282864.html",
+    "header": {
+      "languages": [
+        "cn",
+        "en"
+      ],
+      "baseIris": [
+        "https://www.tianyancha.com/company/3101367290",
+        "http://www.jobui.com/company/14587293/"
+      ],
+      "title": {
+        "cn": "汇集天下数据",
+        "en": "Gather world data"
+      },
+      "iri": "https://www.tianyancha.com/company/3101367290",
+      "version": "项目初期阶段",
+      "author": [
+        "张三"
+      ],
+      "description": {
+        "cn": "大数据平台",
+        "en": "big data platform"
+      },
+      "labels": {
+        "cn": "数据可视化",
+        "en": "data visualization"
+      },
+      "other": {
+        "licence": [
+          {
+            "identifier": "许可",
+            "language": "cn",
+            "value": "http://www.jstx.com/",
+            "type": "label"
+          }
+        ],
+        "creator": [
+          {
+            "identifier": "作者",
+            "language": "cn",
+            "value": "张三",
+            "type": "label"
+          }
+        ],
+        "versionInfo": [
+          {
+            "identifier": "发展阶段",
+            "language": "cn",
+            "value": "Version 1.0 - 这里是最锻炼人的地方",
+            "type": "label"
+          }
+        ],
+        "title": [
+          {
+            "identifier": "标题",
+            "language": "cn",
+            "value": "政府合作平台",
+            "type": "label"
+          }
+        ],
+        "issued": [
+          {
+            "identifier": "发布",
+            "language": "cn",
+            "value": "2017-11-24",
+            "type": "label"
+          }
+        ],
+        "seeAlso": [
+          {
+            "identifier": "参见",
+            "language": "cn",
+            "value": "https://www.tianyancha.com/company/3101367290#",
+            "type": "label"
+          },
+          {
+            "identifier": "seeAlso",
+            "language": "en",
+            "value": "https://www.tianyancha.com/company/3101367290#",
+            "type": "label"
+          }
+        ],
+        "homepage": [
+          {
+            "identifier": "主页",
+            "language": "cn",
+            "value": "http://www.zhipin.com/gongsi/1175981.html?ka=search_list_company_1",
+            "type": "label"
+          },
+          {
+            "identifier": "homepage",
+            "language": "en",
+            "value": "http://www.zhipin.com/gongsi/1175981.html?ka=search_list_company_1",
+            "type": "label"
+          }
+        ],
+        "depiction": [
+          {
+            "identifier": "描述",
+            "language": "cn",
+            "value": "https://www.tianyancha.com/company/3101367290/muto-UML.png",
+            "type": "label"
+          },
+          {
+            "identifier": "depiction",
+            "language": "en",
+            "value": "https://www.tianyancha.com/company/3101367290/muto-compact.png",
+            "type": "label"
+          }
+        ]
+      }
+    },
+    "namespace": [],
+    "metrics": {
+      "classCount": 7,
+      "objectPropertyCount": 16,
+      "datatypePropertyCount": 6,
+      "individualCount": 0
+    },
+    "class": [
+      {
+        "id": "4",
+        "type": "owl:Class"
+      },
+      {
+        "id": "5",
+        "type": "owl:Class"
+      },
+      {
+        "id": "7",
+        "type": "rdfs:Datatype"
+      },
+      {
+        "id": "15",
+        "type": "rdfs:Datatype"
+      },
+      {
+        "id": "2",
+        "type": "owl:Thing"
+      },
+      {
+        "id": "10",
+        "type": "rdfs:Literal"
+      },
+      {
+        "id": "18",
+        "type": "owl:Thing"
+      },
+      {
+        "id": "19",
+        "type": "rdfs:Literal"
+      },
+      {
+        "id": "21",
+        "type": "owl:Class"
+      },
+      {
+        "id": "24",
+        "type": "rdfs:Datatype"
+      },
+      {
+        "id": "25",
+        "type": "rdfs:Literal"
+      },
+      {
+        "id": "6",
+        "type": "owl:Class"
+      },
+      {
+        "id": "32",
+        "type": "owl:Class"
+      },
+      {
+        "id": "12",
+        "type": "owl:Class"
+      },
+      {
+        "id": "1",
+        "type": "owl:Class"
+      }
+    ],
+    "classAttribute": [
+      {
+        "iri": "http://purl.org/muto/core#Tag",
+        "baseIri": "http://purl.org/muto/core",
+        "instances": 0,
+        "annotations": {
+          "isDefinedBy": [
+            {
+              "identifier": "定义",
+              "language": "cn",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            },
+            {
+              "identifier": "isDefinedBy",
+              "language": "en",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            }
+          ],
+          "versionInfo": [
+            {
+              "identifier": "版本信息",
+              "language": "cn",
+              "value": "版本1.0:owl:为了使MUTO与owl Lite保持一致而删除了声明(声明在本例中不是必需的)。",
+              "type": "label"
+            },
+            {
+              "identifier": "versionInfo",
+              "language": "en",
+              "value": "Version 1.0: The owl:disjointWith statement was removed to make MUTO conform to OWL Lite (the statement is not essential in this case).",
+              "type": "label"
+            }
+          ]
+        },
+        "label": {
+          "IRI-based": "Tag",
+          "cn": "标签",
+          "en": "Tag"
+        },
+        "subClasses": [
+          "6"
+        ],
+        "comment": {
+          "cn": "标签由一个任意的文本标签组成。注意，在本体中没有合并相同标签的标记。",
+          "en": "A Tag consists of an arbitrary text label. Note that tags with the same label are NOT merged in the ontology."
+        },
+        "id": "4",
+        "superClasses": [
+          "5"
+        ]
+      },
+      {
+        "iri": "http://www.w3.org/2004/02/skos/core#Concept",
+        "baseIri": "http://www.w3.org/2004/02/skos/core",
+        "instances": 0,
+        "label": {
+          "IRI-based": "Concept",
+          "cn": "概念",
+          "en": "Concept"
+        },
+        "subClasses": [
+          "4"
+        ],
+        "attributes": [
+          "external"
+        ],
+        "id": "5"
+      },
+      {
+        "iri": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "baseIri": "http://www.w3.org/2001/XMLSchema",
+        "id": "7",
+        "label": {
+          "IRI-based": "dateTime"
+        }
+      },
+      {
+        "iri": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "baseIri": "http://www.w3.org/2001/XMLSchema",
+        "id": "15",
+        "label": {
+          "IRI-based": "dateTime"
+        }
+      },
+      {
+        "iri": "http://www.w3.org/2002/07/owl#Thing",
+        "baseIri": "http://owl2vowl.de",
+        "id": "2",
+        "label": {
+          "cn": "事物2",
+          "en": "Thing2"
+        }
+      },
+      {
+        "iri": "http://www.w3.org/2000/01/rdf-schema#Literal",
+        "id": "10",
+        "label": {
+          "IRI-based": "Literal",
+          "cn": "文字",
+          "en": "Literal"
+        }
+      },
+      {
+        "iri": "http://www.w3.org/2002/07/owl#Thing",
+        "baseIri": "http://owl2vowl.de",
+        "id": "18",
+        "label": {
+          "cn": "事物",
+          "en": "Thing"
+        }
+      },
+      {
+        "iri": "http://www.w3.org/2000/01/rdf-schema#Literal",
+        "id": "19",
+        "label": {
+          "IRI-based": "Literal",
+          "cn": "文字",
+          "en": "Literal"
+        }
+      },
+      {
+        "iri": "http://purl.org/muto/core#PrivateTagging",
+        "baseIri": "http://purl.org/muto/core",
+        "instances": 0,
+        "annotations": {
+          "isDefinedBy": [
+            {
+              "identifier": "是否定义",
+              "language": "cn",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            },
+            {
+              "identifier": "isDefinedBy",
+              "language": "en",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            }
+          ]
+        },
+        "label": {
+          "IRI-based": "PrivateTagging",
+          "cn": "私有标签",
+          "en": "Private Tagging"
+        },
+        "comment": {
+          "cn": "私有标记是对其创建者可见的标记(除非创建者不允许通过muto:grantAccess访问其他人)。每个标记都不是muto的实例:默认情况下，私营化是公开的。",
+          "en": "A private tagging is a tagging that is only visible to its creator (unless the creator has not granted access to others via muto:grantAccess). Every tagging that is not an instance of muto:PrivateTagging is public by default."
+        },
+        "id": "21",
+        "superClasses": [
+          "1"
+        ]
+      },
+      {
+        "iri": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "baseIri": "http://www.w3.org/2001/XMLSchema",
+        "id": "24",
+        "label": {
+          "IRI-based": "dateTime"
+        }
+      },
+      {
+        "iri": "http://www.w3.org/2000/01/rdf-schema#Literal",
+        "baseIri": "http://www.w3.org/2000/01/rdf-schema",
+        "id": "25",
+        "label": {
+          "IRI-based": "Literal",
+          "cn": "文字",
+          "en": "Literal"
+        }
+      },
+      {
+        "iri": "http://purl.org/muto/core#AutoTag",
+        "baseIri": "http://purl.org/muto/core",
+        "instances": 0,
+        "annotations": {
+          "isDefinedBy": [
+            {
+              "identifier": "是否定义",
+              "language": "cn",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            },
+            {
+              "identifier": "isDefinedBy",
+              "language": "en",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            }
+          ],
+          "versionInfo": [
+            {
+              "identifier": "版本信息",
+              "language": "cn",
+              "value": "版本1.0:muto:AutoTag是muto的一个子类:在早期版本中标记(称为muto:自动标记)。将它定义为muto的子类:标记更合适，并允许标记包含手动和自动创建的标记的组合。",
+              "type": "label"
+            },
+            {
+              "identifier": "versionInfo",
+              "language": "en",
+              "value": "Version 1.0: muto:AutoTag was a subclass of muto:Tagging (called muto:autoTagging) in earlier versions. Defining it as a subclass of muto:Tag is more appropriate and allows for taggings that contain a combination of manually and automatically created tags.",
+              "type": "label"
+            }
+          ]
+        },
+        "label": {
+          "IRI-based": "AutoTag",
+          "cn": "自动闭合标签",
+          "en": "Automatic Tag"
+        },
+        "comment": {
+          "cn": "自动标记是与资源自动关联的标记(例如，标记系统)，也就是说它不是由人输入的。",
+          "en": "An automatic tag is a tag that is automatically associated with a resource (e.g. by a tagging system), i.e. it is not entered by a human being."
+        },
+        "id": "6",
+        "superClasses": [
+          "4"
+        ]
+      },
+      {
+        "iri": "http://rdfs.org/sioc/ns#Item",
+        "baseIri": "http://rdfs.org/sioc/ns",
+        "instances": 0,
+        "label": {
+          "IRI-based": "Item",
+          "cn": "项目",
+          "en": "Item"
+        },
+        "subClasses": [
+          "1"
+        ],
+        "attributes": [
+          "external"
+        ],
+        "id": "32"
+      },
+      {
+        "iri": "http://rdfs.org/sioc/ns#UserAccount",
+        "baseIri": "http://rdfs.org/sioc/ns",
+        "instances": 0,
+        "label": {
+          "IRI-based": "UserAccount",
+          "cn": "用户账号",
+          "en": "UserAccount"
+        },
+        "attributes": [
+          "external"
+        ],
+        "id": "12"
+      },
+      {
+        "iri": "http://purl.org/muto/core#Tagging",
+        "baseIri": "http://purl.org/muto/core",
+        "instances": 0,
+        "annotations": {
+          "isDefinedBy": [
+            {
+              "identifier": "是否定义",
+              "language": "cn",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            },
+            {
+              "identifier": "isDefinedBy",
+              "language": "en",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            }
+          ]
+        },
+        "label": {
+          "IRI-based": "Tagging",
+          "cn": "标记",
+          "en": "Tagging"
+        },
+        "subClasses": [
+          "21"
+        ],
+        "comment": {
+          "cn": "标记将一个资源链接到一个用户帐户和一个或多个标记。",
+          "en": "A tagging links a resource to a user account and one or more tags."
+        },
+        "id": "1",
+        "superClasses": [
+          "32"
+        ]
+      }
+    ],
+  
+  
+    "property": [
+      {
+        "id": "0",
+        "type": "owl:objectProperty"
+      },
+      {
+        "id": "8",
+        "type": "owl:datatypeProperty"
+      },
+      {
+        "id": "11",
+        "type": "owl:objectProperty"
+      },
+      {
+        "id": "16",
+        "type": "owl:objectProperty"
+      },
+      {
+        "id": "20",
+        "type": "rdfs:SubClassOf"
+      },
+      {
+        "id": "22",
+        "type": "owl:objectProperty"
+      },
+      {
+        "id": "26",
+        "type": "owl:objectProperty"
+      },
+      {
+        "id": "27",
+        "type": "owl:objectProperty"
+      },
+      {
+        "id": "13",
+        "type": "owl:objectProperty"
+      },
+      {
+        "id": "28",
+        "type": "owl:objectProperty"
+      },
+      {
+        "id": "17",
+        "type": "owl:objectProperty"
+      },
+      {
+        "id": "29",
+        "type": "owl:objectProperty"
+      },
+      {
+        "id": "31",
+        "type": "owl:datatypeProperty"
+      },
+      {
+        "id": "14",
+        "type": "owl:objectProperty"
+      },
+      {
+        "id": "23",
+        "type": "owl:objectProperty"
+      },
+      {
+        "id": "34",
+        "type": "owl:datatypeProperty"
+      },
+      {
+        "id": "33",
+        "type": "owl:objectProperty"
+      },
+      {
+        "id": "3",
+        "type": "owl:objectProperty"
+      },
+      {
+        "id": "35",
+        "type": "owl:datatypeProperty"
+      },
+      {
+        "id": "36",
+        "type": "owl:datatypeProperty"
+      },
+      {
+        "id": "37",
+        "type": "rdfs:SubClassOf"
+      },
+      {
+        "id": "38",
+        "type": "owl:objectProperty"
+      },
+      {
+        "id": "39",
+        "type": "owl:datatypeProperty"
+      },
+      {
+        "id": "40",
+        "type": "rdfs:SubClassOf"
+      },
+      {
+        "id": "41",
+        "type": "rdfs:SubClassOf"
+      }
+    ],
+    "propertyAttribute": [
+      {
+        "iri": "http://purl.org/muto/core#taggedResource",
+        "baseIri": "http://purl.org/muto/core",
+        "range": "2",
+        "annotations": {
+          "isDefinedBy": [
+            {
+              "identifier": "isDefinedBy",
+              "language": "en",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            }
+          ]
+        },
+        "label": {
+          "IRI-based": "taggedResource",
+          "cn": "已标记的资源",
+          "en": "tagged resource"
+        },
+        "superproperty": [
+          "3"
+        ],
+        "domain": "1",
+        "comment": {
+          "cn": "每个标记都链接到一个资源。这可以是任何类型的资源(例如，rdfs的所有子类:资源)，包括标记和标记。",
+          "en": "Every tagging is linked to exactly one resource. This can be any kind of resource (i.e. all subclasses of rdfs:Resource), including tags and taggings."
+        },
+        "attributes": [
+          "functional",
+          "object"
+        ],
+        "id": "0"
+      },
+      {
+        "iri": "http://purl.org/dc/terms/modified",
+        "baseIri": "http://purl.org/dc/terms",
+        "range": "10",
+        "label": {
+          "IRI-based": "modified"
+        },
+        "domain": "9",
+        "attributes": [
+          "datatype",
+          "external"
+        ],
+        "id": "8"
+      },
+      {
+        "iri": "http://purl.org/muto/core#creatorOf",
+        "inverse": "13",
+        "baseIri": "http://purl.org/muto/core",
+        "range": "1",
+        "annotations": {
+          "isDefinedBy": [
+            {
+              "identifier": "是否定义",
+              "language": "cn",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            },
+            {
+              "identifier": "isDefinedBy",
+              "language": "en",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            }
+          ]
+        },
+        "label": {
+          "IRI-based": "creatorOf",
+          "cn": "创建自",
+          "en": "creator of"
+        },
+        "superproperty": [
+          "14"
+        ],
+        "domain": "12",
+        "comment": {
+          "cn": "用户帐户可以有一个(理论上是无限的)标记的数量。使用sioc:成员来定义组标记或链接到foaf:代理、foaf:Person或foaf:通过sioc:accountof。",
+          "en": "A user account can have a (theoretically unlimited) number of taggings. Use sioc:member_of to define groups for group tagging or link to foaf:Agent, foaf:Person, or foaf:Group via sioc:account_of."
+        },
+        "attributes": [
+          "object"
+        ],
+        "id": "11"
+      },
+      {
+        "iri": "http://purl.org/muto/core#hasAccess",
+        "inverse": "17",
+        "baseIri": "http://purl.org/muto/core",
+        "range": "1",
+        "annotations": {
+          "isDefinedBy": [
+            {
+              "identifier": "定义",
+              "language": "cn",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            },
+            {
+              "identifier": "isDefinedBy",
+              "language": "en",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            }
+          ],
+          "versionInfo": [
+            {
+              "identifier": "版本信息",
+              "language": "cn",
+              "value": "Version 1.0: see muto:grantAccess",
+              "type": "label"
+            },
+            {
+              "identifier": "versionInfo",
+              "language": "en",
+              "value": "Version 1.0: see muto:grantAccess",
+              "type": "label"
+            }
+          ]
+        },
+        "label": {
+          "IRI-based": "hasAccess",
+          "cn": "具有权限",
+          "en": "has access"
+        },
+        "domain": "2",
+        "comment": {
+          "cn": "具有权限",
+          "en": "如果标签的创建者明确允许访问，用户帐户或用户组可以访问来自另一个用户的私有标记。该属性还可以用于公共标记中，将用户帐户或用户组链接到标记(例如，标记的创建者建议将标记添加到另一个用户)。"
+        },
+        "attributes": [
+          "object"
+        ],
+        "id": "16"
+      },
+      {
+        "range": "4",
+        "domain": "6",
+        "attributes": [
+          "anonymous",
+          "object"
+        ],
+        "id": "20"
+      },
+      {
+        "iri": "http://purl.org/muto/core#meaningOf",
+        "inverse": "23",
+        "baseIri": "http://purl.org/muto/core",
+        "range": "4",
+        "annotations": {
+          "isDefinedBy": [
+            {
+              "identifier": "定义",
+              "language": "cn",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            },
+            {
+              "identifier": "isDefinedBy",
+              "language": "en",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            }
+          ]
+        },
+        "label": {
+          "IRI-based": "meaningOf",
+          "cn": "意义",
+          "en": "meaning of"
+        },
+        "domain": "18",
+        "comment": {
+          "cn": "从理论上来说，可以链接到一个和同一个意思的标签的数量是无限的。",
+          "en": "The number of tags that can be linked to one and the same meaning is theoretically unlimited."
+        },
+        "attributes": [
+          "object"
+        ],
+        "id": "22"
+      },
+      {
+        "iri": "http://rdfs.org/sioc/ns#has_creator",
+        "baseIri": "http://rdfs.org/sioc/ns",
+        "range": "9",
+        "label": {
+          "IRI-based": "has_creator"
+        },
+        "domain": "9",
+        "subproperty": [
+          "13"
+        ],
+        "attributes": [
+          "external",
+          "object"
+        ],
+        "id": "26"
+      },
+      {
+        "iri": "http://purl.org/muto/core#tagOf",
+        "inverse": "28",
+        "baseIri": "http://purl.org/muto/core",
+        "range": "1",
+        "annotations": {
+          "isDefinedBy": [
+            {
+              "identifier": "定义",
+              "language": "cn",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            },
+            {
+              "identifier": "isDefinedBy",
+              "language": "en",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            }
+          ]
+        },
+        "label": {
+          "IRI-based": "tagOf",
+          "cn": "标记自",
+          "en": "tag of"
+        },
+        "domain": "4",
+        "comment": {
+          "cn": "每个标签都链接到一个标签。这是因为使用相同标签的标签不会在本体中合并。",
+          "en": "Every tag is linked to exactly one tagging. This results from the fact that tags with same labels are NOT merged in the ontology."
+        },
+        "attributes": [
+          "functional",
+          "object"
+        ],
+        "id": "27"
+      },
+      {
+        "iri": "http://purl.org/muto/core#hasCreator",
+        "baseIri": "http://purl.org/muto/core",
+        "range": "12",
+        "annotations": {
+          "isDefinedBy": [
+            {
+              "identifier": "定义",
+              "language": "cn",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            },
+            {
+              "identifier": "isDefinedBy",
+              "language": "en",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            }
+          ]
+        },
+        "label": {
+          "IRI-based": "hasCreator",
+          "cn": "有创建者",
+          "en": "has creator"
+        },
+        "superproperty": [
+          "26"
+        ],
+        "domain": "1",
+        "comment": {
+          "cn": "每个标记都链接到最多一个用户帐户。自动标记可以省略该属性。与它的超属性sioc:has创造者，它是功能性的，并且有一个明确的域。使用sioc:成员来定义组标记或链接到foaf:代理、foaf:Person或foaf:通过sioc:accountof。",
+          "en": "Every tagging is linked to at most one user account. This property can be omitted for automatic taggings. In contrast to its superproperty sioc:has_creator, it is functional and with an explicit domain. Use sioc:member_of to define groups for group tagging or link to foaf:Agent, foaf:Person, or foaf:Group via sioc:account_of."
+        },
+        "attributes": [
+          "functional",
+          "object"
+        ],
+        "id": "13"
+      },
+      {
+        "iri": "http://purl.org/muto/core#hasTag",
+        "baseIri": "http://purl.org/muto/core",
+        "range": "4",
+        "annotations": {
+          "isDefinedBy": [
+            {
+              "identifier": "被创建",
+              "language": "cn",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            },
+            {
+              "identifier": "isDefinedBy",
+              "language": "en",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            }
+          ]
+        },
+        "label": {
+          "IRI-based": "hasTag",
+          "cn": "有标签",
+          "en": "has tag"
+        },
+        "domain": "1",
+        "comment": {
+          "cn": "标记由一个(理论上是无限的)数量的标记组成。标签可能也不包含标签，例如，如果系统允许用户先标记资源，然后再添加标签。",
+          "en": "A tagging consists of a (theoretically unlimited) number of tags. A tagging may also consist of no tags, e.g. if the system allows its users to mark a resource first and add tags later."
+        },
+        "attributes": [
+          "object"
+        ],
+        "id": "28"
+      },
+      {
+        "iri": "http://purl.org/muto/core#grantAccess",
+        "baseIri": "http://purl.org/muto/core",
+        "range": "2",
+        "annotations": {
+          "isDefinedBy": [
+            {
+              "identifier": "定义",
+              "language": "cn",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            },
+            {
+              "identifier": "isDefinedBy",
+              "language": "en",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            }
+          ],
+          "versionInfo": [
+            {
+              "identifier": "版本信息",
+              "language": "cn",
+              "value": "版本1.0:为了更大的灵活性和OWL Lite一致性(不再是OWL:工会)，已经删除了范围信息。来自不同词汇表的类现在可以在这里使用——例如sioc:UserAccount、sioc:Usergroup、foaf:OnlineAccount、foaf:Group或dc术语:代理——尽管我们建议使用sioc:UserAccount或sioc:Usergroup继续在sioc名称空间中使用。",
+              "type": "label"
+            },
+            {
+              "identifier": "versionInfo",
+              "language": "en",
+              "value": "Version 1.0: The range information has been removed for greater flexibility and OWL Lite conformance (no longer owl:unionOf). Classes from different vocabularies can now be used here - such as sioc:UserAccount, sioc:Usergroup, foaf:OnlineAccount, foaf:Group, or dcterms:Agent -, though we recommend the use of sioc:UserAccount or sioc:Usergroup to remain in the SIOC namespace.",
+              "type": "label"
+            }
+          ]
+        },
+        "label": {
+          "IRI-based": "grantAccess",
+          "cn": "获得访问权限",
+          "en": "grant access"
+        },
+        "domain": "1",
+        "comment": {
+          "cn": "一个(通常是私有的)标记可以链接到一个或多个用户帐户或用户组，这些用户组应该能够访问它(除了创建者)。该属性还可以用于公共标记中，将用户帐户或用户组链接到标记(例如，如果标记的创建者想要向另一个用户推荐标记)。",
+          "en": "A (usually private) tagging can be linked to one or more user accounts or user groups that should have access to it (apart from the creator). This property can also be used in public tagging to link a user account or user group to a tagging (e.g. if the creator of a tagging wants to suggest the tagging to another user)."
+        },
+        "attributes": [
+          "object"
+        ],
+        "id": "17"
+      },
+      {
+        "iri": "http://purl.org/muto/core#tagLabel",
+        "baseIri": "http://purl.org/muto/core",
+        "range": "25",
+        "annotations": {
+          "isDefinedBy": [
+            {
+              "identifier": "定义",
+              "language": "cn",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            },
+            {
+              "identifier": "isDefinedBy",
+              "language": "en",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            }
+          ],
+          "versionInfo": [
+            {
+              "identifier": "版本信息",
+              "language": "cn",
+              "value": "Version 1.0: The subproperty relation to rdfs:label has been removed for OWL DL conformance (rdfs:label is an annotation property and one cannot define subproperties for annotation properties in OWL DL).",
+              "type": "label"
+            },
+            {
+              "identifier": "versionInfo",
+              "language": "en",
+              "value": "Version 1.0: The subproperty relation to rdfs:label has been removed for OWL DL conformance (rdfs:label is an annotation property and one cannot define subproperties for annotation properties in OWL DL).",
+              "type": "label"
+            }
+          ]
+        },
+        "label": {
+          "IRI-based": "tagLabel",
+          "cn": "标签标记",
+          "en": "tag label"
+        },
+        "domain": "4",
+        "comment": {
+          "cn": "每个标签都有一个标签(通常是由用户提供的)，否则它就不是标签。可以在通过muto:tag含义链接的资源中定义附加的标签。",
+          "en": "Every tag has exactly one label (usually the one given by the user) - otherwise it is not a tag. Additional labels can be defined in the resource that is linked via muto:tagMeaning."
+        },
+        "attributes": [
+          "functional",
+          "datatype"
+        ],
+        "id": "31"
+      },
+      {
+        "iri": "http://rdfs.org/sioc/ns#creator_of",
+        "baseIri": "http://rdfs.org/sioc/ns",
+        "range": "9",
+        "label": {
+          "IRI-based": "creator_of"
+        },
+        "domain": "9",
+        "subproperty": [
+          "11"
+        ],
+        "attributes": [
+          "external",
+          "object"
+        ],
+        "id": "14"
+      },
+      {
+        "iri": "http://purl.org/muto/core#tagMeaning",
+        "baseIri": "http://purl.org/muto/core",
+        "range": "18",
+        "annotations": {
+          "isDefinedBy": [
+            {
+              "identifier": "定义",
+              "language": "cn",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            },
+            {
+              "identifier": "isDefinedBy",
+              "language": "en",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            }
+          ]
+        },
+        "label": {
+          "IRI-based": "tagMeaning",
+          "cn": "标签含义",
+          "en": "tag meaning"
+        },
+        "domain": "4",
+        "subproperty": [
+          "33"
+        ],
+        "comment": {
+          "cn": "标记的意义可以通过链接到定义良好的资源来表示。这可以是任何澄清标记的含义的资源(例如，一些DBpedia资源)。",
+          "en": "The meaning of a tag can be expressed by a link to a well-defined resource. This can be any resource that clarifies the meaning of the tag (e.g. some DBpedia resource)."
+        },
+        "attributes": [
+          "object"
+        ],
+        "id": "23"
+      },
+      {
+        "iri": "http://purl.org/muto/core#taggingModified",
+        "baseIri": "http://purl.org/muto/core",
+        "range": "15",
+        "annotations": {
+          "isDefinedBy": [
+            {
+              "identifier": "定义",
+              "language": "cn",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            },
+            {
+              "identifier": "isDefinedBy",
+              "language": "en",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            }
+          ]
+        },
+        "label": {
+          "IRI-based": "taggingModified",
+          "cn": "标签修改",
+          "en": "tagging modified"
+        },
+        "domain": "1",
+        "comment": {
+          "cn": "标签可以有多个修改日期，因为标签可以被编辑的次数(例如添加或删除标签)在理论上是无限的。该属性的数据类型是xsd:dateTime(与它的超属性dc术语形成对比:创建具有范围rdfs:文字)。",
+          "en": "A tagging can have multiple modification dates, as the number of times a tagging can be edited (e.g. to add or remove tags) is theoretically unlimited. The datatype of this property is xsd:dateTime (in contrast to it superproperty dcterms:created which has range rdfs:Literal)."
+        },
+        "attributes": [
+          "datatype"
+        ],
+        "id": "34"
+      },
+      {
+        "iri": "http://purl.org/muto/core#autoMeaning",
+        "baseIri": "http://purl.org/muto/core",
+        "range": "18",
+        "annotations": {
+          "isDefinedBy": [
+            {
+              "identifier": "定义",
+              "language": "cn",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            },
+            {
+              "identifier": "isDefinedBy",
+              "language": "en",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            }
+          ]
+        },
+        "label": {
+          "IRI-based": "autoMeaning",
+          "cn": "自动标记的含义",
+          "en": "automatic tag meaning"
+        },
+        "superproperty": [
+          "23"
+        ],
+        "domain": "4",
+        "comment": {
+          "cn": "这个子属性表示标记的含义已经被自动定义(例如，通过标记系统)，也就是说，它还没有被人定义。默认情况下，用户通过muto:tag含意消除了歧义。",
+          "en": "This subproperty indicates that the meaning of a tag has been automatically defined (e.g. by a tagging system), i.e. it has not been defined by a human being. The default case is disambiguation by users via muto:tagMeaning."
+        },
+        "attributes": [
+          "object"
+        ],
+        "id": "33"
+      },
+      {
+        "iri": "http://rdfs.org/sioc/ns#about",
+        "baseIri": "http://rdfs.org/sioc/ns",
+        "range": "9",
+        "label": {
+          "IRI-based": "about"
+        },
+        "domain": "9",
+        "subproperty": [
+          "0"
+        ],
+        "attributes": [
+          "external",
+          "object"
+        ],
+        "id": "3"
+      },
+      {
+        "iri": "http://purl.org/muto/core#taggingCreated",
+        "baseIri": "http://purl.org/muto/core",
+        "range": "7",
+        "annotations": {
+          "isDefinedBy": [
+            {
+              "identifier": "定义",
+              "language": "cn",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            },
+            {
+              "identifier": "isDefinedBy",
+              "language": "en",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            }
+          ]
+        },
+        "label": {
+          "IRI-based": "taggingCreated",
+          "cn": "标签已创建",
+          "en": "tagging created"
+        },
+        "domain": "1",
+        "comment": {
+          "cn": "每个标记都有一个创建日期和时间。该属性的数据类型是xsd:dateTime(与它的超属性dc术语形成对比:创建具有范围rdfs:文字)。",
+          "en": "Every tagging has exactly one creation date and time. The datatype of this property is xsd:dateTime (in contrast to its superproperty dcterms:created which has range rdfs:Literal)."
+        },
+        "attributes": [
+          "functional",
+          "datatype"
+        ],
+        "id": "35"
+      },
+      {
+        "iri": "http://purl.org/dc/terms/created",
+        "baseIri": "http://purl.org/dc/terms",
+        "range": "19",
+        "label": {
+          "IRI-based": "created"
+        },
+        "domain": "9",
+        "attributes": [
+          "datatype",
+          "external"
+        ],
+        "id": "36"
+      },
+      {
+        "range": "5",
+        "domain": "4",
+        "attributes": [
+          "anonymous",
+          "object"
+        ],
+        "id": "37"
+      },
+      {
+        "iri": "http://purl.org/muto/core#taggedWith",
+        "inverse": "0",
+        "baseIri": "http://purl.org/muto/core",
+        "range": "1",
+        "annotations": {
+          "isDefinedBy": [
+            {
+              "identifier": "定义",
+              "language": "cn",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            },
+            {
+              "identifier": "isDefinedBy",
+              "language": "en",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            }
+          ]
+        },
+        "label": {
+          "IRI-based": "taggedWith",
+          "cn": "标记",
+          "en": "tagged with"
+        },
+        "domain": "2",
+        "comment": {
+          "cn": "一个资源可以有来自不同用户的多个标记。标签从不直接链接到资源，但是可以从标记中推断出来。",
+          "en": "A resource can have several taggings from different users. Tags are never directly linked to resources but can be inferred from the taggings."
+        },
+        "attributes": [
+          "object"
+        ],
+        "id": "38"
+      },
+      {
+        "iri": "http://purl.org/muto/core#tagCreated",
+        "baseIri": "http://purl.org/muto/core",
+        "range": "24",
+        "annotations": {
+          "isDefinedBy": [
+            {
+              "identifier": "定义",
+              "language": "cn",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            },
+            {
+              "identifier": "isDefinedBy",
+              "language": "en",
+              "value": "http://purl.org/muto/core#",
+              "type": "iri"
+            }
+          ]
+        },
+        "label": {
+          "IRI-based": "tagCreated",
+          "cn": "标签已创建",
+          "en": "tag created"
+        },
+        "domain": "4",
+        "comment": {
+          "cn": "标记的创建日期和时间。如果muto:tag姜创建=muto:标签创建(也就是在通常情况下，标签已经被创建了，而不是标签的后面编辑)，那么这个属性就可以省略了。该属性的数据类型是xsd:dateTime(与它的超属性dc术语形成对比:创建具有范围rdfs:文字)。",
+          "en": "The creation date and time of a tag. This property can be omitted if muto:taggingCreated = muto:tagCreated (i.e. in the common case that a tag has been created along with a tagging, not in a later edit of the tagging). The datatype of this property is xsd:dateTime (in contrast to it superproperty dcterms:created which has range rdfs:Literal)."
+        },
+        "attributes": [
+          "functional",
+          "datatype"
+        ],
+        "id": "39"
+      },
+      {
+        "range": "1",
+        "domain": "21",
+        "attributes": [
+          "anonymous",
+          "object"
+        ],
+        "id": "40"
+      },
+      {
+        "range": "32",
+        "domain": "1",
+        "attributes": [
+          "anonymous",
+          "object"
+        ],
+        "id": "41"
+      }
+    ]
+  }
